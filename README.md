@@ -1,2 +1,1 @@
-EE272-Design_HW1
-SHA3 Algorithm with 4 memories used under 400 flip flops
+Designed the permutation for SHA3 Algorithm using 4 memories and synthesized using toshiba 240nm library under 400 flip flops
