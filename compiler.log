@@ -1,0 +1,163 @@
+/apps/synopsys/VCSMX_NEW/bin/vcs
+
+Warning-[LNX_OS_VERUN] Unsupported Linux version
+  Linux version 'CentOS Linux release 7.8.2003 (Core)' is not supported on 
+  'x86_64' officially, assuming linux compatibility by default. Set 
+  VCS_ARCH_OVERRIDE to linux or suse32 to override.
+  Please refer to release notes for information on supported platforms.
+
+
+Warning-[LINX_KRNL] Unsupported Linux kernel
+  Linux kernel '3.10.0-1127.8.2.el7.x86_64' is not supported.
+  Supported versions are 2.4* or 2.6*.
+
+                         Chronologic VCS (TM)
+           Version I-2014.03-2 -- Fri Sep 25 18:34:58 2020
+               Copyright (c) 1991-2014 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Parsing design file 'tbpm.sv'
+Parsing included file 'perm.sv'.
+
+Warning-[CIWC] Ignored /* within /* */ comment
+  Nested comments is found. Ignoring nested '/*'. 
+  /*			
+  ^
+  "perm.sv", 989
+
+Back to file 'tbpm.sv'.
+Parsing included file 'm55.sv'.
+Back to file 'tbpm.sv'.
+Top Level Modules:
+       top
+TimeScale is 1 ns / 10 ps
+Starting vcs inline pass...
+3 modules and 0 UDP read.
+	However, due to incremental compilation, only 1 module needs to be compiled.
+recompiling module perm_blk because:
+	This module or some inlined child module(s) has/have been modified.
+rm -f _csrc*.so linux_scvhdl_*.so pre_vcsobj_*.so share_vcsobj_*.so
+ld -m elf_i386 -shared -o .//../simv.daidir//_csrc1.so --whole-archive _vcsobj_1_1.a  --no-whole-archive
+ld -m elf_i386 -shared -o .//../simv.daidir//_csrc0.so 5NrI_d.o 5NrIB_d.o SIM_l.o  
+ld -m elf_i386 -shared -o .//../simv.daidir//pre_vcsobj_1_1.so --whole-archive pre_vcsobj_1_1.a --no-whole-archive
+ld -m elf_i386 -shared -o .//../simv.daidir//pre_vcsobj_1_2.so --whole-archive pre_vcsobj_1_2.a --no-whole-archive
+if [ -x ../simv ]; then chmod -x ../simv; fi
+g++  -o ../simv  -m32 -m32   -Wl,-rpath-link=./ -Wl,-rpath='$ORIGIN'/simv.daidir/ -Wl,-rpath='$ORIGIN'/simv.daidir//scsim.db.dir  _csrc1.so _csrc0.so   pre_vcsobj_1_1.so pre_vcsobj_1_2.so  rmapats_mop.o rmapats.o rmar.o           /apps/synopsys/VCSMX_NEW/linux/lib/libzerosoft_rt_stubs.so /apps/synopsys/VCSMX_NEW/linux/lib/libvirsim.so /apps/synopsys/VCSMX_NEW/linux/lib/librterrorinf.so /apps/synopsys/VCSMX_NEW/linux/lib/libsnpsmalloc.so    /apps/synopsys/VCSMX_NEW/linux/lib/libvcsnew.so /apps/synopsys/VCSMX_NEW/linux/lib/libuclinative.so   -Wl,-whole-archive /apps/synopsys/VCSMX_NEW/linux/lib/libvcsucli.so -Wl,-no-whole-archive          /apps/synopsys/VCSMX_NEW/linux/lib/vcs_save_restore_new.o /apps/synopsys/VCSMX_NEW/linux/lib/ctype-stubs_32.a -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+CPU time: .168 seconds to compile + .023 seconds to elab + .125 seconds to link
+Chronologic VCS simulator copyright 1991-2014
+Contains Synopsys proprietary information.
+Compiler version I-2014.03-2; Runtime version I-2014.03-2;  Sep 25 18:34 2020
+                 291Done 25 locations!m1wx:100,m1wy:100
+                 300Done 25 locations!m1wx:100,m1wy:100
+                 301Done 25 locations!m1wx:100,m1wy:100
+perm reset state
+donetheta
+donetheta
+round: 0cmx[round]:0000000000000001,r1_d:0000000000000000,m3wd:0000000000000001,m3wx;0,m3wy;0
+round: 0cmx[round]:0000000000000001,r1_d:000004060a636260,m3wd:000004060a636261,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 1cmx[round]:0000000000008082,r1_d:4720623555080128,m3wd:47206235550881aa,m3wx;0,m3wy;0
+round: 1cmx[round]:0000000000008082,r1_d:b3f2f98188b26c46,m3wd:b3f2f98188b2ecc4,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 2cmx[round]:800000000000808a,r1_d:1020191168168c21,m3wd:9020191168160cab,m3wx;0,m3wy;0
+round: 2cmx[round]:800000000000808a,r1_d:95d10d5878bf7b4e,m3wd:15d10d5878bffbc4,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 3cmx[round]:8000000080008000,r1_d:8482224801a4d5c8,m3wd:0482224881a455c8,m3wx;0,m3wy;0
+round: 3cmx[round]:8000000080008000,r1_d:f947b772d1f69bb6,m3wd:7947b77251f61bb6,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 4cmx[round]:000000000000808b,r1_d:9488c05901980582,m3wd:9488c05901988509,m3wx;0,m3wy;0
+round: 4cmx[round]:000000000000808b,r1_d:37e9c8aed66c30a0,m3wd:37e9c8aed66cb02b,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 5cmx[round]:0000000080000001,r1_d:0c90a44002880100,m3wd:0c90a44082880101,m3wx;0,m3wy;0
+round: 5cmx[round]:0000000080000001,r1_d:59223c5a1dc18e62,m3wd:59223c5a9dc18e63,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 6cmx[round]:8000000080008081,r1_d:470566804510d129,m3wd:c7056680c51051a8,m3wx;0,m3wy;0
+round: 6cmx[round]:8000000080008081,r1_d:b6a5570df5c0f528,m3wd:36a5570d75c075a9,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 7cmx[round]:8000000000008009,r1_d:04144203421000c0,m3wd:84144203421080c9,m3wx;0,m3wy;0
+round: 7cmx[round]:8000000000008009,r1_d:a65a66dadc56fb01,m3wd:265a66dadc567b08,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 8cmx[round]:000000000000008a,r1_d:950214f571416140,m3wd:950214f5714161ca,m3wx;0,m3wy;0
+round: 8cmx[round]:000000000000008a,r1_d:9c231ff84b21c238,m3wd:9c231ff84b21c2b2,m3wx;0,m3wy;0
+donetheta
+donetheta
+round: 9cmx[round]:0000000000000088,r1_d:201684a16843180a,m3wd:201684a168431882,m3wx;0,m3wy;0
+round: 9cmx[round]:0000000000000088,r1_d:1fbacec3ad87d221,m3wd:1fbacec3ad87d2a9,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:10cmx[round]:0000000080008009,r1_d:6021008a26b40004,m3wd:6021008aa6b4800d,m3wx;0,m3wy;0
+round:10cmx[round]:0000000080008009,r1_d:083cf513d4bfae22,m3wd:083cf51354bf2e2b,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:11cmx[round]:000000008000000a,r1_d:430124c20000a428,m3wd:430124c28000a422,m3wx;0,m3wy;0
+round:11cmx[round]:000000008000000a,r1_d:a43f26292a7b1ab9,m3wd:a43f2629aa7b1ab3,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:12cmx[round]:000000008000808b,r1_d:7a002ba006894284,m3wd:7a002ba08689c20f,m3wx;0,m3wy;0
+round:12cmx[round]:000000008000808b,r1_d:01fbd24e0ef55c99,m3wd:01fbd24e8ef5dc12,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:13cmx[round]:800000000000008b,r1_d:a013004040210022,m3wd:20130040402100a9,m3wx;0,m3wy;0
+round:13cmx[round]:800000000000008b,r1_d:027000492d99841e,m3wd:827000492d998495,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:14cmx[round]:8000000000008089,r1_d:1001228078012009,m3wd:900122807801a080,m3wx;0,m3wy;0
+round:14cmx[round]:8000000000008089,r1_d:b0e9becb6ad25634,m3wd:30e9becb6ad2d6bd,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:15cmx[round]:8000000000008003,r1_d:0418a020c0005a00,m3wd:8418a020c000da03,m3wx;0,m3wy;0
+round:15cmx[round]:8000000000008003,r1_d:210061b0d736cf18,m3wd:a10061b0d7364f1b,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:16cmx[round]:8000000000008002,r1_d:250448c901400014,m3wd:a50448c901408016,m3wx;0,m3wy;0
+round:16cmx[round]:8000000000008002,r1_d:ac27a24a9c1f8073,m3wd:2c27a24a9c1f0071,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:17cmx[round]:8000000000000080,r1_d:189d00d449400402,m3wd:989d00d449400482,m3wx;0,m3wy;0
+round:17cmx[round]:8000000000000080,r1_d:97f2c8eee299f156,m3wd:17f2c8eee299f1d6,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:18cmx[round]:000000000000800a,r1_d:5008282000105301,m3wd:500828200010d30b,m3wx;0,m3wy;0
+round:18cmx[round]:000000000000800a,r1_d:ce2893c7d18bdb16,m3wd:ce2893c7d18b5b1c,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:19cmx[round]:800000008000000a,r1_d:6100403120ee000a,m3wd:e1004031a0ee0000,m3wx;0,m3wy;0
+round:19cmx[round]:800000008000000a,r1_d:fd33a8fb2baace71,m3wd:7d33a8fbabaace7b,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:20cmx[round]:8000000080008081,r1_d:0240011088020620,m3wd:82400110080286a1,m3wx;0,m3wy;0
+round:20cmx[round]:8000000080008081,r1_d:d4d5f737ad6b7ef9,m3wd:54d5f7372d6bfe78,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:21cmx[round]:8000000000008080,r1_d:88400520540881b4,m3wd:0840052054080134,m3wx;0,m3wy;0
+round:21cmx[round]:8000000000008080,r1_d:4d2dac2008794584,m3wd:cd2dac200879c504,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:22cmx[round]:0000000080000001,r1_d:2810204004c08086,m3wd:2810204084c08087,m3wx;0,m3wy;0
+round:22cmx[round]:0000000080000001,r1_d:725afc7118cb7d6d,m3wd:725afc7198cb7d6c,m3wx;0,m3wy;0
+donetheta
+donetheta
+round:23cmx[round]:8000000080008008,r1_d:5002200d5151178a,m3wd:d002200dd1519782,m3wx;0,m3wy;0
+round:23cmx[round]:8000000080008008,r1_d:e8c08f9d3b77de8d,m3wd:68c08f9dbb775e85,m3wx;0,m3wy;0
+DONE PERM
+DONE PERM
+ran out of clocks
+$finish called from file "tbpm.sv", line 28.
+$finish at simulation time          20000000000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 200000000000 ps
+CPU Time:     24.210 seconds;       Data structure size:   0.0Mb
+Fri Sep 25 18:35:31 2020

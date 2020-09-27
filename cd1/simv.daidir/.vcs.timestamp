@@ -1,0 +1,94 @@
+0 
+19
+-Mamsrun=
+-Masflags=--32
+-Mcc=gcc
+-Mcfl= -pipe -m32 -fPIC -O -I/apps/synopsys/VCSMX_NEW/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mldflags=-m32 -m32
+-Mobjects= /apps/synopsys/VCSMX_NEW/linux/lib/libvirsim.so /apps/synopsys/VCSMX_NEW/linux/lib/librterrorinf.so /apps/synopsys/VCSMX_NEW/linux/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/apps/synopsys/VCSMX_NEW/linux/lib/vcs_save_restore_new.o
+-Msyslibs=/apps/synopsys/VCSMX_NEW/linux/lib/ctype-stubs_32.a -ldl
+-Mvcsaceobjs=
+-gen_obj
+-picarchive
+-sverilog
+/apps/synopsys/VCSMX_NEW/linux/bin/vcs1
+sm1.sv
+62
+sysc_uni_pwd=/home/014538550@SJSUAD.SJSU.EDU/272/designhw1/cd1
+XRDP_SOCKET_PATH=/tmp/.xrdp
+XRDP_SESSION=1
+XRDP_PULSE_SOURCE_SOCKET=xrdp_chansrv_audio_in_socket_20
+XRDP_PULSE_SINK_SOCKET=xrdp_chansrv_audio_out_socket_20
+XMODIFIERS=@im=ibus
+XDG_SESSION_ID=17993
+XDG_RUNTIME_DIR=/run/user/1222974132
+XDG_MENU_PREFIX=gnome-
+XDG_DATA_DIRS=/home/014538550@SJSUAD.SJSU.EDU/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=5202
+VMR_MODE_FLAG=32
+VENDOR=unknown
+VCS_MX_HOME_INTERNAL=1
+VCS_HOME=/apps/synopsys/VCSMX_NEW
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=linux
+VCS_AMD_PURE32=1
+VCSMX_HOME=/apps/synopsys/VCSMX_NEW
+UNAME=/bin/uname
+TOOL_HOME=/apps/synopsys/VCSMX_NEW/linux
+TK_LIBRARY=/apps/synopsys/VCSMX_NEW/etc/auxx/tcllib/tk8.4/library
+SSH_AUTH_SOCK=/run/user/1222974132/keyring/ssh
+SSH_AGENT_PID=15480
+SNPSLMS_LICENSE_FILE=27000@cadence3.engr.sjsu.edu:/apps/synopsys/license/current-license-key
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/15311,unix/unix:/tmp/.ICE-unix/15311
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+QT_PLUGIN_PATH=/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+QT_IM_MODULE=ibus
+QT_GRAPHICSSYSTEM_CHECKED=1
+QTLIB=/usr/lib64/qt-3.3/lib
+QTINC=/usr/lib64/qt-3.3/include
+QTDIR=/usr/lib64/qt-3.3
+PULSE_SCRIPT=/etc/xrdp/pulse/default.pa
+OVA_UUM=0
+OSTYPE=linux
+MODULESHOME=/usr/share/Modules
+MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+MGLS_LICENSE_FILE=17000@COE-E239-EELIC.sjsuad.sjsu.edu
+LOADEDMODULES=
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+KRB5CCNAME=KEYRING:persistent:1222974132
+KDEDIRS=/usr
+IMSETTINGS_MODULE=none
+IMSETTINGS_INTEGRATE_DESKTOP=yes
+HOSTTYPE=x86_64-linux
+HISTCONTROL=ignoredups
+GROUP=domain users
+GNOME_TERMINAL_SERVICE=:1.98
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/59b64531_c506_4e1f_8b93_c9710e4d9440
+GNOME_SHELL_SESSION_MODE=classic
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ypdyZJsUw2,guid=c22d4e52c5fe05e24eea3f255f55ccb7
+COLORTERM=truecolor
+CDS_LIC_FILE=5280@COE-E239-EELIC.sjsuad.sjsu.edu:/apps/cadence/license-current
+CDSLMD_LICENSE_FILE=5280@COE-E239-EELIC.sjsuad.sjsu.edu:/apps/cadence/license-current
+BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`_}
+ARCH=linux
+0
+2
+1599460731 sm.sv
+1599255926 sm1.sv
+4
+0 
+1410372690 /apps/synopsys/VCSMX_NEW/linux/lib/libvirsim.so
+1410372633 /apps/synopsys/VCSMX_NEW/linux/lib/librterrorinf.so
+1410372654 /apps/synopsys/VCSMX_NEW/linux/lib/libsnpsmalloc.so
+1599461036 simv.daidir

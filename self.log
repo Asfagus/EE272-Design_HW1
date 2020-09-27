@@ -1,0 +1,1629 @@
+/apps/synopsys/VCSMX_NEW/bin/vcs
+
+Warning-[LNX_OS_VERUN] Unsupported Linux version
+  Linux version 'CentOS Linux release 7.8.2003 (Core)' is not supported on 
+  'x86_64' officially, assuming linux compatibility by default. Set 
+  VCS_ARCH_OVERRIDE to linux or suse32 to override.
+  Please refer to release notes for information on supported platforms.
+
+
+Warning-[LINX_KRNL] Unsupported Linux kernel
+  Linux kernel '3.10.0-1127.8.2.el7.x86_64' is not supported.
+  Supported versions are 2.4* or 2.6*.
+
+                         Chronologic VCS (TM)
+           Version I-2014.03-2 -- Fri Sep 25 17:58:39 2020
+               Copyright (c) 1991-2014 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Parsing design file 'tb_self.sv'
+Parsing included file 'perm.sv'.
+
+Warning-[CIWC] Ignored /* within /* */ comment
+  Nested comments is found. Ignoring nested '/*'. 
+  /*			
+  ^
+  "perm.sv", 980
+
+Back to file 'tb_self.sv'.
+Parsing included file 'm55.sv'.
+Back to file 'tb_self.sv'.
+Top Level Modules:
+       tb_self
+TimeScale is 1 ns / 10 ps
+Starting vcs inline pass...
+3 modules and 0 UDP read.
+	However, due to incremental compilation, only 1 module needs to be compiled.
+recompiling module tb_self because:
+	This module or some inlined child module(s) has/have been modified.
+rm -f _csrc*.so linux_scvhdl_*.so pre_vcsobj_*.so share_vcsobj_*.so
+ld -m elf_i386 -shared -o .//../simv.daidir//_csrc1.so --whole-archive _vcsobj_1_1.a  --no-whole-archive
+ld -m elf_i386 -shared -o .//../simv.daidir//_csrc0.so 5NrI_d.o 5NrIB_d.o SIM_l.o  
+ld -m elf_i386 -shared -o .//../simv.daidir//pre_vcsobj_1_1.so --whole-archive pre_vcsobj_1_1.a --no-whole-archive
+ld -m elf_i386 -shared -o .//../simv.daidir//pre_vcsobj_1_2.so --whole-archive pre_vcsobj_1_2.a --no-whole-archive
+if [ -x ../simv ]; then chmod -x ../simv; fi
+g++  -o ../simv  -m32 -m32   -Wl,-rpath-link=./ -Wl,-rpath='$ORIGIN'/simv.daidir/ -Wl,-rpath='$ORIGIN'/simv.daidir//scsim.db.dir  _csrc1.so _csrc0.so   pre_vcsobj_1_1.so pre_vcsobj_1_2.so  rmapats_mop.o rmapats.o rmar.o           /apps/synopsys/VCSMX_NEW/linux/lib/libzerosoft_rt_stubs.so /apps/synopsys/VCSMX_NEW/linux/lib/libvirsim.so /apps/synopsys/VCSMX_NEW/linux/lib/librterrorinf.so /apps/synopsys/VCSMX_NEW/linux/lib/libsnpsmalloc.so    /apps/synopsys/VCSMX_NEW/linux/lib/libvcsnew.so /apps/synopsys/VCSMX_NEW/linux/lib/libuclinative.so   -Wl,-whole-archive /apps/synopsys/VCSMX_NEW/linux/lib/libvcsucli.so -Wl,-no-whole-archive          /apps/synopsys/VCSMX_NEW/linux/lib/vcs_save_restore_new.o /apps/synopsys/VCSMX_NEW/linux/lib/ctype-stubs_32.a -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+CPU time: .171 seconds to compile + .025 seconds to elab + .139 seconds to link
+Chronologic VCS simulator copyright 1991-2014
+Contains Synopsys proprietary information.
+Compiler version I-2014.03-2; Runtime version I-2014.03-2;  Sep 25 17:58 2020
+                 241Done 25 locations!m1wx:100,m1wy:100
+                 250Done 25 locations!m1wx:100,m1wy:100
+perm reset state
+perm reset state
+D:0000000a1ea5a6a3,m3wy:1,m3wx:0
+D:0000000000000001,m3wy:1,m3wx:0
+D:0000000000000001,m3wy:1,m3wx:1
+D:000000060a636261,m3wy:1,m3wx:1
+D:000000060a636261,m3wy:1,m3wx:2
+D:8000000000000000,m3wy:1,m3wx:2
+D:8000000000000000,m3wy:1,m3wx:3
+D:0000000000000000,m3wy:1,m3wx:3
+D:0000000000000000,m3wy:1,m3wx:4
+D:0000000c14c6c4c2,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 0cmx[round]:0000000000000001,r1_d:0000000000000000,m3wd:0000000000000001,m3wx;0,m3wy;0
+round: 0cmx[round]:0000000000000001,r1_d:000004060a636260,m3wd:000004060a636261,m3wx;0,m3wy;0
+copym3m1:m1wd:000004060a636261,m3rd:000004060a636261 m1wx:0,m1wy:0
+copym3m1:m1wd:000004060a636261,m3rd:000004060a636261 m1wx:0,m1wy:1
+copym3m1:m1wd:0000000000000008,m3rd:0000000000000008 m1wx:0,m1wy:1
+copym3m1:m1wd:0000000000000008,m3rd:0000000000000008 m1wx:0,m1wy:2
+copym3m1:m1wd:0000000c14c6c4c2,m3rd:0000000c14c6c4c2 m1wx:0,m1wy:2
+copym3m1:m1wd:0000000c14c6c4c2,m3rd:0000000c14c6c4c2 m1wx:0,m1wy:3
+copym3m1:m1wd:60a62e0f9d898400,m3rd:60a62e0f9d898400 m1wx:0,m1wy:3
+copym3m1:m1wd:60a62e0f9d898400,m3rd:60a62e0f9d898400 m1wx:0,m1wy:4
+copym3m1:m1wd:436261000000060a,m3rd:436261000000060a m1wx:0,m1wy:4
+copym3m1:m1wd:436261000000060a,m3rd:436261000000060a m1wx:1,m1wy:0
+copym3m1:m1wd:36261000000060a6,m3rd:36261000000060a6 m1wx:1,m1wy:0
+copym3m1:m1wd:36261000000060a6,m3rd:36261000000060a6 m1wx:1,m1wy:1
+copym3m1:m1wd:6c8d7c6c4c20c144,m3rd:6c8d7c6c4c20c144 m1wx:1,m1wy:1
+copym3m1:m1wd:6c8d7c6c4c20c144,m3rd:6c8d7c6c4c20c144 m1wx:1,m1wy:2
+copym3m1:m1wd:00000c14c6c4c220,m3rd:00000c14c6c4c220 m1wx:1,m1wy:2
+copym3m1:m1wd:00000c14c6c4c220,m3rd:00000c14c6c4c220 m1wx:1,m1wy:3
+copym3m1:m1wd:0000001000004000,m3rd:0000001000004000 m1wx:1,m1wy:3
+copym3m1:m1wd:0000001000004000,m3rd:0000001000004000 m1wx:1,m1wy:4
+copym3m1:m1wd:0000020000000000,m3rd:0000020000000000 m1wx:1,m1wy:4
+copym3m1:m1wd:0000020000000000,m3rd:0000020000000000 m1wx:2,m1wy:0
+copym3m1:m1wd:00030131b1308000,m3rd:00030131b1308000 m1wx:2,m1wy:0
+copym3m1:m1wd:00030131b1308000,m3rd:00030131b1308000 m1wx:2,m1wy:1
+copym3m1:m1wd:1000000000000008,m3rd:1000000000000008 m1wx:2,m1wy:1
+copym3m1:m1wd:1000000000000008,m3rd:1000000000000008 m1wx:2,m1wy:2
+copym3m1:m1wd:0000000000000000,m3rd:0000000000000000 m1wx:2,m1wy:2
+copym3m1:m1wd:0000000000000000,m3rd:0000000000000000 m1wx:2,m1wy:3
+copym3m1:m1wd:000018298d898400,m3rd:000018298d898400 m1wx:2,m1wy:3
+copym3m1:m1wd:000018298d898400,m3rd:000018298d898400 m1wx:2,m1wy:4
+copym3m1:m1wd:63626118298d8f8e,m3rd:63626118298d8f8e m1wx:2,m1wy:4
+copym3m1:m1wd:63626118298d8f8e,m3rd:63626118298d8f8e m1wx:3,m1wy:0
+copym3m1:m1wd:000000060a436260,m3rd:000000060a436260 m1wx:3,m1wy:0
+copym3m1:m1wd:000000060a436260,m3rd:000000060a436260 m1wx:3,m1wy:1
+copym3m1:m1wd:6c4c30000000c14c,m3rd:6c4c30000000c14c m1wx:3,m1wy:1
+copym3m1:m1wd:6c4c30000000c14c,m3rd:6c4c30000000c14c m1wx:3,m1wy:2
+copym3m1:m1wd:00000c18d20606c2,m3rd:00000c18d20606c2 m1wx:3,m1wy:2
+copym3m1:m1wd:00000c18d20606c2,m3rd:00000c18d20606c2 m1wx:3,m1wy:3
+copym3m1:m1wd:60a6362610004000,m3rd:60a6362610004000 m1wx:3,m1wy:3
+copym3m1:m1wd:60a6362610004000,m3rd:60a6362610004000 m1wx:3,m1wy:4
+copym3m1:m1wd:2000020000000000,m3rd:2000020000000000 m1wx:3,m1wy:4
+copym3m1:m1wd:2000020000000000,m3rd:2000020000000000 m1wx:4,m1wy:0
+copym3m1:m1wd:36251531b1308086,m3rd:36251531b1308086 m1wx:4,m1wy:0
+copym3m1:m1wd:36251531b1308086,m3rd:36251531b1308086 m1wx:4,m1wy:1
+copym3m1:m1wd:10c14c6c4c200000,m3rd:10c14c6c4c200000 m1wx:4,m1wy:1
+copym3m1:m1wd:10c14c6c4c200000,m3rd:10c14c6c4c200000 m1wx:4,m1wy:2
+copym3m1:m1wd:0000000000040020,m3rd:0000000000040020 m1wx:4,m1wy:2
+copym3m1:m1wd:0000000000040020,m3rd:0000000000040020 m1wx:4,m1wy:3
+copym3m1:m1wd:0000001000000000,m3rd:0000001000000000 m1wx:4,m1wy:3
+copym3m1:m1wd:0000001000000000,m3rd:0000001000000000 m1wx:4,m1wy:4
+copym3m1:m1wd:00000018298d8984,m3rd:00000018298d8984 m1wx:4,m1wy:4
+D:644cdd0e85746de3,m3wy:1,m3wx:0
+D:93b29d84c1514ea6,m3wy:1,m3wx:0
+D:93b29d84c1514ea6,m3wy:1,m3wx:1
+D:c506bb05a94533ad,m3wy:1,m3wx:1
+D:c506bb05a94533ad,m3wy:1,m3wx:2
+D:037f72191a6fe81e,m3wy:1,m3wx:2
+D:037f72191a6fe81e,m3wy:1,m3wx:3
+D:3ea9caabbc0699c2,m3wy:1,m3wx:3
+D:3ea9caabbc0699c2,m3wy:1,m3wx:4
+D:6b629e33ce1dacac,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 1cmx[round]:0000000000008082,r1_d:4720623555080128,m3wd:47206235550881aa,m3wx;0,m3wy;0
+round: 1cmx[round]:0000000000008082,r1_d:b3f2f98188b26c46,m3wd:b3f2f98188b2ecc4,m3wx;0,m3wy;0
+copym3m1:m1wd:b3f2f98188b2ecc4,m3rd:b3f2f98188b2ecc4 m1wx:0,m1wy:0
+copym3m1:m1wd:b3f2f98188b2ecc4,m3rd:b3f2f98188b2ecc4 m1wx:0,m1wy:1
+copym3m1:m1wd:436093be07d2ddaa,m3rd:436093be07d2ddaa m1wx:0,m1wy:1
+copym3m1:m1wd:436093be07d2ddaa,m3rd:436093be07d2ddaa m1wx:0,m1wy:2
+copym3m1:m1wd:c6415733528ff41e,m3rd:c6415733528ff41e m1wx:0,m1wy:2
+copym3m1:m1wd:c6415733528ff41e,m3rd:c6415733528ff41e m1wx:0,m1wy:3
+copym3m1:m1wd:19316c77562c1b48,m3rd:19316c77562c1b48 m1wx:0,m1wy:3
+copym3m1:m1wd:19316c77562c1b48,m3rd:19316c77562c1b48 m1wx:0,m1wy:4
+copym3m1:m1wd:880918ca8ad6c2c4,m3rd:880918ca8ad6c2c4 m1wx:0,m1wy:4
+copym3m1:m1wd:880918ca8ad6c2c4,m3rd:880918ca8ad6c2c4 m1wx:1,m1wy:0
+copym3m1:m1wd:df9b9a58bc3d9f7a,m3rd:df9b9a58bc3d9f7a m1wx:1,m1wy:0
+copym3m1:m1wd:df9b9a58bc3d9f7a,m3rd:df9b9a58bc3d9f7a m1wx:1,m1wy:1
+copym3m1:m1wd:0799337a99851e35,m3rd:0799337a99851e35 m1wx:1,m1wy:1
+copym3m1:m1wd:0799337a99851e35,m3rd:0799337a99851e35 m1wx:1,m1wy:2
+copym3m1:m1wd:dfdea486867aa9e6,m3rd:dfdea486867aa9e6 m1wx:1,m1wy:2
+copym3m1:m1wd:dfdea486867aa9e6,m3rd:dfdea486867aa9e6 m1wx:1,m1wy:3
+copym3m1:m1wd:b014e0a80b20d8e7,m3rd:b014e0a80b20d8e7 m1wx:1,m1wy:3
+copym3m1:m1wd:b014e0a80b20d8e7,m3rd:b014e0a80b20d8e7 m1wx:1,m1wy:4
+copym3m1:m1wd:f6287b3f5dfe0534,m3rd:f6287b3f5dfe0534 m1wx:1,m1wy:4
+copym3m1:m1wd:f6287b3f5dfe0534,m3rd:f6287b3f5dfe0534 m1wx:2,m1wy:0
+copym3m1:m1wd:594a893ffa90d2d3,m3rd:594a893ffa90d2d3 m1wx:2,m1wy:0
+copym3m1:m1wd:594a893ffa90d2d3,m3rd:594a893ffa90d2d3 m1wx:2,m1wy:1
+copym3m1:m1wd:9d96ee068ca01bf6,m3rd:9d96ee068ca01bf6 m1wx:2,m1wy:1
+copym3m1:m1wd:9d96ee068ca01bf6,m3rd:9d96ee068ca01bf6 m1wx:2,m1wy:2
+copym3m1:m1wd:f6dd053f226e108d,m3rd:f6dd053f226e108d m1wx:2,m1wy:2
+copym3m1:m1wd:f6dd053f226e108d,m3rd:f6dd053f226e108d m1wx:2,m1wy:3
+copym3m1:m1wd:58dae5b68e763114,m3rd:58dae5b68e763114 m1wx:2,m1wy:3
+copym3m1:m1wd:58dae5b68e763114,m3rd:58dae5b68e763114 m1wx:2,m1wy:4
+copym3m1:m1wd:08dce625355fd1e1,m3rd:08dce625355fd1e1 m1wx:2,m1wy:4
+copym3m1:m1wd:08dce625355fd1e1,m3rd:08dce625355fd1e1 m1wx:3,m1wy:0
+copym3m1:m1wd:818580d9fa7be5f8,m3rd:818580d9fa7be5f8 m1wx:3,m1wy:0
+copym3m1:m1wd:818580d9fa7be5f8,m3rd:818580d9fa7be5f8 m1wx:3,m1wy:1
+copym3m1:m1wd:7d11e53ad6e02520,m3rd:7d11e53ad6e02520 m1wx:3,m1wy:1
+copym3m1:m1wd:7d11e53ad6e02520,m3rd:7d11e53ad6e02520 m1wx:3,m1wy:2
+copym3m1:m1wd:66de71c44da4087f,m3rd:66de71c44da4087f m1wx:3,m1wy:2
+copym3m1:m1wd:66de71c44da4087f,m3rd:66de71c44da4087f m1wx:3,m1wy:3
+copym3m1:m1wd:a4f90bd2664d39ff,m3rd:a4f90bd2664d39ff m1wx:3,m1wy:3
+copym3m1:m1wd:a4f90bd2664d39ff,m3rd:a4f90bd2664d39ff m1wx:3,m1wy:4
+copym3m1:m1wd:3150552e23a406b9,m3rd:3150552e23a406b9 m1wx:3,m1wy:4
+copym3m1:m1wd:3150552e23a406b9,m3rd:3150552e23a406b9 m1wx:4,m1wy:0
+copym3m1:m1wd:eb86fbfc3d0e88c8,m3rd:eb86fbfc3d0e88c8 m1wx:4,m1wy:0
+copym3m1:m1wd:eb86fbfc3d0e88c8,m3rd:eb86fbfc3d0e88c8 m1wx:4,m1wy:1
+copym3m1:m1wd:289b8220ee796ee7,m3rd:289b8220ee796ee7 m1wx:4,m1wy:1
+copym3m1:m1wd:289b8220ee796ee7,m3rd:289b8220ee796ee7 m1wx:4,m1wy:2
+copym3m1:m1wd:eb8f8501abc342c3,m3rd:eb8f8501abc342c3 m1wx:4,m1wy:2
+copym3m1:m1wd:eb8f8501abc342c3,m3rd:eb8f8501abc342c3 m1wx:4,m1wy:3
+copym3m1:m1wd:c61a2b4082bdc69d,m3rd:c61a2b4082bdc69d m1wx:4,m1wy:3
+copym3m1:m1wd:c61a2b4082bdc69d,m3rd:c61a2b4082bdc69d m1wx:4,m1wy:4
+copym3m1:m1wd:533a8623f01ccf9f,m3rd:533a8623f01ccf9f m1wx:4,m1wy:4
+D:e83ddad3033f2505,m3wy:1,m3wx:0
+D:3e737dd9e02c471a,m3wy:1,m3wx:0
+D:3e737dd9e02c471a,m3wy:1,m3wx:1
+D:63e58a9adffb6e46,m3wy:1,m3wx:1
+D:63e58a9adffb6e46,m3wy:1,m3wx:2
+D:5e260385bcb11ab8,m3wy:1,m3wx:2
+D:5e260385bcb11ab8,m3wy:1,m3wx:3
+D:1963c2e9fb5c6280,m3wy:1,m3wx:3
+D:1963c2e9fb5c6280,m3wy:1,m3wx:4
+D:4035d9b926fcce18,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 2cmx[round]:800000000000808a,r1_d:1020191168168c21,m3wd:9020191168160cab,m3wx;0,m3wy;0
+round: 2cmx[round]:800000000000808a,r1_d:95d10d5878bf7b4e,m3wd:15d10d5878bffbc4,m3wx;0,m3wy;0
+copym3m1:m1wd:15d10d5878bffbc4,m3rd:15d10d5878bffbc4 m1wx:0,m1wy:0
+copym3m1:m1wd:15d10d5878bffbc4,m3rd:15d10d5878bffbc4 m1wx:0,m1wy:1
+copym3m1:m1wd:40132f7219877421,m3rd:40132f7219877421 m1wx:0,m1wy:1
+copym3m1:m1wd:40132f7219877421,m3rd:40132f7219877421 m1wx:0,m1wy:2
+copym3m1:m1wd:6bb8b1953d32ca3f,m3rd:6bb8b1953d32ca3f m1wx:0,m1wy:2
+copym3m1:m1wd:6bb8b1953d32ca3f,m3rd:6bb8b1953d32ca3f m1wx:0,m1wy:3
+copym3m1:m1wd:a8cfc256835d9992,m3rd:a8cfc256835d9992 m1wx:0,m1wy:3
+copym3m1:m1wd:a8cfc256835d9992,m3rd:a8cfc256835d9992 m1wx:0,m1wy:4
+copym3m1:m1wd:ce1f666a85a0725e,m3rd:ce1f666a85a0725e m1wx:0,m1wy:4
+copym3m1:m1wd:ce1f666a85a0725e,m3rd:ce1f666a85a0725e m1wx:1,m1wy:0
+copym3m1:m1wd:e025346fec5c276e,m3rd:e025346fec5c276e m1wx:1,m1wy:0
+copym3m1:m1wd:e025346fec5c276e,m3rd:e025346fec5c276e m1wx:1,m1wy:1
+copym3m1:m1wd:8fd8a07027b4c87d,m3rd:8fd8a07027b4c87d m1wx:1,m1wy:1
+copym3m1:m1wd:8fd8a07027b4c87d,m3rd:8fd8a07027b4c87d m1wx:1,m1wy:2
+copym3m1:m1wd:c8a969ec0540d730,m3rd:c8a969ec0540d730 m1wx:1,m1wy:2
+copym3m1:m1wd:c8a969ec0540d730,m3rd:c8a969ec0540d730 m1wx:1,m1wy:3
+copym3m1:m1wd:6ce8230641fee770,m3rd:6ce8230641fee770 m1wx:1,m1wy:3
+copym3m1:m1wd:6ce8230641fee770,m3rd:6ce8230641fee770 m1wx:1,m1wy:4
+copym3m1:m1wd:d00ab919e997df0b,m3rd:d00ab919e997df0b m1wx:1,m1wy:4
+copym3m1:m1wd:d00ab919e997df0b,m3rd:d00ab919e997df0b m1wx:2,m1wy:0
+copym3m1:m1wd:28d5b8d7d8359074,m3rd:28d5b8d7d8359074 m1wx:2,m1wy:0
+copym3m1:m1wd:28d5b8d7d8359074,m3rd:28d5b8d7d8359074 m1wx:2,m1wy:1
+copym3m1:m1wd:c99a13d585241947,m3rd:c99a13d585241947 m1wx:2,m1wy:1
+copym3m1:m1wd:c99a13d585241947,m3rd:c99a13d585241947 m1wx:2,m1wy:2
+copym3m1:m1wd:cb60f29fe88d230f,m3rd:cb60f29fe88d230f m1wx:2,m1wy:2
+copym3m1:m1wd:cb60f29fe88d230f,m3rd:cb60f29fe88d230f m1wx:2,m1wy:3
+copym3m1:m1wd:e49853f245167af0,m3rd:e49853f245167af0 m1wx:2,m1wy:3
+copym3m1:m1wd:e49853f245167af0,m3rd:e49853f245167af0 m1wx:2,m1wy:4
+copym3m1:m1wd:c8c12f45d53afcc4,m3rd:c8c12f45d53afcc4 m1wx:2,m1wy:4
+copym3m1:m1wd:c8c12f45d53afcc4,m3rd:c8c12f45d53afcc4 m1wx:3,m1wy:0
+copym3m1:m1wd:2f72a26b07699845,m3rd:2f72a26b07699845 m1wx:3,m1wy:0
+copym3m1:m1wd:2f72a26b07699845,m3rd:2f72a26b07699845 m1wx:3,m1wy:1
+copym3m1:m1wd:76d41a3da5c47e9b,m3rd:76d41a3da5c47e9b m1wx:3,m1wy:1
+copym3m1:m1wd:76d41a3da5c47e9b,m3rd:76d41a3da5c47e9b m1wx:3,m1wy:2
+copym3m1:m1wd:4742f9a0818da796,m3rd:4742f9a0818da796 m1wx:3,m1wy:2
+copym3m1:m1wd:4742f9a0818da796,m3rd:4742f9a0818da796 m1wx:3,m1wy:3
+copym3m1:m1wd:73ce194395d3026c,m3rd:73ce194395d3026c m1wx:3,m1wy:3
+copym3m1:m1wd:73ce194395d3026c,m3rd:73ce194395d3026c m1wx:3,m1wy:4
+copym3m1:m1wd:8070846615ab0f7c,m3rd:8070846615ab0f7c m1wx:3,m1wy:4
+copym3m1:m1wd:8070846615ab0f7c,m3rd:8070846615ab0f7c m1wx:4,m1wy:0
+copym3m1:m1wd:b5e087bf8361c0e2,m3rd:b5e087bf8361c0e2 m1wx:4,m1wy:0
+copym3m1:m1wd:b5e087bf8361c0e2,m3rd:b5e087bf8361c0e2 m1wx:4,m1wy:1
+copym3m1:m1wd:9353dcbc174d53af,m3rd:9353dcbc174d53af m1wx:4,m1wy:1
+copym3m1:m1wd:9353dcbc174d53af,m3rd:9353dcbc174d53af m1wx:4,m1wy:2
+copym3m1:m1wd:104eeba2173ac869,m3rd:104eeba2173ac869 m1wx:4,m1wy:2
+copym3m1:m1wd:104eeba2173ac869,m3rd:104eeba2173ac869 m1wx:4,m1wy:3
+copym3m1:m1wd:6e081a9697fa9e08,m3rd:6e081a9697fa9e08 m1wx:4,m1wy:3
+copym3m1:m1wd:6e081a9697fa9e08,m3rd:6e081a9697fa9e08 m1wx:4,m1wy:4
+copym3m1:m1wd:4717df87600321eb,m3rd:4717df87600321eb m1wx:4,m1wy:4
+D:e9fe5885ef18f23a,m3wy:1,m3wx:0
+D:288eba68b96de477,m3wy:1,m3wx:0
+D:288eba68b96de477,m3wy:1,m3wx:1
+D:54467dd71197f606,m3wy:1,m3wx:1
+D:54467dd71197f606,m3wy:1,m3wx:2
+D:c103de4b207198e9,m3wy:1,m3wx:2
+D:c103de4b207198e9,m3wy:1,m3wx:3
+D:39b2ce4acc6fe586,m3wy:1,m3wx:3
+D:39b2ce4acc6fe586,m3wy:1,m3wx:4
+D:5c0eb3d516b71074,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 3cmx[round]:8000000080008000,r1_d:8482224801a4d5c8,m3wd:0482224881a455c8,m3wx;0,m3wy;0
+round: 3cmx[round]:8000000080008000,r1_d:f947b772d1f69bb6,m3wd:7947b77251f61bb6,m3wx;0,m3wy;0
+copym3m1:m1wd:7947b77251f61bb6,m3rd:7947b77251f61bb6 m1wx:0,m1wy:0
+copym3m1:m1wd:7947b77251f61bb6,m3rd:7947b77251f61bb6 m1wx:0,m1wy:1
+copym3m1:m1wd:15902794332d04c2,m3rd:15902794332d04c2 m1wx:0,m1wy:1
+copym3m1:m1wd:15902794332d04c2,m3rd:15902794332d04c2 m1wx:0,m1wy:2
+copym3m1:m1wd:b84e1375db0a22bc,m3rd:b84e1375db0a22bc m1wx:0,m1wy:2
+copym3m1:m1wd:b84e1375db0a22bc,m3rd:b84e1375db0a22bc m1wx:0,m1wy:3
+copym3m1:m1wd:e4fe5e95e34bfbf2,m3rd:e4fe5e95e34bfbf2 m1wx:0,m1wy:3
+copym3m1:m1wd:e4fe5e95e34bfbf2,m3rd:e4fe5e95e34bfbf2 m1wx:0,m1wy:4
+copym3m1:m1wd:3a3d95233e192827,m3rd:3a3d95233e192827 m1wx:0,m1wy:4
+copym3m1:m1wd:3a3d95233e192827,m3rd:3a3d95233e192827 m1wx:1,m1wy:0
+copym3m1:m1wd:33c7ba3509d33afa,m3rd:33c7ba3509d33afa m1wx:1,m1wy:0
+copym3m1:m1wd:33c7ba3509d33afa,m3rd:33c7ba3509d33afa m1wx:1,m1wy:1
+copym3m1:m1wd:d49e9fb5f4befddb,m3rd:d49e9fb5f4befddb m1wx:1,m1wy:1
+copym3m1:m1wd:d49e9fb5f4befddb,m3rd:d49e9fb5f4befddb m1wx:1,m1wy:2
+copym3m1:m1wd:245364a818627792,m3rd:245364a818627792 m1wx:1,m1wy:2
+copym3m1:m1wd:245364a818627792,m3rd:245364a818627792 m1wx:1,m1wy:3
+copym3m1:m1wd:4c2517c628d15126,m3rd:4c2517c628d15126 m1wx:1,m1wy:3
+copym3m1:m1wd:4c2517c628d15126,m3rd:4c2517c628d15126 m1wx:1,m1wy:4
+copym3m1:m1wd:aeb4726ab96491b9,m3rd:aeb4726ab96491b9 m1wx:1,m1wy:4
+copym3m1:m1wd:aeb4726ab96491b9,m3rd:aeb4726ab96491b9 m1wx:2,m1wy:0
+copym3m1:m1wd:ffcbb87219402603,m3rd:ffcbb87219402603 m1wx:2,m1wy:0
+copym3m1:m1wd:ffcbb87219402603,m3rd:ffcbb87219402603 m1wx:2,m1wy:1
+copym3m1:m1wd:98a047cc36d836c2,m3rd:98a047cc36d836c2 m1wx:2,m1wy:1
+copym3m1:m1wd:98a047cc36d836c2,m3rd:98a047cc36d836c2 m1wx:2,m1wy:2
+copym3m1:m1wd:a49b74b230dc622a,m3rd:a49b74b230dc622a m1wx:2,m1wy:2
+copym3m1:m1wd:a49b74b230dc622a,m3rd:a49b74b230dc622a m1wx:2,m1wy:3
+copym3m1:m1wd:8471ac1b50559e51,m3rd:8471ac1b50559e51 m1wx:2,m1wy:3
+copym3m1:m1wd:8471ac1b50559e51,m3rd:8471ac1b50559e51 m1wx:2,m1wy:4
+copym3m1:m1wd:d7ec1e9d402cbb82,m3rd:d7ec1e9d402cbb82 m1wx:2,m1wy:4
+copym3m1:m1wd:d7ec1e9d402cbb82,m3rd:d7ec1e9d402cbb82 m1wx:3,m1wy:0
+copym3m1:m1wd:c560158c3cd956ab,m3rd:c560158c3cd956ab m1wx:3,m1wy:0
+copym3m1:m1wd:c560158c3cd956ab,m3rd:c560158c3cd956ab m1wx:3,m1wy:1
+copym3m1:m1wd:3eaee6c9ea9e284f,m3rd:3eaee6c9ea9e284f m1wx:3,m1wy:1
+copym3m1:m1wd:3eaee6c9ea9e284f,m3rd:3eaee6c9ea9e284f m1wx:3,m1wy:2
+copym3m1:m1wd:0e6f43c0ee9e5ca2,m3rd:0e6f43c0ee9e5ca2 m1wx:3,m1wy:2
+copym3m1:m1wd:0e6f43c0ee9e5ca2,m3rd:0e6f43c0ee9e5ca2 m1wx:3,m1wy:3
+copym3m1:m1wd:c2da8637620aa3cc,m3rd:c2da8637620aa3cc m1wx:3,m1wy:3
+copym3m1:m1wd:c2da8637620aa3cc,m3rd:c2da8637620aa3cc m1wx:3,m1wy:4
+copym3m1:m1wd:0abf43849ce17e75,m3rd:0abf43849ce17e75 m1wx:3,m1wy:4
+copym3m1:m1wd:0abf43849ce17e75,m3rd:0abf43849ce17e75 m1wx:4,m1wy:0
+copym3m1:m1wd:59b49524206fa686,m3rd:59b49524206fa686 m1wx:4,m1wy:0
+copym3m1:m1wd:59b49524206fa686,m3rd:59b49524206fa686 m1wx:4,m1wy:1
+copym3m1:m1wd:43384601d2399d91,m3rd:43384601d2399d91 m1wx:4,m1wy:1
+copym3m1:m1wd:43384601d2399d91,m3rd:43384601d2399d91 m1wx:4,m1wy:2
+copym3m1:m1wd:763997be5cc7d345,m3rd:763997be5cc7d345 m1wx:4,m1wy:2
+copym3m1:m1wd:763997be5cc7d345,m3rd:763997be5cc7d345 m1wx:4,m1wy:3
+copym3m1:m1wd:f0b8c3282449c4e2,m3rd:f0b8c3282449c4e2 m1wx:4,m1wy:3
+copym3m1:m1wd:f0b8c3282449c4e2,m3rd:f0b8c3282449c4e2 m1wx:4,m1wy:4
+copym3m1:m1wd:95b13173e1a471fe,m3rd:95b13173e1a471fe m1wx:4,m1wy:4
+D:1eeed86fad843227,m3wy:1,m3wx:0
+D:4a8affc88208bd16,m3wy:1,m3wx:0
+D:4a8affc88208bd16,m3wy:1,m3wx:1
+D:2a803b317af9406c,m3wy:1,m3wx:1
+D:2a803b317af9406c,m3wy:1,m3wx:2
+D:5a13cee9f8df8fd2,m3wy:1,m3wx:2
+D:5a13cee9f8df8fd2,m3wy:1,m3wx:3
+D:8314540ad9c5eda4,m3wy:1,m3wx:3
+D:8314540ad9c5eda4,m3wy:1,m3wx:4
+D:2970e57c0f3523c5,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 4cmx[round]:000000000000808b,r1_d:9488c05901980582,m3wd:9488c05901988509,m3wx;0,m3wy;0
+round: 4cmx[round]:000000000000808b,r1_d:37e9c8aed66c30a0,m3wd:37e9c8aed66cb02b,m3wx;0,m3wy;0
+copym3m1:m1wd:37e9c8aed66cb02b,m3rd:37e9c8aed66cb02b m1wx:0,m1wy:0
+copym3m1:m1wd:37e9c8aed66cb02b,m3rd:37e9c8aed66cb02b m1wx:0,m1wy:1
+copym3m1:m1wd:ee73ee90fc771d4d,m3rd:ee73ee90fc771d4d m1wx:0,m1wy:1
+copym3m1:m1wd:ee73ee90fc771d4d,m3rd:ee73ee90fc771d4d m1wx:0,m1wy:2
+copym3m1:m1wd:2283b408ea444723,m3rd:2283b408ea444723 m1wx:0,m1wy:2
+copym3m1:m1wd:2283b408ea444723,m3rd:2283b408ea444723 m1wx:0,m1wy:3
+copym3m1:m1wd:8c5eb4a017d45bb2,m3rd:8c5eb4a017d45bb2 m1wx:0,m1wy:3
+copym3m1:m1wd:8c5eb4a017d45bb2,m3rd:8c5eb4a017d45bb2 m1wx:0,m1wy:4
+copym3m1:m1wd:61561d807c47aa7d,m3rd:61561d807c47aa7d m1wx:0,m1wy:4
+copym3m1:m1wd:61561d807c47aa7d,m3rd:61561d807c47aa7d m1wx:1,m1wy:0
+copym3m1:m1wd:3b4b47e86240697e,m3rd:3b4b47e86240697e m1wx:1,m1wy:0
+copym3m1:m1wd:3b4b47e86240697e,m3rd:3b4b47e86240697e m1wx:1,m1wy:1
+copym3m1:m1wd:37d5d8dfc0cca68a,m3rd:37d5d8dfc0cca68a m1wx:1,m1wy:1
+copym3m1:m1wd:37d5d8dfc0cca68a,m3rd:37d5d8dfc0cca68a m1wx:1,m1wy:2
+copym3m1:m1wd:e4e2097af10b45e0,m3rd:e4e2097af10b45e0 m1wx:1,m1wy:2
+copym3m1:m1wd:e4e2097af10b45e0,m3rd:e4e2097af10b45e0 m1wx:1,m1wy:3
+copym3m1:m1wd:225a8d00f1ad82cb,m3rd:225a8d00f1ad82cb m1wx:1,m1wy:3
+copym3m1:m1wd:225a8d00f1ad82cb,m3rd:225a8d00f1ad82cb m1wx:1,m1wy:4
+copym3m1:m1wd:f35b540928db3720,m3rd:f35b540928db3720 m1wx:1,m1wy:4
+copym3m1:m1wd:f35b540928db3720,m3rd:f35b540928db3720 m1wx:2,m1wy:0
+copym3m1:m1wd:2f6f45f055541860,m3rd:2f6f45f055541860 m1wx:2,m1wy:0
+copym3m1:m1wd:2f6f45f055541860,m3rd:2f6f45f055541860 m1wx:2,m1wy:1
+copym3m1:m1wd:87b1d7e0da14f9dd,m3rd:87b1d7e0da14f9dd m1wx:2,m1wy:1
+copym3m1:m1wd:87b1d7e0da14f9dd,m3rd:87b1d7e0da14f9dd m1wx:2,m1wy:2
+copym3m1:m1wd:b7e617260d1a362b,m3rd:b7e617260d1a362b m1wx:2,m1wy:2
+copym3m1:m1wd:b7e617260d1a362b,m3rd:b7e617260d1a362b m1wx:2,m1wy:3
+copym3m1:m1wd:8dfece98eadbf8b9,m3rd:8dfece98eadbf8b9 m1wx:2,m1wy:3
+copym3m1:m1wd:8dfece98eadbf8b9,m3rd:8dfece98eadbf8b9 m1wx:2,m1wy:4
+copym3m1:m1wd:e928640ca28c243d,m3rd:e928640ca28c243d m1wx:2,m1wy:4
+copym3m1:m1wd:e928640ca28c243d,m3rd:e928640ca28c243d m1wx:3,m1wy:0
+copym3m1:m1wd:457b79f34e78395a,m3rd:457b79f34e78395a m1wx:3,m1wy:0
+copym3m1:m1wd:457b79f34e78395a,m3rd:457b79f34e78395a m1wx:3,m1wy:1
+copym3m1:m1wd:6c694d64c5ffea55,m3rd:6c694d64c5ffea55 m1wx:3,m1wy:1
+copym3m1:m1wd:6c694d64c5ffea55,m3rd:6c694d64c5ffea55 m1wx:3,m1wy:2
+copym3m1:m1wd:d8275623def712f9,m3rd:d8275623def712f9 m1wx:3,m1wy:2
+copym3m1:m1wd:d8275623def712f9,m3rd:d8275623def712f9 m1wx:3,m1wy:3
+copym3m1:m1wd:310b006d1943ec31,m3rd:310b006d1943ec31 m1wx:3,m1wy:3
+copym3m1:m1wd:310b006d1943ec31,m3rd:310b006d1943ec31 m1wx:3,m1wy:4
+copym3m1:m1wd:efabd1dc194212e2,m3rd:efabd1dc194212e2 m1wx:3,m1wy:4
+copym3m1:m1wd:efabd1dc194212e2,m3rd:efabd1dc194212e2 m1wx:4,m1wy:0
+copym3m1:m1wd:3d11cce57c8ea774,m3rd:3d11cce57c8ea774 m1wx:4,m1wy:0
+copym3m1:m1wd:3d11cce57c8ea774,m3rd:3d11cce57c8ea774 m1wx:4,m1wy:1
+copym3m1:m1wd:0033ea45961ec608,m3rd:0033ea45961ec608 m1wx:4,m1wy:1
+copym3m1:m1wd:0033ea45961ec608,m3rd:0033ea45961ec608 m1wx:4,m1wy:2
+copym3m1:m1wd:27ceb935556fc2cd,m3rd:27ceb935556fc2cd m1wx:4,m1wy:2
+copym3m1:m1wd:27ceb935556fc2cd,m3rd:27ceb935556fc2cd m1wx:4,m1wy:3
+copym3m1:m1wd:c388a2526e6ca0da,m3rd:c388a2526e6ca0da m1wx:4,m1wy:3
+copym3m1:m1wd:c388a2526e6ca0da,m3rd:c388a2526e6ca0da m1wx:4,m1wy:4
+copym3m1:m1wd:8459e5360fef42d4,m3rd:8459e5360fef42d4 m1wx:4,m1wy:4
+D:3a334d3bfc542c9e,m3wy:1,m3wx:0
+D:2fc74678cb9e3e41,m3wy:1,m3wx:0
+D:2fc74678cb9e3e41,m3wy:1,m3wx:1
+D:e1cd64533fd60dae,m3wy:1,m3wx:1
+D:e1cd64533fd60dae,m3wy:1,m3wx:2
+D:6656294e201341b5,m3wy:1,m3wx:2
+D:6656294e201341b5,m3wy:1,m3wx:3
+D:c1959e4176f5886c,m3wy:1,m3wx:3
+D:c1959e4176f5886c,m3wy:1,m3wx:4
+D:03b7c52802e90831,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 5cmx[round]:0000000080000001,r1_d:0c90a44002880100,m3wd:0c90a44082880101,m3wx;0,m3wy;0
+round: 5cmx[round]:0000000080000001,r1_d:59223c5a1dc18e62,m3wd:59223c5a9dc18e63,m3wx;0,m3wy;0
+copym3m1:m1wd:59223c5a9dc18e63,m3rd:59223c5a9dc18e63 m1wx:0,m1wy:0
+copym3m1:m1wd:59223c5a9dc18e63,m3rd:59223c5a9dc18e63 m1wx:0,m1wy:1
+copym3m1:m1wd:2bae4b92640d2d6b,m3rd:2bae4b92640d2d6b m1wx:0,m1wy:1
+copym3m1:m1wd:2bae4b92640d2d6b,m3rd:2bae4b92640d2d6b m1wx:0,m1wy:2
+copym3m1:m1wd:310c4377913dac21,m3rd:310c4377913dac21 m1wx:0,m1wy:2
+copym3m1:m1wd:310c4377913dac21,m3rd:310c4377913dac21 m1wx:0,m1wy:3
+copym3m1:m1wd:ead7ba494dd4005a,m3rd:ead7ba494dd4005a m1wx:0,m1wy:3
+copym3m1:m1wd:ead7ba494dd4005a,m3rd:ead7ba494dd4005a m1wx:0,m1wy:4
+copym3m1:m1wd:916f5b3db177dcff,m3rd:916f5b3db177dcff m1wx:0,m1wy:4
+copym3m1:m1wd:916f5b3db177dcff,m3rd:916f5b3db177dcff m1wx:1,m1wy:0
+copym3m1:m1wd:2eb34d2181c4dd62,m3rd:2eb34d2181c4dd62 m1wx:1,m1wy:0
+copym3m1:m1wd:2eb34d2181c4dd62,m3rd:2eb34d2181c4dd62 m1wx:1,m1wy:1
+copym3m1:m1wd:e711670e12b8088d,m3rd:e711670e12b8088d m1wx:1,m1wy:1
+copym3m1:m1wd:e711670e12b8088d,m3rd:e711670e12b8088d m1wx:1,m1wy:2
+copym3m1:m1wd:43d8d1f604669078,m3rd:43d8d1f604669078 m1wx:1,m1wy:2
+copym3m1:m1wd:43d8d1f604669078,m3rd:43d8d1f604669078 m1wx:1,m1wy:3
+copym3m1:m1wd:3cd9708813cccb43,m3rd:3cd9708813cccb43 m1wx:1,m1wy:3
+copym3m1:m1wd:3cd9708813cccb43,m3rd:3cd9708813cccb43 m1wx:1,m1wy:4
+copym3m1:m1wd:085c7f2c91983421,m3rd:085c7f2c91983421 m1wx:1,m1wy:4
+copym3m1:m1wd:085c7f2c91983421,m3rd:085c7f2c91983421 m1wx:2,m1wy:0
+copym3m1:m1wd:43bef78c91f22140,m3rd:43bef78c91f22140 m1wx:2,m1wy:0
+copym3m1:m1wd:43bef78c91f22140,m3rd:43bef78c91f22140 m1wx:2,m1wy:1
+copym3m1:m1wd:6a24d2090e824f20,m3rd:6a24d2090e824f20 m1wx:2,m1wy:1
+copym3m1:m1wd:6a24d2090e824f20,m3rd:6a24d2090e824f20 m1wx:2,m1wy:2
+copym3m1:m1wd:85d080377a627595,m3rd:85d080377a627595 m1wx:2,m1wy:2
+copym3m1:m1wd:85d080377a627595,m3rd:85d080377a627595 m1wx:2,m1wy:3
+copym3m1:m1wd:31b0bd30f448ba1e,m3rd:31b0bd30f448ba1e m1wx:2,m1wy:3
+copym3m1:m1wd:31b0bd30f448ba1e,m3rd:31b0bd30f448ba1e m1wx:2,m1wy:4
+copym3m1:m1wd:89757e3a70ae44ab,m3rd:89757e3a70ae44ab m1wx:2,m1wy:4
+copym3m1:m1wd:89757e3a70ae44ab,m3rd:89757e3a70ae44ab m1wx:3,m1wy:0
+copym3m1:m1wd:d5a5fa5a86fc9dd3,m3rd:d5a5fa5a86fc9dd3 m1wx:3,m1wy:0
+copym3m1:m1wd:d5a5fa5a86fc9dd3,m3rd:d5a5fa5a86fc9dd3 m1wx:3,m1wy:1
+copym3m1:m1wd:53ecaa61d5267b85,m3rd:53ecaa61d5267b85 m1wx:3,m1wy:1
+copym3m1:m1wd:53ecaa61d5267b85,m3rd:53ecaa61d5267b85 m1wx:3,m1wy:2
+copym3m1:m1wd:af6b7a7c2ea42a60,m3rd:af6b7a7c2ea42a60 m1wx:3,m1wy:2
+copym3m1:m1wd:af6b7a7c2ea42a60,m3rd:af6b7a7c2ea42a60 m1wx:3,m1wy:3
+copym3m1:m1wd:123a64547c167590,m3rd:123a64547c167590 m1wx:3,m1wy:3
+copym3m1:m1wd:123a64547c167590,m3rd:123a64547c167590 m1wx:3,m1wy:4
+copym3m1:m1wd:84cdfd40b2a4a5fd,m3rd:84cdfd40b2a4a5fd m1wx:3,m1wy:4
+copym3m1:m1wd:84cdfd40b2a4a5fd,m3rd:84cdfd40b2a4a5fd m1wx:4,m1wy:0
+copym3m1:m1wd:2a97c26010b1206a,m3rd:2a97c26010b1206a m1wx:4,m1wy:0
+copym3m1:m1wd:2a97c26010b1206a,m3rd:2a97c26010b1206a m1wx:4,m1wy:1
+copym3m1:m1wd:c5becdc4d3c3fcb1,m3rd:c5becdc4d3c3fcb1 m1wx:4,m1wy:1
+copym3m1:m1wd:c5becdc4d3c3fcb1,m3rd:c5becdc4d3c3fcb1 m1wx:4,m1wy:2
+copym3m1:m1wd:271177ee5033285d,m3rd:271177ee5033285d m1wx:4,m1wy:2
+copym3m1:m1wd:271177ee5033285d,m3rd:271177ee5033285d m1wx:4,m1wy:3
+copym3m1:m1wd:9a2e3ecb8f65391b,m3rd:9a2e3ecb8f65391b m1wx:4,m1wy:3
+copym3m1:m1wd:9a2e3ecb8f65391b,m3rd:9a2e3ecb8f65391b m1wx:4,m1wy:4
+copym3m1:m1wd:46c865285ebceb38,m3rd:46c865285ebceb38 m1wx:4,m1wy:4
+D:48497e5cbcf77494,m3wy:1,m3wx:0
+D:6921cb536805534e,m3wy:1,m3wx:0
+D:6921cb536805534e,m3wy:1,m3wx:1
+D:112618bb57bb190c,m3wy:1,m3wx:1
+D:112618bb57bb190c,m3wy:1,m3wx:2
+D:c15492da72d68242,m3wy:1,m3wx:2
+D:c15492da72d68242,m3wy:1,m3wx:3
+D:3d3321eae4c4a80a,m3wy:1,m3wx:3
+D:3d3321eae4c4a80a,m3wy:1,m3wx:4
+D:cfa418c49b69bb43,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 6cmx[round]:8000000080008081,r1_d:470566804510d129,m3wd:c7056680c51051a8,m3wx;0,m3wy;0
+round: 6cmx[round]:8000000080008081,r1_d:b6a5570df5c0f528,m3wd:36a5570d75c075a9,m3wx;0,m3wy;0
+copym3m1:m1wd:36a5570d75c075a9,m3rd:36a5570d75c075a9 m1wx:0,m1wy:0
+copym3m1:m1wd:36a5570d75c075a9,m3rd:36a5570d75c075a9 m1wx:0,m1wy:1
+copym3m1:m1wd:874bc25e1e4e37e9,m3rd:874bc25e1e4e37e9 m1wx:0,m1wy:1
+copym3m1:m1wd:874bc25e1e4e37e9,m3rd:874bc25e1e4e37e9 m1wx:0,m1wy:2
+copym3m1:m1wd:5eae6a356cfb28c9,m3rd:5eae6a356cfb28c9 m1wx:0,m1wy:2
+copym3m1:m1wd:5eae6a356cfb28c9,m3rd:5eae6a356cfb28c9 m1wx:0,m1wy:3
+copym3m1:m1wd:1f7ed1d2192c4f9e,m3rd:1f7ed1d2192c4f9e m1wx:0,m1wy:3
+copym3m1:m1wd:1f7ed1d2192c4f9e,m3rd:1f7ed1d2192c4f9e m1wx:0,m1wy:4
+copym3m1:m1wd:88f21965a2ee2cc4,m3rd:88f21965a2ee2cc4 m1wx:0,m1wy:4
+copym3m1:m1wd:88f21965a2ee2cc4,m3rd:88f21965a2ee2cc4 m1wx:1,m1wy:0
+copym3m1:m1wd:21591f38e4bbd578,m3rd:21591f38e4bbd578 m1wx:1,m1wy:0
+copym3m1:m1wd:21591f38e4bbd578,m3rd:21591f38e4bbd578 m1wx:1,m1wy:1
+copym3m1:m1wd:6a052e3c5b20a129,m3rd:6a052e3c5b20a129 m1wx:1,m1wy:1
+copym3m1:m1wd:6a052e3c5b20a129,m3rd:6a052e3c5b20a129 m1wx:1,m1wy:2
+copym3m1:m1wd:5e323acf1db110ea,m3rd:5e323acf1db110ea m1wx:1,m1wy:2
+copym3m1:m1wd:5e323acf1db110ea,m3rd:5e323acf1db110ea m1wx:1,m1wy:3
+copym3m1:m1wd:c457a05420f22420,m3rd:c457a05420f22420 m1wx:1,m1wy:3
+copym3m1:m1wd:c457a05420f22420,m3rd:c457a05420f22420 m1wx:1,m1wy:4
+copym3m1:m1wd:c5114fc661d8d163,m3rd:c5114fc661d8d163 m1wx:1,m1wy:4
+copym3m1:m1wd:c5114fc661d8d163,m3rd:c5114fc661d8d163 m1wx:2,m1wy:0
+copym3m1:m1wd:af969b00648d6a16,m3rd:af969b00648d6a16 m1wx:2,m1wy:0
+copym3m1:m1wd:af969b00648d6a16,m3rd:af969b00648d6a16 m1wx:2,m1wy:1
+copym3m1:m1wd:c0685927c98eeb2b,m3rd:c0685927c98eeb2b m1wx:2,m1wy:1
+copym3m1:m1wd:c0685927c98eeb2b,m3rd:c0685927c98eeb2b m1wx:2,m1wy:2
+copym3m1:m1wd:6c0da1cee761119d,m3rd:6c0da1cee761119d m1wx:2,m1wy:2
+copym3m1:m1wd:6c0da1cee761119d,m3rd:6c0da1cee761119d m1wx:2,m1wy:3
+copym3m1:m1wd:1b2d89dfd475d146,m3rd:1b2d89dfd475d146 m1wx:2,m1wy:3
+copym3m1:m1wd:1b2d89dfd475d146,m3rd:1b2d89dfd475d146 m1wx:2,m1wy:4
+copym3m1:m1wd:e800192c4abb15d1,m3rd:e800192c4abb15d1 m1wx:2,m1wy:4
+copym3m1:m1wd:e800192c4abb15d1,m3rd:e800192c4abb15d1 m1wx:3,m1wy:0
+copym3m1:m1wd:97d3dc531285fc0c,m3rd:97d3dc531285fc0c m1wx:3,m1wy:0
+copym3m1:m1wd:97d3dc531285fc0c,m3rd:97d3dc531285fc0c m1wx:3,m1wy:1
+copym3m1:m1wd:fc6a67fe73860dac,m3rd:fc6a67fe73860dac m1wx:3,m1wy:1
+copym3m1:m1wd:fc6a67fe73860dac,m3rd:fc6a67fe73860dac m1wx:3,m1wy:2
+copym3m1:m1wd:b42685218cba5091,m3rd:b42685218cba5091 m1wx:3,m1wy:2
+copym3m1:m1wd:b42685218cba5091,m3rd:b42685218cba5091 m1wx:3,m1wy:3
+copym3m1:m1wd:17b3434e5907e6a2,m3rd:17b3434e5907e6a2 m1wx:3,m1wy:3
+copym3m1:m1wd:17b3434e5907e6a2,m3rd:17b3434e5907e6a2 m1wx:3,m1wy:4
+copym3m1:m1wd:22b428074ca33c0b,m3rd:22b428074ca33c0b m1wx:3,m1wy:4
+copym3m1:m1wd:22b428074ca33c0b,m3rd:22b428074ca33c0b m1wx:4,m1wy:0
+copym3m1:m1wd:1e6339175625e20b,m3rd:1e6339175625e20b m1wx:4,m1wy:0
+copym3m1:m1wd:1e6339175625e20b,m3rd:1e6339175625e20b m1wx:4,m1wy:1
+copym3m1:m1wd:7900353c616f98d9,m3rd:7900353c616f98d9 m1wx:4,m1wy:1
+copym3m1:m1wd:7900353c616f98d9,m3rd:7900353c616f98d9 m1wx:4,m1wy:2
+copym3m1:m1wd:c1ab71002fc7b118,m3rd:c1ab71002fc7b118 m1wx:4,m1wy:2
+copym3m1:m1wd:c1ab71002fc7b118,m3rd:c1ab71002fc7b118 m1wx:4,m1wy:3
+copym3m1:m1wd:3738dcd88a86600d,m3rd:3738dcd88a86600d m1wx:4,m1wy:3
+copym3m1:m1wd:3738dcd88a86600d,m3rd:3738dcd88a86600d m1wx:4,m1wy:4
+copym3m1:m1wd:22ecf8df5d9c659d,m3rd:22ecf8df5d9c659d m1wx:4,m1wy:4
+D:89545872c5d91a75,m3wy:1,m3wx:0
+D:9b4d919f0996edaa,m3wy:1,m3wx:0
+D:9b4d919f0996edaa,m3wy:1,m3wx:1
+D:9971d1e415efa1bc,m3wy:1,m3wx:1
+D:9971d1e415efa1bc,m3wy:1,m3wx:2
+D:c1184fd2133a66c9,m3wy:1,m3wx:2
+D:c1184fd2133a66c9,m3wy:1,m3wx:3
+D:96e641434b83c882,m3wy:1,m3wx:3
+D:96e641434b83c882,m3wy:1,m3wx:4
+D:1b003a668173683e,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 7cmx[round]:8000000000008009,r1_d:04144203421000c0,m3wd:84144203421080c9,m3wx;0,m3wy;0
+round: 7cmx[round]:8000000000008009,r1_d:a65a66dadc56fb01,m3wd:265a66dadc567b08,m3wx;0,m3wy;0
+copym3m1:m1wd:265a66dadc567b08,m3rd:265a66dadc567b08 m1wx:0,m1wy:0
+copym3m1:m1wd:265a66dadc567b08,m3rd:265a66dadc567b08 m1wx:0,m1wy:1
+copym3m1:m1wd:0f81bf58c11b52cf,m3rd:0f81bf58c11b52cf m1wx:0,m1wy:1
+copym3m1:m1wd:0f81bf58c11b52cf,m3rd:0f81bf58c11b52cf m1wx:0,m1wy:2
+copym3m1:m1wd:f1dbdfb9e0ec6881,m3rd:f1dbdfb9e0ec6881 m1wx:0,m1wy:2
+copym3m1:m1wd:f1dbdfb9e0ec6881,m3rd:f1dbdfb9e0ec6881 m1wx:0,m1wy:3
+copym3m1:m1wd:8c9abc5192ab5b17,m3rd:8c9abc5192ab5b17 m1wx:0,m1wy:3
+copym3m1:m1wd:8c9abc5192ab5b17,m3rd:8c9abc5192ab5b17 m1wx:0,m1wy:4
+copym3m1:m1wd:93eb24589ccc7222,m3rd:93eb24589ccc7222 m1wx:0,m1wy:4
+copym3m1:m1wd:93eb24589ccc7222,m3rd:93eb24589ccc7222 m1wx:1,m1wy:0
+copym3m1:m1wd:f0090fb20ffd8cec,m3rd:f0090fb20ffd8cec m1wx:1,m1wy:0
+copym3m1:m1wd:f0090fb20ffd8cec,m3rd:f0090fb20ffd8cec m1wx:1,m1wy:1
+copym3m1:m1wd:650e036bca6624a1,m3rd:650e036bca6624a1 m1wx:1,m1wy:1
+copym3m1:m1wd:650e036bca6624a1,m3rd:650e036bca6624a1 m1wx:1,m1wy:2
+copym3m1:m1wd:6465317d7c2b4aa4,m3rd:6465317d7c2b4aa4 m1wx:1,m1wy:2
+copym3m1:m1wd:6465317d7c2b4aa4,m3rd:6465317d7c2b4aa4 m1wx:1,m1wy:3
+copym3m1:m1wd:9d8fe7b741679813,m3rd:9d8fe7b741679813 m1wx:1,m1wy:3
+copym3m1:m1wd:9d8fe7b741679813,m3rd:9d8fe7b741679813 m1wx:1,m1wy:4
+copym3m1:m1wd:b2352e137c9c0ac2,m3rd:b2352e137c9c0ac2 m1wx:1,m1wy:4
+copym3m1:m1wd:b2352e137c9c0ac2,m3rd:b2352e137c9c0ac2 m1wx:2,m1wy:0
+copym3m1:m1wd:ebb68252ac1823f9,m3rd:ebb68252ac1823f9 m1wx:2,m1wy:0
+copym3m1:m1wd:ebb68252ac1823f9,m3rd:ebb68252ac1823f9 m1wx:2,m1wy:1
+copym3m1:m1wd:2a1fdd082a6e035e,m3rd:2a1fdd082a6e035e m1wx:2,m1wy:1
+copym3m1:m1wd:2a1fdd082a6e035e,m3rd:2a1fdd082a6e035e m1wx:2,m1wy:2
+copym3m1:m1wd:c68672d026f5cd5a,m3rd:c68672d026f5cd5a m1wx:2,m1wy:2
+copym3m1:m1wd:c68672d026f5cd5a,m3rd:c68672d026f5cd5a m1wx:2,m1wy:3
+copym3m1:m1wd:071cbc697ec55bf9,m3rd:071cbc697ec55bf9 m1wx:2,m1wy:3
+copym3m1:m1wd:071cbc697ec55bf9,m3rd:071cbc697ec55bf9 m1wx:2,m1wy:4
+copym3m1:m1wd:5aee83ecc5f8f20b,m3rd:5aee83ecc5f8f20b m1wx:2,m1wy:4
+copym3m1:m1wd:5aee83ecc5f8f20b,m3rd:5aee83ecc5f8f20b m1wx:3,m1wy:0
+copym3m1:m1wd:cce2d005f8063aa0,m3rd:cce2d005f8063aa0 m1wx:3,m1wy:0
+copym3m1:m1wd:cce2d005f8063aa0,m3rd:cce2d005f8063aa0 m1wx:3,m1wy:1
+copym3m1:m1wd:b023eaa4ee355733,m3rd:b023eaa4ee355733 m1wx:3,m1wy:1
+copym3m1:m1wd:b023eaa4ee355733,m3rd:b023eaa4ee355733 m1wx:3,m1wy:2
+copym3m1:m1wd:68f7ae131708922d,m3rd:68f7ae131708922d m1wx:3,m1wy:2
+copym3m1:m1wd:68f7ae131708922d,m3rd:68f7ae131708922d m1wx:3,m1wy:3
+copym3m1:m1wd:e50c47b773eff511,m3rd:e50c47b773eff511 m1wx:3,m1wy:3
+copym3m1:m1wd:e50c47b773eff511,m3rd:e50c47b773eff511 m1wx:3,m1wy:4
+copym3m1:m1wd:ff65ec3c6ba09a23,m3rd:ff65ec3c6ba09a23 m1wx:3,m1wy:4
+copym3m1:m1wd:ff65ec3c6ba09a23,m3rd:ff65ec3c6ba09a23 m1wx:4,m1wy:0
+copym3m1:m1wd:60af6e1ec0c1ca97,m3rd:60af6e1ec0c1ca97 m1wx:4,m1wy:0
+copym3m1:m1wd:60af6e1ec0c1ca97,m3rd:60af6e1ec0c1ca97 m1wx:4,m1wy:1
+copym3m1:m1wd:f50d0a58c5540e63,m3rd:f50d0a58c5540e63 m1wx:4,m1wy:1
+copym3m1:m1wd:f50d0a58c5540e63,m3rd:f50d0a58c5540e63 m1wx:4,m1wy:2
+copym3m1:m1wd:2fee8da508bb5efe,m3rd:2fee8da508bb5efe m1wx:4,m1wy:2
+copym3m1:m1wd:2fee8da508bb5efe,m3rd:2fee8da508bb5efe m1wx:4,m1wy:3
+copym3m1:m1wd:f8b15249044304f4,m3rd:f8b15249044304f4 m1wx:4,m1wy:3
+copym3m1:m1wd:f8b15249044304f4,m3rd:f8b15249044304f4 m1wx:4,m1wy:4
+copym3m1:m1wd:75963a8a92cdc3bd,m3rd:75963a8a92cdc3bd m1wx:4,m1wy:4
+D:4992a257144ab894,m3wy:1,m3wx:0
+D:8ada69219336bd32,m3wy:1,m3wx:0
+D:8ada69219336bd32,m3wy:1,m3wx:1
+D:72cbba2cc4bae06d,m3wy:1,m3wx:1
+D:72cbba2cc4bae06d,m3wy:1,m3wx:2
+D:c2668a72b6a25120,m3wy:1,m3wx:2
+D:c2668a72b6a25120,m3wy:1,m3wx:3
+D:340a104e2cfefe89,m3wy:1,m3wx:3
+D:340a104e2cfefe89,m3wy:1,m3wx:4
+D:80bc035cfef8406b,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 8cmx[round]:000000000000008a,r1_d:950214f571416140,m3wd:950214f5714161ca,m3wx;0,m3wy;0
+round: 8cmx[round]:000000000000008a,r1_d:9c231ff84b21c238,m3wd:9c231ff84b21c2b2,m3wx;0,m3wy;0
+copym3m1:m1wd:9c231ff84b21c2b2,m3rd:9c231ff84b21c2b2 m1wx:0,m1wy:0
+copym3m1:m1wd:9c231ff84b21c2b2,m3rd:9c231ff84b21c2b2 m1wx:0,m1wy:1
+copym3m1:m1wd:f543884181de288f,m3rd:f543884181de288f m1wx:0,m1wy:1
+copym3m1:m1wd:f543884181de288f,m3rd:f543884181de288f m1wx:0,m1wy:2
+copym3m1:m1wd:a5a74b65de27b947,m3rd:a5a74b65de27b947 m1wx:0,m1wy:2
+copym3m1:m1wd:a5a74b65de27b947,m3rd:a5a74b65de27b947 m1wx:0,m1wy:3
+copym3m1:m1wd:89d0cc75e5029b20,m3rd:89d0cc75e5029b20 m1wx:0,m1wy:3
+copym3m1:m1wd:89d0cc75e5029b20,m3rd:89d0cc75e5029b20 m1wx:0,m1wy:4
+copym3m1:m1wd:6af9480a8ea8849d,m3rd:6af9480a8ea8849d m1wx:0,m1wy:4
+copym3m1:m1wd:6af9480a8ea8849d,m3rd:6af9480a8ea8849d m1wx:1,m1wy:0
+copym3m1:m1wd:8f44e37c2b8e50a5,m3rd:8f44e37c2b8e50a5 m1wx:1,m1wy:0
+copym3m1:m1wd:8f44e37c2b8e50a5,m3rd:8f44e37c2b8e50a5 m1wx:1,m1wy:1
+copym3m1:m1wd:b741f3ece1a60b30,m3rd:b741f3ece1a60b30 m1wx:1,m1wy:1
+copym3m1:m1wd:b741f3ece1a60b30,m3rd:b741f3ece1a60b30 m1wx:1,m1wy:2
+copym3m1:m1wd:1b55cf8580509bba,m3rd:1b55cf8580509bba m1wx:1,m1wy:2
+copym3m1:m1wd:1b55cf8580509bba,m3rd:1b55cf8580509bba m1wx:1,m1wy:3
+copym3m1:m1wd:23de5fc9d4f9a530,m3rd:23de5fc9d4f9a530 m1wx:1,m1wy:3
+copym3m1:m1wd:23de5fc9d4f9a530,m3rd:23de5fc9d4f9a530 m1wx:1,m1wy:4
+copym3m1:m1wd:c70214f575c9e5d4,m3rd:c70214f575c9e5d4 m1wx:1,m1wy:4
+copym3m1:m1wd:c70214f575c9e5d4,m3rd:c70214f575c9e5d4 m1wx:2,m1wy:0
+copym3m1:m1wd:bcb7c92b07208982,m3rd:bcb7c92b07208982 m1wx:2,m1wy:0
+copym3m1:m1wd:bcb7c92b07208982,m3rd:bcb7c92b07208982 m1wx:2,m1wy:1
+copym3m1:m1wd:881db4d0da9ea9df,m3rd:881db4d0da9ea9df m1wx:2,m1wy:1
+copym3m1:m1wd:881db4d0da9ea9df,m3rd:881db4d0da9ea9df m1wx:2,m1wy:2
+copym3m1:m1wd:8ad3c6d84cb99bf9,m3rd:8ad3c6d84cb99bf9 m1wx:2,m1wy:2
+copym3m1:m1wd:8ad3c6d84cb99bf9,m3rd:8ad3c6d84cb99bf9 m1wx:2,m1wy:3
+copym3m1:m1wd:1aef4d2e34a8381a,m3rd:1aef4d2e34a8381a m1wx:2,m1wy:3
+copym3m1:m1wd:1aef4d2e34a8381a,m3rd:1aef4d2e34a8381a m1wx:2,m1wy:4
+copym3m1:m1wd:21bd5a25c9567647,m3rd:21bd5a25c9567647 m1wx:2,m1wy:4
+copym3m1:m1wd:21bd5a25c9567647,m3rd:21bd5a25c9567647 m1wx:3,m1wy:0
+copym3m1:m1wd:dfabe6d37c1a62fa,m3rd:dfabe6d37c1a62fa m1wx:3,m1wy:0
+copym3m1:m1wd:dfabe6d37c1a62fa,m3rd:dfabe6d37c1a62fa m1wx:3,m1wy:1
+copym3m1:m1wd:234151a89a37f8bb,m3rd:234151a89a37f8bb m1wx:3,m1wy:1
+copym3m1:m1wd:234151a89a37f8bb,m3rd:234151a89a37f8bb m1wx:3,m1wy:2
+copym3m1:m1wd:0d5055ee39ca067a,m3rd:0d5055ee39ca067a m1wx:3,m1wy:2
+copym3m1:m1wd:0d5055ee39ca067a,m3rd:0d5055ee39ca067a m1wx:3,m1wy:3
+copym3m1:m1wd:0a3d6430006c63b7,m3rd:0a3d6430006c63b7 m1wx:3,m1wy:3
+copym3m1:m1wd:0a3d6430006c63b7,m3rd:0a3d6430006c63b7 m1wx:3,m1wy:4
+copym3m1:m1wd:73c8480c878ef403,m3rd:73c8480c878ef403 m1wx:3,m1wy:4
+copym3m1:m1wd:73c8480c878ef403,m3rd:73c8480c878ef403 m1wx:4,m1wy:0
+copym3m1:m1wd:ce395b0970618d8f,m3rd:ce395b0970618d8f m1wx:4,m1wy:0
+copym3m1:m1wd:ce395b0970618d8f,m3rd:ce395b0970618d8f m1wx:4,m1wy:1
+copym3m1:m1wd:731133b7ae6a0775,m3rd:731133b7ae6a0775 m1wx:4,m1wy:1
+copym3m1:m1wd:731133b7ae6a0775,m3rd:731133b7ae6a0775 m1wx:4,m1wy:2
+copym3m1:m1wd:2fb4ab691d50627d,m3rd:2fb4ab691d50627d m1wx:4,m1wy:2
+copym3m1:m1wd:2fb4ab691d50627d,m3rd:2fb4ab691d50627d m1wx:4,m1wy:3
+copym3m1:m1wd:88c55c7462fa3af1,m3rd:88c55c7462fa3af1 m1wx:4,m1wy:3
+copym3m1:m1wd:88c55c7462fa3af1,m3rd:88c55c7462fa3af1 m1wx:4,m1wy:4
+copym3m1:m1wd:96f8440b91dacbff,m3rd:96f8440b91dacbff m1wx:4,m1wy:4
+D:7032e9e58196d549,m3wy:1,m3wx:0
+D:03b8f3fbe6ea181e,m3wy:1,m3wx:0
+D:03b8f3fbe6ea181e,m3wy:1,m3wx:1
+D:25b900f3a681a734,m3wy:1,m3wx:1
+D:25b900f3a681a734,m3wy:1,m3wx:2
+D:d713097b5b4297d4,m3wy:1,m3wx:2
+D:d713097b5b4297d4,m3wy:1,m3wx:3
+D:9c681b780c0fc6ea,m3wy:1,m3wx:3
+D:9c681b780c0fc6ea,m3wy:1,m3wx:4
+D:d7937fefa6e19201,m3wy:1,m3wx:4
+donetheta
+donetheta
+round: 9cmx[round]:0000000000000088,r1_d:201684a16843180a,m3wd:201684a168431882,m3wx;0,m3wy;0
+round: 9cmx[round]:0000000000000088,r1_d:1fbacec3ad87d221,m3wd:1fbacec3ad87d2a9,m3wx;0,m3wy;0
+copym3m1:m1wd:1fbacec3ad87d2a9,m3rd:1fbacec3ad87d2a9 m1wx:0,m1wy:0
+copym3m1:m1wd:1fbacec3ad87d2a9,m3rd:1fbacec3ad87d2a9 m1wx:0,m1wy:1
+copym3m1:m1wd:877c1e0184193d13,m3rd:877c1e0184193d13 m1wx:0,m1wy:1
+copym3m1:m1wd:877c1e0184193d13,m3rd:877c1e0184193d13 m1wx:0,m1wy:2
+copym3m1:m1wd:79bb461e1a3f9f2b,m3rd:79bb461e1a3f9f2b m1wx:0,m1wy:2
+copym3m1:m1wd:79bb461e1a3f9f2b,m3rd:79bb461e1a3f9f2b m1wx:0,m1wy:3
+copym3m1:m1wd:b688d07c708d517e,m3rd:b688d07c708d517e m1wx:0,m1wy:3
+copym3m1:m1wd:b688d07c708d517e,m3rd:b688d07c708d517e m1wx:0,m1wy:4
+copym3m1:m1wd:4ac91a4c04b8c4d5,m3rd:4ac91a4c04b8c4d5 m1wx:0,m1wy:4
+copym3m1:m1wd:4ac91a4c04b8c4d5,m3rd:4ac91a4c04b8c4d5 m1wx:1,m1wy:0
+copym3m1:m1wd:5bc0cd3f26b33672,m3rd:5bc0cd3f26b33672 m1wx:1,m1wy:0
+copym3m1:m1wd:5bc0cd3f26b33672,m3rd:5bc0cd3f26b33672 m1wx:1,m1wy:1
+copym3m1:m1wd:c58088b57ec80c26,m3rd:c58088b57ec80c26 m1wx:1,m1wy:1
+copym3m1:m1wd:c58088b57ec80c26,m3rd:c58088b57ec80c26 m1wx:1,m1wy:2
+copym3m1:m1wd:91af7aa46d870295,m3rd:91af7aa46d870295 m1wx:1,m1wy:2
+copym3m1:m1wd:91af7aa46d870295,m3rd:91af7aa46d870295 m1wx:1,m1wy:3
+copym3m1:m1wd:73412e7b7cb2fda2,m3rd:73412e7b7cb2fda2 m1wx:1,m1wy:3
+copym3m1:m1wd:73412e7b7cb2fda2,m3rd:73412e7b7cb2fda2 m1wx:1,m1wy:4
+copym3m1:m1wd:29d9d5a5a85e001d,m3rd:29d9d5a5a85e001d m1wx:1,m1wy:4
+copym3m1:m1wd:29d9d5a5a85e001d,m3rd:29d9d5a5a85e001d m1wx:2,m1wy:0
+copym3m1:m1wd:de996b64523008ef,m3rd:de996b64523008ef m1wx:2,m1wy:0
+copym3m1:m1wd:de996b64523008ef,m3rd:de996b64523008ef m1wx:2,m1wy:1
+copym3m1:m1wd:4e688ed2d66d9afd,m3rd:4e688ed2d66d9afd m1wx:2,m1wy:1
+copym3m1:m1wd:4e688ed2d66d9afd,m3rd:4e688ed2d66d9afd m1wx:2,m1wy:2
+copym3m1:m1wd:85afab8b4127759d,m3rd:85afab8b4127759d m1wx:2,m1wy:2
+copym3m1:m1wd:85afab8b4127759d,m3rd:85afab8b4127759d m1wx:2,m1wy:3
+copym3m1:m1wd:7af8d89964fab9fb,m3rd:7af8d89964fab9fb m1wx:2,m1wy:3
+copym3m1:m1wd:7af8d89964fab9fb,m3rd:7af8d89964fab9fb m1wx:2,m1wy:4
+copym3m1:m1wd:d2103e771eea40dd,m3rd:d2103e771eea40dd m1wx:2,m1wy:4
+copym3m1:m1wd:d2103e771eea40dd,m3rd:d2103e771eea40dd m1wx:3,m1wy:0
+copym3m1:m1wd:f8036c758232800b,m3rd:f8036c758232800b m1wx:3,m1wy:0
+copym3m1:m1wd:f8036c758232800b,m3rd:f8036c758232800b m1wx:3,m1wy:1
+copym3m1:m1wd:814090ccefdb6d87,m3rd:814090ccefdb6d87 m1wx:3,m1wy:1
+copym3m1:m1wd:814090ccefdb6d87,m3rd:814090ccefdb6d87 m1wx:3,m1wy:2
+copym3m1:m1wd:4619ddd113baba7e,m3rd:4619ddd113baba7e m1wx:3,m1wy:2
+copym3m1:m1wd:4619ddd113baba7e,m3rd:4619ddd113baba7e m1wx:3,m1wy:3
+copym3m1:m1wd:343ab75957a336fb,m3rd:343ab75957a336fb m1wx:3,m1wy:3
+copym3m1:m1wd:343ab75957a336fb,m3rd:343ab75957a336fb m1wx:3,m1wy:4
+copym3m1:m1wd:c1075d10c2679813,m3rd:c1075d10c2679813 m1wx:3,m1wy:4
+copym3m1:m1wd:c1075d10c2679813,m3rd:c1075d10c2679813 m1wx:4,m1wy:0
+copym3m1:m1wd:aeb90ce2d44fb408,m3rd:aeb90ce2d44fb408 m1wx:4,m1wy:0
+copym3m1:m1wd:aeb90ce2d44fb408,m3rd:aeb90ce2d44fb408 m1wx:4,m1wy:1
+copym3m1:m1wd:3e554ad38100dc16,m3rd:3e554ad38100dc16 m1wx:4,m1wy:1
+copym3m1:m1wd:3e554ad38100dc16,m3rd:3e554ad38100dc16 m1wx:4,m1wy:2
+copym3m1:m1wd:6dc189ea170da5d2,m3rd:6dc189ea170da5d2 m1wx:4,m1wy:2
+copym3m1:m1wd:6dc189ea170da5d2,m3rd:6dc189ea170da5d2 m1wx:4,m1wy:3
+copym3m1:m1wd:a8aca9507bb92bb2,m3rd:a8aca9507bb92bb2 m1wx:4,m1wy:3
+copym3m1:m1wd:a8aca9507bb92bb2,m3rd:a8aca9507bb92bb2 m1wx:4,m1wy:4
+copym3m1:m1wd:aafad4ba25621389,m3rd:aafad4ba25621389 m1wx:4,m1wy:4
+D:2744e534c8bd2f4e,m3wy:1,m3wx:0
+D:55943bd0deb87f0b,m3wy:1,m3wx:0
+D:55943bd0deb87f0b,m3wy:1,m3wx:1
+D:66510d4b3940d869,m3wy:1,m3wx:1
+D:66510d4b3940d869,m3wy:1,m3wx:2
+D:c1b852b3363f374b,m3wy:1,m3wx:2
+D:c1b852b3363f374b,m3wy:1,m3wx:3
+D:4341ccb18659f546,m3wy:1,m3wx:3
+D:4341ccb18659f546,m3wy:1,m3wx:4
+D:f01f72f964be336e,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:10cmx[round]:0000000080008009,r1_d:6021008a26b40004,m3wd:6021008aa6b4800d,m3wx;0,m3wy;0
+round:10cmx[round]:0000000080008009,r1_d:083cf513d4bfae22,m3wd:083cf51354bf2e2b,m3wx;0,m3wy;0
+copym3m1:m1wd:083cf51354bf2e2b,m3rd:083cf51354bf2e2b m1wx:0,m1wy:0
+copym3m1:m1wd:083cf51354bf2e2b,m3rd:083cf51354bf2e2b m1wx:0,m1wy:1
+copym3m1:m1wd:21171344db872b0c,m3rd:21171344db872b0c m1wx:0,m1wy:1
+copym3m1:m1wd:21171344db872b0c,m3rd:21171344db872b0c m1wx:0,m1wy:2
+copym3m1:m1wd:7a2b466e5fe74c36,m3rd:7a2b466e5fe74c36 m1wx:0,m1wy:2
+copym3m1:m1wd:7a2b466e5fe74c36,m3rd:7a2b466e5fe74c36 m1wx:0,m1wy:3
+copym3m1:m1wd:8c4c1069239c913a,m3rd:8c4c1069239c913a m1wx:0,m1wy:3
+copym3m1:m1wd:8c4c1069239c913a,m3rd:8c4c1069239c913a m1wx:0,m1wy:4
+copym3m1:m1wd:9ec21035184ac758,m3rd:9ec21035184ac758 m1wx:0,m1wy:4
+copym3m1:m1wd:9ec21035184ac758,m3rd:9ec21035184ac758 m1wx:1,m1wy:0
+copym3m1:m1wd:b04cf7655879c83f,m3rd:b04cf7655879c83f m1wx:1,m1wy:0
+copym3m1:m1wd:b04cf7655879c83f,m3rd:b04cf7655879c83f m1wx:1,m1wy:1
+copym3m1:m1wd:862e5b6ef7ccec1d,m3rd:862e5b6ef7ccec1d m1wx:1,m1wy:1
+copym3m1:m1wd:862e5b6ef7ccec1d,m3rd:862e5b6ef7ccec1d m1wx:1,m1wy:2
+copym3m1:m1wd:c6e7317913bb21fb,m3rd:c6e7317913bb21fb m1wx:1,m1wy:2
+copym3m1:m1wd:c6e7317913bb21fb,m3rd:c6e7317913bb21fb m1wx:1,m1wy:3
+copym3m1:m1wd:ae1421adee925135,m3rd:ae1421adee925135 m1wx:1,m1wy:3
+copym3m1:m1wd:ae1421adee925135,m3rd:ae1421adee925135 m1wx:1,m1wy:4
+copym3m1:m1wd:42f5a12e2e369108,m3rd:42f5a12e2e369108 m1wx:1,m1wy:4
+copym3m1:m1wd:42f5a12e2e369108,m3rd:42f5a12e2e369108 m1wx:2,m1wy:0
+copym3m1:m1wd:c2967207b7d8d328,m3rd:c2967207b7d8d328 m1wx:2,m1wy:0
+copym3m1:m1wd:c2967207b7d8d328,m3rd:c2967207b7d8d328 m1wx:2,m1wy:1
+copym3m1:m1wd:e33fe36ea527a741,m3rd:e33fe36ea527a741 m1wx:2,m1wy:1
+copym3m1:m1wd:e33fe36ea527a741,m3rd:e33fe36ea527a741 m1wx:2,m1wy:2
+copym3m1:m1wd:c50b869e986a9106,m3rd:c50b869e986a9106 m1wx:2,m1wy:2
+copym3m1:m1wd:c50b869e986a9106,m3rd:c50b869e986a9106 m1wx:2,m1wy:3
+copym3m1:m1wd:e95dfbc23f6fd192,m3rd:e95dfbc23f6fd192 m1wx:2,m1wy:3
+copym3m1:m1wd:e95dfbc23f6fd192,m3rd:e95dfbc23f6fd192 m1wx:2,m1wy:4
+copym3m1:m1wd:cde85e76ab55a938,m3rd:cde85e76ab55a938 m1wx:2,m1wy:4
+copym3m1:m1wd:cde85e76ab55a938,m3rd:cde85e76ab55a938 m1wx:3,m1wy:0
+copym3m1:m1wd:7f341a5804a8c66d,m3rd:7f341a5804a8c66d m1wx:3,m1wy:0
+copym3m1:m1wd:7f341a5804a8c66d,m3rd:7f341a5804a8c66d m1wx:3,m1wy:1
+copym3m1:m1wd:44bbd0e65ec208b2,m3rd:44bbd0e65ec208b2 m1wx:3,m1wy:1
+copym3m1:m1wd:44bbd0e65ec208b2,m3rd:44bbd0e65ec208b2 m1wx:3,m1wy:2
+copym3m1:m1wd:cadb29f7179f5c5a,m3rd:cadb29f7179f5c5a m1wx:3,m1wy:2
+copym3m1:m1wd:cadb29f7179f5c5a,m3rd:cadb29f7179f5c5a m1wx:3,m1wy:3
+copym3m1:m1wd:cd10a148d5e95c30,m3rd:cd10a148d5e95c30 m1wx:3,m1wy:3
+copym3m1:m1wd:cd10a148d5e95c30,m3rd:cd10a148d5e95c30 m1wx:3,m1wy:4
+copym3m1:m1wd:6b94e783a0d7d774,m3rd:6b94e783a0d7d774 m1wx:3,m1wy:4
+copym3m1:m1wd:6b94e783a0d7d774,m3rd:6b94e783a0d7d774 m1wx:4,m1wy:0
+copym3m1:m1wd:ecd0da5b007996e1,m3rd:ecd0da5b007996e1 m1wx:4,m1wy:0
+copym3m1:m1wd:ecd0da5b007996e1,m3rd:ecd0da5b007996e1 m1wx:4,m1wy:1
+copym3m1:m1wd:40dd4532a1126a51,m3rd:40dd4532a1126a51 m1wx:4,m1wy:1
+copym3m1:m1wd:40dd4532a1126a51,m3rd:40dd4532a1126a51 m1wx:4,m1wy:2
+copym3m1:m1wd:02677012ef705cf5,m3rd:02677012ef705cf5 m1wx:4,m1wy:2
+copym3m1:m1wd:02677012ef705cf5,m3rd:02677012ef705cf5 m1wx:4,m1wy:3
+copym3m1:m1wd:77926715ad467268,m3rd:77926715ad467268 m1wx:4,m1wy:3
+copym3m1:m1wd:77926715ad467268,m3rd:77926715ad467268 m1wx:4,m1wy:4
+copym3m1:m1wd:5e02633062cf61d5,m3rd:5e02633062cf61d5 m1wx:4,m1wy:4
+D:c293e0ae3d1b2195,m3wy:1,m3wx:0
+D:bf32d0bc78c73830,m3wy:1,m3wx:0
+D:bf32d0bc78c73830,m3wy:1,m3wx:1
+D:c1a1c4e3d65624f8,m3wy:1,m3wx:1
+D:c1a1c4e3d65624f8,m3wy:1,m3wx:2
+D:b3c556f50d3cf666,m3wy:1,m3wx:2
+D:b3c556f50d3cf666,m3wy:1,m3wx:3
+D:cfe264fe1d8afa34,m3wy:1,m3wx:3
+D:cfe264fe1d8afa34,m3wy:1,m3wx:4
+D:d4cde549eed92727,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:11cmx[round]:000000008000000a,r1_d:430124c20000a428,m3wd:430124c28000a422,m3wx;0,m3wy;0
+round:11cmx[round]:000000008000000a,r1_d:a43f26292a7b1ab9,m3wd:a43f2629aa7b1ab3,m3wx;0,m3wy;0
+copym3m1:m1wd:a43f2629aa7b1ab3,m3rd:a43f2629aa7b1ab3 m1wx:0,m1wy:0
+copym3m1:m1wd:a43f2629aa7b1ab3,m3rd:a43f2629aa7b1ab3 m1wx:0,m1wy:1
+copym3m1:m1wd:49da21c4b30fc7de,m3rd:49da21c4b30fc7de m1wx:0,m1wy:1
+copym3m1:m1wd:49da21c4b30fc7de,m3rd:49da21c4b30fc7de m1wx:0,m1wy:2
+copym3m1:m1wd:e3ca6e09c455eb84,m3rd:e3ca6e09c455eb84 m1wx:0,m1wy:2
+copym3m1:m1wd:e3ca6e09c455eb84,m3rd:e3ca6e09c455eb84 m1wx:0,m1wy:3
+copym3m1:m1wd:9ca34d9825c0e9ed,m3rd:9ca34d9825c0e9ed m1wx:0,m1wy:3
+copym3m1:m1wd:9ca34d9825c0e9ed,m3rd:9ca34d9825c0e9ed m1wx:0,m1wy:4
+copym3m1:m1wd:08ec881dfff300d3,m3rd:08ec881dfff300d3 m1wx:0,m1wy:4
+copym3m1:m1wd:08ec881dfff300d3,m3rd:08ec881dfff300d3 m1wx:1,m1wy:0
+copym3m1:m1wd:a84e583879f8d049,m3rd:a84e583879f8d049 m1wx:1,m1wy:0
+copym3m1:m1wd:a84e583879f8d049,m3rd:a84e583879f8d049 m1wx:1,m1wy:1
+copym3m1:m1wd:8185f5d253c10602,m3rd:8185f5d253c10602 m1wx:1,m1wy:1
+copym3m1:m1wd:8185f5d253c10602,m3rd:8185f5d253c10602 m1wx:1,m1wy:2
+copym3m1:m1wd:732f32e9058144f5,m3rd:732f32e9058144f5 m1wx:1,m1wy:2
+copym3m1:m1wd:732f32e9058144f5,m3rd:732f32e9058144f5 m1wx:1,m1wy:3
+copym3m1:m1wd:7008a3e1e1b61eca,m3rd:7008a3e1e1b61eca m1wx:1,m1wy:3
+copym3m1:m1wd:7008a3e1e1b61eca,m3rd:7008a3e1e1b61eca m1wx:1,m1wy:4
+copym3m1:m1wd:6007b8dea4a0a64f,m3rd:6007b8dea4a0a64f m1wx:1,m1wy:4
+copym3m1:m1wd:6007b8dea4a0a64f,m3rd:6007b8dea4a0a64f m1wx:2,m1wy:0
+copym3m1:m1wd:f23d60b767bffc09,m3rd:f23d60b767bffc09 m1wx:2,m1wy:0
+copym3m1:m1wd:f23d60b767bffc09,m3rd:f23d60b767bffc09 m1wx:2,m1wy:1
+copym3m1:m1wd:6988b691794788d5,m3rd:6988b691794788d5 m1wx:2,m1wy:1
+copym3m1:m1wd:6988b691794788d5,m3rd:6988b691794788d5 m1wx:2,m1wy:2
+copym3m1:m1wd:1231a978bcaaf2da,m3rd:1231a978bcaaf2da m1wx:2,m1wy:2
+copym3m1:m1wd:1231a978bcaaf2da,m3rd:1231a978bcaaf2da m1wx:2,m1wy:3
+copym3m1:m1wd:1bf20d95d8115c3c,m3rd:1bf20d95d8115c3c m1wx:2,m1wy:3
+copym3m1:m1wd:1bf20d95d8115c3c,m3rd:1bf20d95d8115c3c m1wx:2,m1wy:4
+copym3m1:m1wd:dcbc6a7a5548f8c0,m3rd:dcbc6a7a5548f8c0 m1wx:2,m1wy:4
+copym3m1:m1wd:dcbc6a7a5548f8c0,m3rd:dcbc6a7a5548f8c0 m1wx:3,m1wy:0
+copym3m1:m1wd:a0d908deecc04a50,m3rd:a0d908deecc04a50 m1wx:3,m1wy:0
+copym3m1:m1wd:a0d908deecc04a50,m3rd:a0d908deecc04a50 m1wx:3,m1wy:1
+copym3m1:m1wd:aeabaf3337a98318,m3rd:aeabaf3337a98318 m1wx:3,m1wy:1
+copym3m1:m1wd:aeabaf3337a98318,m3rd:aeabaf3337a98318 m1wx:3,m1wy:2
+copym3m1:m1wd:be58394b9f0a17af,m3rd:be58394b9f0a17af m1wx:3,m1wy:2
+copym3m1:m1wd:be58394b9f0a17af,m3rd:be58394b9f0a17af m1wx:3,m1wy:3
+copym3m1:m1wd:c1ca982593ba8d9c,m3rd:c1ca982593ba8d9c m1wx:3,m1wy:3
+copym3m1:m1wd:c1ca982593ba8d9c,m3rd:c1ca982593ba8d9c m1wx:3,m1wy:4
+copym3m1:m1wd:27565c6ef3b8a2a7,m3rd:27565c6ef3b8a2a7 m1wx:3,m1wy:4
+copym3m1:m1wd:27565c6ef3b8a2a7,m3rd:27565c6ef3b8a2a7 m1wx:4,m1wy:0
+copym3m1:m1wd:e91e3355403c62b3,m3rd:e91e3355403c62b3 m1wx:4,m1wy:0
+copym3m1:m1wd:e91e3355403c62b3,m3rd:e91e3355403c62b3 m1wx:4,m1wy:1
+copym3m1:m1wd:c9e17d2030ad2beb,m3rd:c9e17d2030ad2beb m1wx:4,m1wy:1
+copym3m1:m1wd:c9e17d2030ad2beb,m3rd:c9e17d2030ad2beb m1wx:4,m1wy:2
+copym3m1:m1wd:1e0082d5ff208793,m3rd:1e0082d5ff208793 m1wx:4,m1wy:2
+copym3m1:m1wd:1e0082d5ff208793,m3rd:1e0082d5ff208793 m1wx:4,m1wy:3
+copym3m1:m1wd:60a444c2bfa14b2f,m3rd:60a444c2bfa14b2f m1wx:4,m1wy:3
+copym3m1:m1wd:60a444c2bfa14b2f,m3rd:60a444c2bfa14b2f m1wx:4,m1wy:4
+copym3m1:m1wd:4e50b3f5e18273ea,m3rd:4e50b3f5e18273ea m1wx:4,m1wy:4
+D:aea1f4a309376078,m3wy:1,m3wx:0
+D:85dc33ef04cea278,m3wy:1,m3wx:0
+D:85dc33ef04cea278,m3wy:1,m3wx:1
+D:07f49d0359049a23,m3wy:1,m3wx:1
+D:07f49d0359049a23,m3wy:1,m3wx:2
+D:e78731e6226dc983,m3wy:1,m3wx:2
+D:e78731e6226dc983,m3wy:1,m3wx:3
+D:6edc6f9e8c2ecee6,m3wy:1,m3wx:3
+D:6edc6f9e8c2ecee6,m3wy:1,m3wx:4
+D:6277022f2a444e73,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:12cmx[round]:000000008000808b,r1_d:7a002ba006894284,m3wd:7a002ba08689c20f,m3wx;0,m3wy;0
+round:12cmx[round]:000000008000808b,r1_d:01fbd24e0ef55c99,m3wd:01fbd24e8ef5dc12,m3wx;0,m3wy;0
+copym3m1:m1wd:01fbd24e8ef5dc12,m3rd:01fbd24e8ef5dc12 m1wx:0,m1wy:0
+copym3m1:m1wd:01fbd24e8ef5dc12,m3rd:01fbd24e8ef5dc12 m1wx:0,m1wy:1
+copym3m1:m1wd:060ca96b68b010f4,m3rd:060ca96b68b010f4 m1wx:0,m1wy:1
+copym3m1:m1wd:060ca96b68b010f4,m3rd:060ca96b68b010f4 m1wx:0,m1wy:2
+copym3m1:m1wd:77738a5650d99cd9,m3rd:77738a5650d99cd9 m1wx:0,m1wy:2
+copym3m1:m1wd:77738a5650d99cd9,m3rd:77738a5650d99cd9 m1wx:0,m1wy:3
+copym3m1:m1wd:d1fa6074134110cb,m3rd:d1fa6074134110cb m1wx:0,m1wy:3
+copym3m1:m1wd:d1fa6074134110cb,m3rd:d1fa6074134110cb m1wx:0,m1wy:4
+copym3m1:m1wd:856a544a7874b12a,m3rd:856a544a7874b12a m1wx:0,m1wy:4
+copym3m1:m1wd:856a544a7874b12a,m3rd:856a544a7874b12a m1wx:1,m1wy:0
+copym3m1:m1wd:9fe328675d9c12a4,m3rd:9fe328675d9c12a4 m1wx:1,m1wy:0
+copym3m1:m1wd:9fe328675d9c12a4,m3rd:9fe328675d9c12a4 m1wx:1,m1wy:1
+copym3m1:m1wd:b0fcae5fda8ea973,m3rd:b0fcae5fda8ea973 m1wx:1,m1wy:1
+copym3m1:m1wd:b0fcae5fda8ea973,m3rd:b0fcae5fda8ea973 m1wx:1,m1wy:2
+copym3m1:m1wd:d2a179d3ae9401a1,m3rd:d2a179d3ae9401a1 m1wx:1,m1wy:2
+copym3m1:m1wd:d2a179d3ae9401a1,m3rd:d2a179d3ae9401a1 m1wx:1,m1wy:3
+copym3m1:m1wd:ec160e6088e58493,m3rd:ec160e6088e58493 m1wx:1,m1wy:3
+copym3m1:m1wd:ec160e6088e58493,m3rd:ec160e6088e58493 m1wx:1,m1wy:4
+copym3m1:m1wd:f3f331e092e141a6,m3rd:f3f331e092e141a6 m1wx:1,m1wy:4
+copym3m1:m1wd:f3f331e092e141a6,m3rd:f3f331e092e141a6 m1wx:2,m1wy:0
+copym3m1:m1wd:31cecfdc34e6fdf7,m3rd:31cecfdc34e6fdf7 m1wx:2,m1wy:0
+copym3m1:m1wd:31cecfdc34e6fdf7,m3rd:31cecfdc34e6fdf7 m1wx:2,m1wy:1
+copym3m1:m1wd:17d0ae360cfaefcb,m3rd:17d0ae360cfaefcb m1wx:2,m1wy:1
+copym3m1:m1wd:17d0ae360cfaefcb,m3rd:17d0ae360cfaefcb m1wx:2,m1wy:2
+copym3m1:m1wd:86af49d0990b286d,m3rd:86af49d0990b286d m1wx:2,m1wy:2
+copym3m1:m1wd:86af49d0990b286d,m3rd:86af49d0990b286d m1wx:2,m1wy:3
+copym3m1:m1wd:2fffab73a75b5997,m3rd:2fffab73a75b5997 m1wx:2,m1wy:3
+copym3m1:m1wd:2fffab73a75b5997,m3rd:2fffab73a75b5997 m1wx:2,m1wy:4
+copym3m1:m1wd:312c657b3bc06cdb,m3rd:312c657b3bc06cdb m1wx:2,m1wy:4
+copym3m1:m1wd:312c657b3bc06cdb,m3rd:312c657b3bc06cdb m1wx:3,m1wy:0
+copym3m1:m1wd:f6e2f78e4fc4521c,m3rd:f6e2f78e4fc4521c m1wx:3,m1wy:0
+copym3m1:m1wd:f6e2f78e4fc4521c,m3rd:f6e2f78e4fc4521c m1wx:3,m1wy:1
+copym3m1:m1wd:5095aef7e7dc0742,m3rd:5095aef7e7dc0742 m1wx:3,m1wy:1
+copym3m1:m1wd:5095aef7e7dc0742,m3rd:5095aef7e7dc0742 m1wx:3,m1wy:2
+copym3m1:m1wd:c372ef95a455dc17,m3rd:c372ef95a455dc17 m1wx:3,m1wy:2
+copym3m1:m1wd:c372ef95a455dc17,m3rd:c372ef95a455dc17 m1wx:3,m1wy:3
+copym3m1:m1wd:0c2bbc7a4edfb7b9,m3rd:0c2bbc7a4edfb7b9 m1wx:3,m1wy:3
+copym3m1:m1wd:0c2bbc7a4edfb7b9,m3rd:0c2bbc7a4edfb7b9 m1wx:3,m1wy:4
+copym3m1:m1wd:1cb52a32ff98e200,m3rd:1cb52a32ff98e200 m1wx:3,m1wy:4
+copym3m1:m1wd:1cb52a32ff98e200,m3rd:1cb52a32ff98e200 m1wx:4,m1wy:0
+copym3m1:m1wd:b476bad09f6e4b2d,m3rd:b476bad09f6e4b2d m1wx:4,m1wy:0
+copym3m1:m1wd:b476bad09f6e4b2d,m3rd:b476bad09f6e4b2d m1wx:4,m1wy:1
+copym3m1:m1wd:97966de79fee0f2b,m3rd:97966de79fee0f2b m1wx:4,m1wy:1
+copym3m1:m1wd:97966de79fee0f2b,m3rd:97966de79fee0f2b m1wx:4,m1wy:2
+copym3m1:m1wd:6f4bb97600ae75e0,m3rd:6f4bb97600ae75e0 m1wx:4,m1wy:2
+copym3m1:m1wd:6f4bb97600ae75e0,m3rd:6f4bb97600ae75e0 m1wx:4,m1wy:3
+copym3m1:m1wd:6d4d903b305fb45c,m3rd:6d4d903b305fb45c m1wx:4,m1wy:3
+copym3m1:m1wd:6d4d903b305fb45c,m3rd:6d4d903b305fb45c m1wx:4,m1wy:4
+copym3m1:m1wd:e5ccbcd7f019b335,m3rd:e5ccbcd7f019b335 m1wx:4,m1wy:4
+D:6c3d4fd666fa1262,m3wy:1,m3wx:0
+D:009dc27ba76cc808,m3wy:1,m3wx:0
+D:009dc27ba76cc808,m3wy:1,m3wx:1
+D:58d10929a6b1efe5,m3wy:1,m3wx:1
+D:58d10929a6b1efe5,m3wy:1,m3wx:2
+D:096d81224997c6a3,m3wy:1,m3wx:2
+D:096d81224997c6a3,m3wy:1,m3wx:3
+D:36366369bd5c6202,m3wy:1,m3wx:3
+D:36366369bd5c6202,m3wy:1,m3wx:4
+D:3db2aa3f06593f4c,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:13cmx[round]:800000000000008b,r1_d:a013004040210022,m3wd:20130040402100a9,m3wx;0,m3wy;0
+round:13cmx[round]:800000000000008b,r1_d:027000492d99841e,m3wd:827000492d998495,m3wx;0,m3wy;0
+copym3m1:m1wd:827000492d998495,m3rd:827000492d998495 m1wx:0,m1wy:0
+copym3m1:m1wd:827000492d998495,m3rd:827000492d998495 m1wx:0,m1wy:1
+copym3m1:m1wd:fd5bc30d558d4dcd,m3rd:fd5bc30d558d4dcd m1wx:0,m1wy:1
+copym3m1:m1wd:fd5bc30d558d4dcd,m3rd:fd5bc30d558d4dcd m1wx:0,m1wy:2
+copym3m1:m1wd:de5450f1d6fb7b9b,m3rd:de5450f1d6fb7b9b m1wx:0,m1wy:2
+copym3m1:m1wd:de5450f1d6fb7b9b,m3rd:de5450f1d6fb7b9b m1wx:0,m1wy:3
+copym3m1:m1wd:7ccbdb839ae722a6,m3rd:7ccbdb839ae722a6 m1wx:0,m1wy:3
+copym3m1:m1wd:7ccbdb839ae722a6,m3rd:7ccbdb839ae722a6 m1wx:0,m1wy:4
+copym3m1:m1wd:55acd5b6afdcea54,m3rd:55acd5b6afdcea54 m1wx:0,m1wy:4
+copym3m1:m1wd:55acd5b6afdcea54,m3rd:55acd5b6afdcea54 m1wx:1,m1wy:0
+copym3m1:m1wd:f4616e827b5726f8,m3rd:f4616e827b5726f8 m1wx:1,m1wy:0
+copym3m1:m1wd:f4616e827b5726f8,m3rd:f4616e827b5726f8 m1wx:1,m1wy:1
+copym3m1:m1wd:7d850de3463ba30c,m3rd:7d850de3463ba30c m1wx:1,m1wy:1
+copym3m1:m1wd:7d850de3463ba30c,m3rd:7d850de3463ba30c m1wx:1,m1wy:2
+copym3m1:m1wd:a843c1135f4b4a47,m3rd:a843c1135f4b4a47 m1wx:1,m1wy:2
+copym3m1:m1wd:a843c1135f4b4a47,m3rd:a843c1135f4b4a47 m1wx:1,m1wy:3
+copym3m1:m1wd:e9e598862114b04c,m3rd:e9e598862114b04c m1wx:1,m1wy:3
+copym3m1:m1wd:e9e598862114b04c,m3rd:e9e598862114b04c m1wx:1,m1wy:4
+copym3m1:m1wd:a023d0644c695b5a,m3rd:a023d0644c695b5a m1wx:1,m1wy:4
+copym3m1:m1wd:a023d0644c695b5a,m3rd:a023d0644c695b5a m1wx:2,m1wy:0
+copym3m1:m1wd:e2f679fe165fa280,m3rd:e2f679fe165fa280 m1wx:2,m1wy:0
+copym3m1:m1wd:e2f679fe165fa280,m3rd:e2f679fe165fa280 m1wx:2,m1wy:1
+copym3m1:m1wd:bd72696cb3a8768e,m3rd:bd72696cb3a8768e m1wx:2,m1wy:1
+copym3m1:m1wd:bd72696cb3a8768e,m3rd:bd72696cb3a8768e m1wx:2,m1wy:2
+copym3m1:m1wd:f8f76b3dcbea8e97,m3rd:f8f76b3dcbea8e97 m1wx:2,m1wy:2
+copym3m1:m1wd:f8f76b3dcbea8e97,m3rd:f8f76b3dcbea8e97 m1wx:2,m1wy:3
+copym3m1:m1wd:c3c1e82987f9d6a9,m3rd:c3c1e82987f9d6a9 m1wx:2,m1wy:3
+copym3m1:m1wd:c3c1e82987f9d6a9,m3rd:c3c1e82987f9d6a9 m1wx:2,m1wy:4
+copym3m1:m1wd:dfad362d6c8b0485,m3rd:dfad362d6c8b0485 m1wx:2,m1wy:4
+copym3m1:m1wd:dfad362d6c8b0485,m3rd:dfad362d6c8b0485 m1wx:3,m1wy:0
+copym3m1:m1wd:e23a705fbfe643bb,m3rd:e23a705fbfe643bb m1wx:3,m1wy:0
+copym3m1:m1wd:e23a705fbfe643bb,m3rd:e23a705fbfe643bb m1wx:3,m1wy:1
+copym3m1:m1wd:f54f559820ec2dca,m3rd:f54f559820ec2dca m1wx:3,m1wy:1
+copym3m1:m1wd:f54f559820ec2dca,m3rd:f54f559820ec2dca m1wx:3,m1wy:2
+copym3m1:m1wd:791a06aa14daf851,m3rd:791a06aa14daf851 m1wx:3,m1wy:2
+copym3m1:m1wd:791a06aa14daf851,m3rd:791a06aa14daf851 m1wx:3,m1wy:3
+copym3m1:m1wd:69e9cfc44b96334e,m3rd:69e9cfc44b96334e m1wx:3,m1wy:3
+copym3m1:m1wd:69e9cfc44b96334e,m3rd:69e9cfc44b96334e m1wx:3,m1wy:4
+copym3m1:m1wd:59919739c15859b9,m3rd:59919739c15859b9 m1wx:3,m1wy:4
+copym3m1:m1wd:59919739c15859b9,m3rd:59919739c15859b9 m1wx:4,m1wy:0
+copym3m1:m1wd:71b35312f17815de,m3rd:71b35312f17815de m1wx:4,m1wy:0
+copym3m1:m1wd:71b35312f17815de,m3rd:71b35312f17815de m1wx:4,m1wy:1
+copym3m1:m1wd:078824f92c38574f,m3rd:078824f92c38574f m1wx:4,m1wy:1
+copym3m1:m1wd:078824f92c38574f,m3rd:078824f92c38574f m1wx:4,m1wy:2
+copym3m1:m1wd:79ccf961ed8a17da,m3rd:79ccf961ed8a17da m1wx:4,m1wy:2
+copym3m1:m1wd:79ccf961ed8a17da,m3rd:79ccf961ed8a17da m1wx:4,m1wy:3
+copym3m1:m1wd:832e87093a525588,m3rd:832e87093a525588 m1wx:4,m1wy:3
+copym3m1:m1wd:832e87093a525588,m3rd:832e87093a525588 m1wx:4,m1wy:4
+copym3m1:m1wd:0c9be3649163b92c,m3rd:0c9be3649163b92c m1wx:4,m1wy:4
+D:9829a681ac7c8e52,m3wy:1,m3wx:0
+D:50813fc7854ff0a5,m3wy:1,m3wx:0
+D:50813fc7854ff0a5,m3wy:1,m3wx:1
+D:fe27d6d7910b6b5a,m3wy:1,m3wx:1
+D:fe27d6d7910b6b5a,m3wy:1,m3wx:2
+D:d44f1db00d67dd0b,m3wy:1,m3wx:2
+D:d44f1db00d67dd0b,m3wy:1,m3wx:3
+D:bb9a7064b298fb6a,m3wy:1,m3wx:3
+D:bb9a7064b298fb6a,m3wy:1,m3wx:4
+D:4e26409136b608b4,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:14cmx[round]:8000000000008089,r1_d:1001228078012009,m3wd:900122807801a080,m3wx;0,m3wy;0
+round:14cmx[round]:8000000000008089,r1_d:b0e9becb6ad25634,m3wd:30e9becb6ad2d6bd,m3wx;0,m3wy;0
+copym3m1:m1wd:30e9becb6ad2d6bd,m3rd:30e9becb6ad2d6bd m1wx:0,m1wy:0
+copym3m1:m1wd:30e9becb6ad2d6bd,m3rd:30e9becb6ad2d6bd m1wx:0,m1wy:1
+copym3m1:m1wd:80fdba9f159a4113,m3rd:80fdba9f159a4113 m1wx:0,m1wy:1
+copym3m1:m1wd:80fdba9f159a4113,m3rd:80fdba9f159a4113 m1wx:0,m1wy:2
+copym3m1:m1wd:848df0ab90bd9be1,m3rd:848df0ab90bd9be1 m1wx:0,m1wy:2
+copym3m1:m1wd:848df0ab90bd9be1,m3rd:848df0ab90bd9be1 m1wx:0,m1wy:3
+copym3m1:m1wd:8e6a71da51fc99cc,m3rd:8e6a71da51fc99cc m1wx:0,m1wy:3
+copym3m1:m1wd:8e6a71da51fc99cc,m3rd:8e6a71da51fc99cc m1wx:0,m1wy:4
+copym3m1:m1wd:43a6cc1a87dadfe6,m3rd:43a6cc1a87dadfe6 m1wx:0,m1wy:4
+copym3m1:m1wd:43a6cc1a87dadfe6,m3rd:43a6cc1a87dadfe6 m1wx:1,m1wy:0
+copym3m1:m1wd:988668a229b94d30,m3rd:988668a229b94d30 m1wx:1,m1wy:0
+copym3m1:m1wd:988668a229b94d30,m3rd:988668a229b94d30 m1wx:1,m1wy:1
+copym3m1:m1wd:cfc12aadbffebce5,m3rd:cfc12aadbffebce5 m1wx:1,m1wy:1
+copym3m1:m1wd:cfc12aadbffebce5,m3rd:cfc12aadbffebce5 m1wx:1,m1wy:2
+copym3m1:m1wd:4fde2f2733b2dd5a,m3rd:4fde2f2733b2dd5a m1wx:1,m1wy:2
+copym3m1:m1wd:4fde2f2733b2dd5a,m3rd:4fde2f2733b2dd5a m1wx:1,m1wy:3
+copym3m1:m1wd:66ab12ccd8fec62b,m3rd:66ab12ccd8fec62b m1wx:1,m1wy:3
+copym3m1:m1wd:66ab12ccd8fec62b,m3rd:66ab12ccd8fec62b m1wx:1,m1wy:4
+copym3m1:m1wd:11876ad2fec93a79,m3rd:11876ad2fec93a79 m1wx:1,m1wy:4
+copym3m1:m1wd:11876ad2fec93a79,m3rd:11876ad2fec93a79 m1wx:2,m1wy:0
+copym3m1:m1wd:627ca941abd07ebc,m3rd:627ca941abd07ebc m1wx:2,m1wy:0
+copym3m1:m1wd:627ca941abd07ebc,m3rd:627ca941abd07ebc m1wx:2,m1wy:1
+copym3m1:m1wd:76b77cb13991d0c4,m3rd:76b77cb13991d0c4 m1wx:2,m1wy:1
+copym3m1:m1wd:76b77cb13991d0c4,m3rd:76b77cb13991d0c4 m1wx:2,m1wy:2
+copym3m1:m1wd:3c4ca6467c0500df,m3rd:3c4ca6467c0500df m1wx:2,m1wy:2
+copym3m1:m1wd:3c4ca6467c0500df,m3rd:3c4ca6467c0500df m1wx:2,m1wy:3
+copym3m1:m1wd:117d199958a6b579,m3rd:117d199958a6b579 m1wx:2,m1wy:3
+copym3m1:m1wd:117d199958a6b579,m3rd:117d199958a6b579 m1wx:2,m1wy:4
+copym3m1:m1wd:b61faf9c955cb86d,m3rd:b61faf9c955cb86d m1wx:2,m1wy:4
+copym3m1:m1wd:b61faf9c955cb86d,m3rd:b61faf9c955cb86d m1wx:3,m1wy:0
+copym3m1:m1wd:661f37d3840a2a67,m3rd:661f37d3840a2a67 m1wx:3,m1wy:0
+copym3m1:m1wd:661f37d3840a2a67,m3rd:661f37d3840a2a67 m1wx:3,m1wy:1
+copym3m1:m1wd:cbe1687458483601,m3rd:cbe1687458483601 m1wx:3,m1wy:1
+copym3m1:m1wd:cbe1687458483601,m3rd:cbe1687458483601 m1wx:3,m1wy:2
+copym3m1:m1wd:1ccec8af7065b78d,m3rd:1ccec8af7065b78d m1wx:3,m1wy:2
+copym3m1:m1wd:1ccec8af7065b78d,m3rd:1ccec8af7065b78d m1wx:3,m1wy:3
+copym3m1:m1wd:76d0b547055d23db,m3rd:76d0b547055d23db m1wx:3,m1wy:3
+copym3m1:m1wd:76d0b547055d23db,m3rd:76d0b547055d23db m1wx:3,m1wy:4
+copym3m1:m1wd:d40a4748178e97dd,m3rd:d40a4748178e97dd m1wx:3,m1wy:4
+copym3m1:m1wd:d40a4748178e97dd,m3rd:d40a4748178e97dd m1wx:4,m1wy:0
+copym3m1:m1wd:64f929c5694719ec,m3rd:64f929c5694719ec m1wx:4,m1wy:0
+copym3m1:m1wd:64f929c5694719ec,m3rd:64f929c5694719ec m1wx:4,m1wy:1
+copym3m1:m1wd:877c4513461901d5,m3rd:877c4513461901d5 m1wx:4,m1wy:1
+copym3m1:m1wd:877c4513461901d5,m3rd:877c4513461901d5 m1wx:4,m1wy:2
+copym3m1:m1wd:e294ad48488674ad,m3rd:e294ad48488674ad m1wx:4,m1wy:2
+copym3m1:m1wd:e294ad48488674ad,m3rd:e294ad48488674ad m1wx:4,m1wy:3
+copym3m1:m1wd:d3e38de7d1708483,m3rd:d3e38de7d1708483 m1wx:4,m1wy:3
+copym3m1:m1wd:d3e38de7d1708483,m3rd:d3e38de7d1708483 m1wx:4,m1wy:4
+copym3m1:m1wd:6811384f0d89e008,m3rd:6811384f0d89e008 m1wx:4,m1wy:4
+D:0bffdb414a75deae,m3wy:1,m3wx:0
+D:65895e5bbca4a9a5,m3wy:1,m3wx:0
+D:65895e5bbca4a9a5,m3wy:1,m3wx:1
+D:e69ec2597eae0d02,m3wy:1,m3wx:1
+D:e69ec2597eae0d02,m3wy:1,m3wx:2
+D:4861df39fe2aef07,m3wy:1,m3wx:2
+D:4861df39fe2aef07,m3wy:1,m3wx:3
+D:fa232dde55fcb38c,m3wy:1,m3wx:3
+D:fa232dde55fcb38c,m3wy:1,m3wx:4
+D:e140f779cd528b26,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:15cmx[round]:8000000000008003,r1_d:0418a020c0005a00,m3wd:8418a020c000da03,m3wx;0,m3wy;0
+round:15cmx[round]:8000000000008003,r1_d:210061b0d736cf18,m3wd:a10061b0d7364f1b,m3wx;0,m3wy;0
+copym3m1:m1wd:a10061b0d7364f1b,m3rd:a10061b0d7364f1b m1wx:0,m1wy:0
+copym3m1:m1wd:a10061b0d7364f1b,m3rd:a10061b0d7364f1b m1wx:0,m1wy:1
+copym3m1:m1wd:d51a2a9ff90a5184,m3rd:d51a2a9ff90a5184 m1wx:0,m1wy:1
+copym3m1:m1wd:d51a2a9ff90a5184,m3rd:d51a2a9ff90a5184 m1wx:0,m1wy:2
+copym3m1:m1wd:be7245feaf2e8b64,m3rd:be7245feaf2e8b64 m1wx:0,m1wy:2
+copym3m1:m1wd:be7245feaf2e8b64,m3rd:be7245feaf2e8b64 m1wx:0,m1wy:3
+copym3m1:m1wd:e531dc86742cec50,m3rd:e531dc86742cec50 m1wx:0,m1wy:3
+copym3m1:m1wd:e531dc86742cec50,m3rd:e531dc86742cec50 m1wx:0,m1wy:4
+copym3m1:m1wd:e2e0591f3f57a4ee,m3rd:e2e0591f3f57a4ee m1wx:0,m1wy:4
+copym3m1:m1wd:e2e0591f3f57a4ee,m3rd:e2e0591f3f57a4ee m1wx:1,m1wy:0
+copym3m1:m1wd:0b1e6687febf4e77,m3rd:0b1e6687febf4e77 m1wx:1,m1wy:0
+copym3m1:m1wd:0b1e6687febf4e77,m3rd:0b1e6687febf4e77 m1wx:1,m1wy:1
+copym3m1:m1wd:37e8b4be35244703,m3rd:37e8b4be35244703 m1wx:1,m1wy:1
+copym3m1:m1wd:37e8b4be35244703,m3rd:37e8b4be35244703 m1wx:1,m1wy:2
+copym3m1:m1wd:b4986e25cecdd4ff,m3rd:b4986e25cecdd4ff m1wx:1,m1wy:2
+copym3m1:m1wd:b4986e25cecdd4ff,m3rd:b4986e25cecdd4ff m1wx:1,m1wy:3
+copym3m1:m1wd:f3ae892c5b704040,m3rd:f3ae892c5b704040 m1wx:1,m1wy:3
+copym3m1:m1wd:f3ae892c5b704040,m3rd:f3ae892c5b704040 m1wx:1,m1wy:4
+copym3m1:m1wd:d698f374d154d95a,m3rd:d698f374d154d95a m1wx:1,m1wy:4
+copym3m1:m1wd:d698f374d154d95a,m3rd:d698f374d154d95a m1wx:2,m1wy:0
+copym3m1:m1wd:1fbb63a5bbc1dc15,m3rd:1fbb63a5bbc1dc15 m1wx:2,m1wy:0
+copym3m1:m1wd:1fbb63a5bbc1dc15,m3rd:1fbb63a5bbc1dc15 m1wx:2,m1wy:1
+copym3m1:m1wd:4eafb99165a5d802,m3rd:4eafb99165a5d802 m1wx:2,m1wy:1
+copym3m1:m1wd:4eafb99165a5d802,m3rd:4eafb99165a5d802 m1wx:2,m1wy:2
+copym3m1:m1wd:aa4f53e9dacdc346,m3rd:aa4f53e9dacdc346 m1wx:2,m1wy:2
+copym3m1:m1wd:aa4f53e9dacdc346,m3rd:aa4f53e9dacdc346 m1wx:2,m1wy:3
+copym3m1:m1wd:139bd11ce1013085,m3rd:139bd11ce1013085 m1wx:2,m1wy:3
+copym3m1:m1wd:139bd11ce1013085,m3rd:139bd11ce1013085 m1wx:2,m1wy:4
+copym3m1:m1wd:a679e5a9ebadc4e7,m3rd:a679e5a9ebadc4e7 m1wx:2,m1wy:4
+copym3m1:m1wd:a679e5a9ebadc4e7,m3rd:a679e5a9ebadc4e7 m1wx:3,m1wy:0
+copym3m1:m1wd:170a54b20ec5c37b,m3rd:170a54b20ec5c37b m1wx:3,m1wy:0
+copym3m1:m1wd:170a54b20ec5c37b,m3rd:170a54b20ec5c37b m1wx:3,m1wy:1
+copym3m1:m1wd:9975118caa93b5ca,m3rd:9975118caa93b5ca m1wx:3,m1wy:1
+copym3m1:m1wd:9975118caa93b5ca,m3rd:9975118caa93b5ca m1wx:3,m1wy:2
+copym3m1:m1wd:174b8e1a042da572,m3rd:174b8e1a042da572 m1wx:3,m1wy:2
+copym3m1:m1wd:174b8e1a042da572,m3rd:174b8e1a042da572 m1wx:3,m1wy:3
+copym3m1:m1wd:c750d7d26d12a05f,m3rd:c750d7d26d12a05f m1wx:3,m1wy:3
+copym3m1:m1wd:c750d7d26d12a05f,m3rd:c750d7d26d12a05f m1wx:3,m1wy:4
+copym3m1:m1wd:b2e18e47d23d23da,m3rd:b2e18e47d23d23da m1wx:3,m1wy:4
+copym3m1:m1wd:b2e18e47d23d23da,m3rd:b2e18e47d23d23da m1wx:4,m1wy:0
+copym3m1:m1wd:79d3a233f242a251,m3rd:79d3a233f242a251 m1wx:4,m1wy:0
+copym3m1:m1wd:79d3a233f242a251,m3rd:79d3a233f242a251 m1wx:4,m1wy:1
+copym3m1:m1wd:7d6f5a34ab5ae8a6,m3rd:7d6f5a34ab5ae8a6 m1wx:4,m1wy:1
+copym3m1:m1wd:7d6f5a34ab5ae8a6,m3rd:7d6f5a34ab5ae8a6 m1wx:4,m1wy:2
+copym3m1:m1wd:488c4ff899cde835,m3rd:488c4ff899cde835 m1wx:4,m1wy:2
+copym3m1:m1wd:488c4ff899cde835,m3rd:488c4ff899cde835 m1wx:4,m1wy:3
+copym3m1:m1wd:43e02a029500722e,m3rd:43e02a029500722e m1wx:4,m1wy:3
+copym3m1:m1wd:43e02a029500722e,m3rd:43e02a029500722e m1wx:4,m1wy:4
+copym3m1:m1wd:d87e020ec19c87ef,m3rd:d87e020ec19c87ef m1wx:4,m1wy:4
+D:56ca9dd95eba67ce,m3wy:1,m3wx:0
+D:8d1f137a8aadde20,m3wy:1,m3wx:0
+D:8d1f137a8aadde20,m3wy:1,m3wx:1
+D:50caf198d663bb23,m3wy:1,m3wx:1
+D:50caf198d663bb23,m3wy:1,m3wx:2
+D:7453e326b1dae41c,m3wy:1,m3wx:2
+D:7453e326b1dae41c,m3wy:1,m3wx:3
+D:e1e4828f26979d34,m3wy:1,m3wx:3
+D:e1e4828f26979d34,m3wy:1,m3wx:4
+D:77f684208b87eacd,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:16cmx[round]:8000000000008002,r1_d:250448c901400014,m3wd:a50448c901408016,m3wx;0,m3wy;0
+round:16cmx[round]:8000000000008002,r1_d:ac27a24a9c1f8073,m3wd:2c27a24a9c1f0071,m3wx;0,m3wy;0
+copym3m1:m1wd:2c27a24a9c1f0071,m3rd:2c27a24a9c1f0071 m1wx:0,m1wy:0
+copym3m1:m1wd:2c27a24a9c1f0071,m3rd:2c27a24a9c1f0071 m1wx:0,m1wy:1
+copym3m1:m1wd:c8ad95c5f764ef43,m3rd:c8ad95c5f764ef43 m1wx:0,m1wy:1
+copym3m1:m1wd:c8ad95c5f764ef43,m3rd:c8ad95c5f764ef43 m1wx:0,m1wy:2
+copym3m1:m1wd:b7e87e3ed199b2b9,m3rd:b7e87e3ed199b2b9 m1wx:0,m1wy:2
+copym3m1:m1wd:b7e87e3ed199b2b9,m3rd:b7e87e3ed199b2b9 m1wx:0,m1wy:3
+copym3m1:m1wd:dbc82e66d9dd48b0,m3rd:dbc82e66d9dd48b0 m1wx:0,m1wy:3
+copym3m1:m1wd:dbc82e66d9dd48b0,m3rd:dbc82e66d9dd48b0 m1wx:0,m1wy:4
+copym3m1:m1wd:5afb1436fea7220b,m3rd:5afb1436fea7220b m1wx:0,m1wy:4
+copym3m1:m1wd:5afb1436fea7220b,m3rd:5afb1436fea7220b m1wx:1,m1wy:0
+copym3m1:m1wd:7d4326752c32eab6,m3rd:7d4326752c32eab6 m1wx:1,m1wy:0
+copym3m1:m1wd:7d4326752c32eab6,m3rd:7d4326752c32eab6 m1wx:1,m1wy:1
+copym3m1:m1wd:85464d9ca5b4b81f,m3rd:85464d9ca5b4b81f m1wx:1,m1wy:1
+copym3m1:m1wd:85464d9ca5b4b81f,m3rd:85464d9ca5b4b81f m1wx:1,m1wy:2
+copym3m1:m1wd:abbcaffb1ddfa6aa,m3rd:abbcaffb1ddfa6aa m1wx:1,m1wy:2
+copym3m1:m1wd:abbcaffb1ddfa6aa,m3rd:abbcaffb1ddfa6aa m1wx:1,m1wy:3
+copym3m1:m1wd:2b79f248c2131e33,m3rd:2b79f248c2131e33 m1wx:1,m1wy:3
+copym3m1:m1wd:2b79f248c2131e33,m3rd:2b79f248c2131e33 m1wx:1,m1wy:4
+copym3m1:m1wd:7d58c809c15c13e0,m3rd:7d58c809c15c13e0 m1wx:1,m1wy:4
+copym3m1:m1wd:7d58c809c15c13e0,m3rd:7d58c809c15c13e0 m1wx:2,m1wy:0
+copym3m1:m1wd:b93854f0b78e5238,m3rd:b93854f0b78e5238 m1wx:2,m1wy:0
+copym3m1:m1wd:b93854f0b78e5238,m3rd:b93854f0b78e5238 m1wx:2,m1wy:1
+copym3m1:m1wd:9b6bb4b04c52ce3c,m3rd:9b6bb4b04c52ce3c m1wx:2,m1wy:1
+copym3m1:m1wd:9b6bb4b04c52ce3c,m3rd:9b6bb4b04c52ce3c m1wx:2,m1wy:2
+copym3m1:m1wd:0355a191e5cc42d0,m3rd:0355a191e5cc42d0 m1wx:2,m1wy:2
+copym3m1:m1wd:0355a191e5cc42d0,m3rd:0355a191e5cc42d0 m1wx:2,m1wy:3
+copym3m1:m1wd:ac3cf162b90f7b8b,m3rd:ac3cf162b90f7b8b m1wx:2,m1wy:3
+copym3m1:m1wd:ac3cf162b90f7b8b,m3rd:ac3cf162b90f7b8b m1wx:2,m1wy:4
+copym3m1:m1wd:3c09773fbd25ec0b,m3rd:3c09773fbd25ec0b m1wx:2,m1wy:4
+copym3m1:m1wd:3c09773fbd25ec0b,m3rd:3c09773fbd25ec0b m1wx:3,m1wy:0
+copym3m1:m1wd:a7bd10efa9f7c693,m3rd:a7bd10efa9f7c693 m1wx:3,m1wy:0
+copym3m1:m1wd:a7bd10efa9f7c693,m3rd:a7bd10efa9f7c693 m1wx:3,m1wy:1
+copym3m1:m1wd:ffec51489b3698c2,m3rd:ffec51489b3698c2 m1wx:3,m1wy:1
+copym3m1:m1wd:ffec51489b3698c2,m3rd:ffec51489b3698c2 m1wx:3,m1wy:2
+copym3m1:m1wd:80870a089718a334,m3rd:80870a089718a334 m1wx:3,m1wy:2
+copym3m1:m1wd:80870a089718a334,m3rd:80870a089718a334 m1wx:3,m1wy:3
+copym3m1:m1wd:0891022dca4db2e4,m3rd:0891022dca4db2e4 m1wx:3,m1wy:3
+copym3m1:m1wd:0891022dca4db2e4,m3rd:0891022dca4db2e4 m1wx:3,m1wy:4
+copym3m1:m1wd:40d6c0d09f9dbffd,m3rd:40d6c0d09f9dbffd m1wx:3,m1wy:4
+copym3m1:m1wd:40d6c0d09f9dbffd,m3rd:40d6c0d09f9dbffd m1wx:4,m1wy:0
+copym3m1:m1wd:724b96b6fb08c5e6,m3rd:724b96b6fb08c5e6 m1wx:4,m1wy:0
+copym3m1:m1wd:724b96b6fb08c5e6,m3rd:724b96b6fb08c5e6 m1wx:4,m1wy:1
+copym3m1:m1wd:5b0748c1ebdee483,m3rd:5b0748c1ebdee483 m1wx:4,m1wy:1
+copym3m1:m1wd:5b0748c1ebdee483,m3rd:5b0748c1ebdee483 m1wx:4,m1wy:2
+copym3m1:m1wd:21805628e57fbafb,m3rd:21805628e57fbafb m1wx:4,m1wy:2
+copym3m1:m1wd:21805628e57fbafb,m3rd:21805628e57fbafb m1wx:4,m1wy:3
+copym3m1:m1wd:ce63d50dc8f63cf9,m3rd:ce63d50dc8f63cf9 m1wx:4,m1wy:3
+copym3m1:m1wd:ce63d50dc8f63cf9,m3rd:ce63d50dc8f63cf9 m1wx:4,m1wy:4
+copym3m1:m1wd:3c4c43791d9d89f2,m3rd:3c4c43791d9d89f2 m1wx:4,m1wy:4
+D:76f39422a6a85951,m3wy:1,m3wx:0
+D:f1d2e28c0eefdd35,m3wy:1,m3wx:0
+D:f1d2e28c0eefdd35,m3wy:1,m3wx:1
+D:b036fcf9a9eca599,m3wy:1,m3wx:1
+D:b036fcf9a9eca599,m3wy:1,m3wx:2
+D:24bbecf677051929,m3wy:1,m3wx:2
+D:24bbecf677051929,m3wy:1,m3wx:3
+D:44f5fbda5bbe147f,m3wy:1,m3wx:3
+D:44f5fbda5bbe147f,m3wy:1,m3wx:4
+D:34336e91cb399e1d,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:17cmx[round]:8000000000000080,r1_d:189d00d449400402,m3wd:989d00d449400482,m3wx;0,m3wy;0
+round:17cmx[round]:8000000000000080,r1_d:97f2c8eee299f156,m3wd:17f2c8eee299f1d6,m3wx;0,m3wy;0
+copym3m1:m1wd:17f2c8eee299f1d6,m3rd:17f2c8eee299f1d6 m1wx:0,m1wy:0
+copym3m1:m1wd:17f2c8eee299f1d6,m3rd:17f2c8eee299f1d6 m1wx:0,m1wy:1
+copym3m1:m1wd:4ff07cae9c258293,m3rd:4ff07cae9c258293 m1wx:0,m1wy:1
+copym3m1:m1wd:4ff07cae9c258293,m3rd:4ff07cae9c258293 m1wx:0,m1wy:2
+copym3m1:m1wd:9b62f97909b4bedf,m3rd:9b62f97909b4bedf m1wx:0,m1wy:2
+copym3m1:m1wd:9b62f97909b4bedf,m3rd:9b62f97909b4bedf m1wx:0,m1wy:3
+copym3m1:m1wd:18cd824f923b4fa1,m3rd:18cd824f923b4fa1 m1wx:0,m1wy:3
+copym3m1:m1wd:18cd824f923b4fa1,m3rd:18cd824f923b4fa1 m1wx:0,m1wy:4
+copym3m1:m1wd:46629d0b20beca55,m3rd:46629d0b20beca55 m1wx:0,m1wy:4
+copym3m1:m1wd:46629d0b20beca55,m3rd:46629d0b20beca55 m1wx:1,m1wy:0
+copym3m1:m1wd:b5f855178a16d0cc,m3rd:b5f855178a16d0cc m1wx:1,m1wy:0
+copym3m1:m1wd:b5f855178a16d0cc,m3rd:b5f855178a16d0cc m1wx:1,m1wy:1
+copym3m1:m1wd:a3231c1ea9a2f25f,m3rd:a3231c1ea9a2f25f m1wx:1,m1wy:1
+copym3m1:m1wd:a3231c1ea9a2f25f,m3rd:a3231c1ea9a2f25f m1wx:1,m1wy:2
+copym3m1:m1wd:a434818f9dd7c577,m3rd:a434818f9dd7c577 m1wx:1,m1wy:2
+copym3m1:m1wd:a434818f9dd7c577,m3rd:a434818f9dd7c577 m1wx:1,m1wy:3
+copym3m1:m1wd:1e314266a6a6749e,m3rd:1e314266a6a6749e m1wx:1,m1wy:3
+copym3m1:m1wd:1e314266a6a6749e,m3rd:1e314266a6a6749e m1wx:1,m1wy:4
+copym3m1:m1wd:1af484816d61c56e,m3rd:1af484816d61c56e m1wx:1,m1wy:4
+copym3m1:m1wd:1af484816d61c56e,m3rd:1af484816d61c56e m1wx:2,m1wy:0
+copym3m1:m1wd:8bd7c8b676f97e96,m3rd:8bd7c8b676f97e96 m1wx:2,m1wy:0
+copym3m1:m1wd:8bd7c8b676f97e96,m3rd:8bd7c8b676f97e96 m1wx:2,m1wy:1
+copym3m1:m1wd:31d6e586e3b36ee2,m3rd:31d6e586e3b36ee2 m1wx:2,m1wy:1
+copym3m1:m1wd:31d6e586e3b36ee2,m3rd:31d6e586e3b36ee2 m1wx:2,m1wy:2
+copym3m1:m1wd:2fd90c4ea7d0ede6,m3rd:2fd90c4ea7d0ede6 m1wx:2,m1wy:2
+copym3m1:m1wd:2fd90c4ea7d0ede6,m3rd:2fd90c4ea7d0ede6 m1wx:2,m1wy:3
+copym3m1:m1wd:29480aeac688efc6,m3rd:29480aeac688efc6 m1wx:2,m1wy:3
+copym3m1:m1wd:29480aeac688efc6,m3rd:29480aeac688efc6 m1wx:2,m1wy:4
+copym3m1:m1wd:3382a28b5bde54d6,m3rd:3382a28b5bde54d6 m1wx:2,m1wy:4
+copym3m1:m1wd:3382a28b5bde54d6,m3rd:3382a28b5bde54d6 m1wx:3,m1wy:0
+copym3m1:m1wd:2a777e32416991df,m3rd:2a777e32416991df m1wx:3,m1wy:0
+copym3m1:m1wd:2a777e32416991df,m3rd:2a777e32416991df m1wx:3,m1wy:1
+copym3m1:m1wd:eb55df6f27e6ad6c,m3rd:eb55df6f27e6ad6c m1wx:3,m1wy:1
+copym3m1:m1wd:eb55df6f27e6ad6c,m3rd:eb55df6f27e6ad6c m1wx:3,m1wy:2
+copym3m1:m1wd:50bba81bcca6f6a2,m3rd:50bba81bcca6f6a2 m1wx:3,m1wy:2
+copym3m1:m1wd:50bba81bcca6f6a2,m3rd:50bba81bcca6f6a2 m1wx:3,m1wy:3
+copym3m1:m1wd:b74befc1e1628003,m3rd:b74befc1e1628003 m1wx:3,m1wy:3
+copym3m1:m1wd:b74befc1e1628003,m3rd:b74befc1e1628003 m1wx:3,m1wy:4
+copym3m1:m1wd:276b265425b9d7ae,m3rd:276b265425b9d7ae m1wx:3,m1wy:4
+copym3m1:m1wd:276b265425b9d7ae,m3rd:276b265425b9d7ae m1wx:4,m1wy:0
+copym3m1:m1wd:cb7216b80cfdc29e,m3rd:cb7216b80cfdc29e m1wx:4,m1wy:0
+copym3m1:m1wd:cb7216b80cfdc29e,m3rd:cb7216b80cfdc29e m1wx:4,m1wy:1
+copym3m1:m1wd:6314512818866fe4,m3rd:6314512818866fe4 m1wx:4,m1wy:1
+copym3m1:m1wd:6314512818866fe4,m3rd:6314512818866fe4 m1wx:4,m1wy:2
+copym3m1:m1wd:beffc1a528bbed87,m3rd:beffc1a528bbed87 m1wx:4,m1wy:2
+copym3m1:m1wd:beffc1a528bbed87,m3rd:beffc1a528bbed87 m1wx:4,m1wy:3
+copym3m1:m1wd:0236061b0f0013b5,m3rd:0236061b0f0013b5 m1wx:4,m1wy:3
+copym3m1:m1wd:0236061b0f0013b5,m3rd:0236061b0f0013b5 m1wx:4,m1wy:4
+copym3m1:m1wd:2d25d315eb82dde5,m3rd:2d25d315eb82dde5 m1wx:4,m1wy:4
+D:a651f6864e97d8b3,m3wy:1,m3wx:0
+D:55de4ff9330a2284,m3wy:1,m3wx:0
+D:55de4ff9330a2284,m3wy:1,m3wx:1
+D:83ea40429a15c56b,m3wy:1,m3wx:1
+D:83ea40429a15c56b,m3wy:1,m3wx:2
+D:b5598fc7a8416d6c,m3wy:1,m3wx:2
+D:b5598fc7a8416d6c,m3wy:1,m3wx:3
+D:fc062f681f495bd8,m3wy:1,m3wx:3
+D:fc062f681f495bd8,m3wy:1,m3wx:4
+D:3a276428e5e80d61,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:18cmx[round]:000000000000800a,r1_d:5008282000105301,m3wd:500828200010d30b,m3wx;0,m3wy;0
+round:18cmx[round]:000000000000800a,r1_d:ce2893c7d18bdb16,m3wd:ce2893c7d18b5b1c,m3wx;0,m3wy;0
+copym3m1:m1wd:ce2893c7d18b5b1c,m3rd:ce2893c7d18b5b1c m1wx:0,m1wy:0
+copym3m1:m1wd:ce2893c7d18b5b1c,m3rd:ce2893c7d18b5b1c m1wx:0,m1wy:1
+copym3m1:m1wd:80022ca1a8c775d9,m3rd:80022ca1a8c775d9 m1wx:0,m1wy:1
+copym3m1:m1wd:80022ca1a8c775d9,m3rd:80022ca1a8c775d9 m1wx:0,m1wy:2
+copym3m1:m1wd:a80165a2215f3340,m3rd:a80165a2215f3340 m1wx:0,m1wy:2
+copym3m1:m1wd:a80165a2215f3340,m3rd:a80165a2215f3340 m1wx:0,m1wy:3
+copym3m1:m1wd:8e4d9a71f78aeb11,m3rd:8e4d9a71f78aeb11 m1wx:0,m1wy:3
+copym3m1:m1wd:8e4d9a71f78aeb11,m3rd:8e4d9a71f78aeb11 m1wx:0,m1wy:4
+copym3m1:m1wd:2e53c3de1bec84fa,m3rd:2e53c3de1bec84fa m1wx:0,m1wy:4
+copym3m1:m1wd:2e53c3de1bec84fa,m3rd:2e53c3de1bec84fa m1wx:1,m1wy:0
+copym3m1:m1wd:6248c327eea4e2bb,m3rd:6248c327eea4e2bb m1wx:1,m1wy:0
+copym3m1:m1wd:6248c327eea4e2bb,m3rd:6248c327eea4e2bb m1wx:1,m1wy:1
+copym3m1:m1wd:5215d55c08559633,m3rd:5215d55c08559633 m1wx:1,m1wy:1
+copym3m1:m1wd:5215d55c08559633,m3rd:5215d55c08559633 m1wx:1,m1wy:2
+copym3m1:m1wd:339ab0f2f4866791,m3rd:339ab0f2f4866791 m1wx:1,m1wy:2
+copym3m1:m1wd:339ab0f2f4866791,m3rd:339ab0f2f4866791 m1wx:1,m1wy:3
+copym3m1:m1wd:726a821163b63b7a,m3rd:726a821163b63b7a m1wx:1,m1wy:3
+copym3m1:m1wd:726a821163b63b7a,m3rd:726a821163b63b7a m1wx:1,m1wy:4
+copym3m1:m1wd:1801a16000157efb,m3rd:1801a16000157efb m1wx:1,m1wy:4
+copym3m1:m1wd:1801a16000157efb,m3rd:1801a16000157efb m1wx:2,m1wy:0
+copym3m1:m1wd:24c45654801c4c3c,m3rd:24c45654801c4c3c m1wx:2,m1wy:0
+copym3m1:m1wd:24c45654801c4c3c,m3rd:24c45654801c4c3c m1wx:2,m1wy:1
+copym3m1:m1wd:7524f0014bc782ff,m3rd:7524f0014bc782ff m1wx:2,m1wy:1
+copym3m1:m1wd:7524f0014bc782ff,m3rd:7524f0014bc782ff m1wx:2,m1wy:2
+copym3m1:m1wd:ad2f934bf61971cd,m3rd:ad2f934bf61971cd m1wx:2,m1wy:2
+copym3m1:m1wd:ad2f934bf61971cd,m3rd:ad2f934bf61971cd m1wx:2,m1wy:3
+copym3m1:m1wd:4f4e7c16342ac01b,m3rd:4f4e7c16342ac01b m1wx:2,m1wy:3
+copym3m1:m1wd:4f4e7c16342ac01b,m3rd:4f4e7c16342ac01b m1wx:2,m1wy:4
+copym3m1:m1wd:add16247b412c6f2,m3rd:add16247b412c6f2 m1wx:2,m1wy:4
+copym3m1:m1wd:add16247b412c6f2,m3rd:add16247b412c6f2 m1wx:3,m1wy:0
+copym3m1:m1wd:571f417e3afbbbaa,m3rd:571f417e3afbbbaa m1wx:3,m1wy:0
+copym3m1:m1wd:571f417e3afbbbaa,m3rd:571f417e3afbbbaa m1wx:3,m1wy:1
+copym3m1:m1wd:d31ebbbb01409796,m3rd:d31ebbbb01409796 m1wx:3,m1wy:1
+copym3m1:m1wd:d31ebbbb01409796,m3rd:d31ebbbb01409796 m1wx:3,m1wy:2
+copym3m1:m1wd:354613c2e81cf534,m3rd:354613c2e81cf534 m1wx:3,m1wy:2
+copym3m1:m1wd:354613c2e81cf534,m3rd:354613c2e81cf534 m1wx:3,m1wy:3
+copym3m1:m1wd:4396351202d54518,m3rd:4396351202d54518 m1wx:3,m1wy:3
+copym3m1:m1wd:4396351202d54518,m3rd:4396351202d54518 m1wx:3,m1wy:4
+copym3m1:m1wd:e95aca4a05b569aa,m3rd:e95aca4a05b569aa m1wx:3,m1wy:4
+copym3m1:m1wd:e95aca4a05b569aa,m3rd:e95aca4a05b569aa m1wx:4,m1wy:0
+copym3m1:m1wd:9c9c0392b06505e9,m3rd:9c9c0392b06505e9 m1wx:4,m1wy:0
+copym3m1:m1wd:9c9c0392b06505e9,m3rd:9c9c0392b06505e9 m1wx:4,m1wy:1
+copym3m1:m1wd:00d6b7ef9e636515,m3rd:00d6b7ef9e636515 m1wx:4,m1wy:1
+copym3m1:m1wd:00d6b7ef9e636515,m3rd:00d6b7ef9e636515 m1wx:4,m1wy:2
+copym3m1:m1wd:4812de837fc48e52,m3rd:4812de837fc48e52 m1wx:4,m1wy:2
+copym3m1:m1wd:4812de837fc48e52,m3rd:4812de837fc48e52 m1wx:4,m1wy:3
+copym3m1:m1wd:06696c093c5be4e6,m3rd:06696c093c5be4e6 m1wx:4,m1wy:3
+copym3m1:m1wd:06696c093c5be4e6,m3rd:06696c093c5be4e6 m1wx:4,m1wy:4
+copym3m1:m1wd:34733b2fddc05317,m3rd:34733b2fddc05317 m1wx:4,m1wy:4
+D:ca5e85bcdc9f96b2,m3wy:1,m3wx:0
+D:351b362853f1f46f,m3wy:1,m3wx:0
+D:351b362853f1f46f,m3wy:1,m3wx:1
+D:7a95d5f4cf8001a0,m3wy:1,m3wx:1
+D:7a95d5f4cf8001a0,m3wy:1,m3wx:2
+D:5ebaa947d85bbdec,m3wy:1,m3wx:2
+D:5ebaa947d85bbdec,m3wy:1,m3wx:3
+D:d2d450fedd480b58,m3wy:1,m3wx:3
+D:d2d450fedd480b58,m3wy:1,m3wx:4
+D:97e01088bc2d1166,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:19cmx[round]:800000008000000a,r1_d:6100403120ee000a,m3wd:e1004031a0ee0000,m3wx;0,m3wy;0
+round:19cmx[round]:800000008000000a,r1_d:fd33a8fb2baace71,m3wd:7d33a8fbabaace7b,m3wx;0,m3wy;0
+copym3m1:m1wd:7d33a8fbabaace7b,m3rd:7d33a8fbabaace7b m1wx:0,m1wy:0
+copym3m1:m1wd:7d33a8fbabaace7b,m3rd:7d33a8fbabaace7b m1wx:0,m1wy:1
+copym3m1:m1wd:86fba31fb81ab90c,m3rd:86fba31fb81ab90c m1wx:0,m1wy:1
+copym3m1:m1wd:86fba31fb81ab90c,m3rd:86fba31fb81ab90c m1wx:0,m1wy:2
+copym3m1:m1wd:29d285fe5a89e632,m3rd:29d285fe5a89e632 m1wx:0,m1wy:2
+copym3m1:m1wd:29d285fe5a89e632,m3rd:29d285fe5a89e632 m1wx:0,m1wy:3
+copym3m1:m1wd:dcf640207053a5b8,m3rd:dcf640207053a5b8 m1wx:0,m1wy:3
+copym3m1:m1wd:dcf640207053a5b8,m3rd:dcf640207053a5b8 m1wx:0,m1wy:4
+copym3m1:m1wd:8e50a5ce8f10fdd5,m3rd:8e50a5ce8f10fdd5 m1wx:0,m1wy:4
+copym3m1:m1wd:8e50a5ce8f10fdd5,m3rd:8e50a5ce8f10fdd5 m1wx:1,m1wy:0
+copym3m1:m1wd:f0e3c2a940088471,m3rd:f0e3c2a940088471 m1wx:1,m1wy:0
+copym3m1:m1wd:f0e3c2a940088471,m3rd:f0e3c2a940088471 m1wx:1,m1wy:1
+copym3m1:m1wd:717b65eb2db1f7e8,m3rd:717b65eb2db1f7e8 m1wx:1,m1wy:1
+copym3m1:m1wd:717b65eb2db1f7e8,m3rd:717b65eb2db1f7e8 m1wx:1,m1wy:2
+copym3m1:m1wd:668251a4c13f44db,m3rd:668251a4c13f44db m1wx:1,m1wy:2
+copym3m1:m1wd:668251a4c13f44db,m3rd:668251a4c13f44db m1wx:1,m1wy:3
+copym3m1:m1wd:f140fd7bf7f2a045,m3rd:f140fd7bf7f2a045 m1wx:1,m1wy:3
+copym3m1:m1wd:f140fd7bf7f2a045,m3rd:f140fd7bf7f2a045 m1wx:1,m1wy:4
+copym3m1:m1wd:65308065a6f6b646,m3rd:65308065a6f6b646 m1wx:1,m1wy:4
+copym3m1:m1wd:65308065a6f6b646,m3rd:65308065a6f6b646 m1wx:2,m1wy:0
+copym3m1:m1wd:540107ceb95c21d2,m3rd:540107ceb95c21d2 m1wx:2,m1wy:0
+copym3m1:m1wd:540107ceb95c21d2,m3rd:540107ceb95c21d2 m1wx:2,m1wy:1
+copym3m1:m1wd:f0f6a4339077331d,m3rd:f0f6a4339077331d m1wx:2,m1wy:1
+copym3m1:m1wd:f0f6a4339077331d,m3rd:f0f6a4339077331d m1wx:2,m1wy:2
+copym3m1:m1wd:2eeb898959cf49a4,m3rd:2eeb898959cf49a4 m1wx:2,m1wy:2
+copym3m1:m1wd:2eeb898959cf49a4,m3rd:2eeb898959cf49a4 m1wx:2,m1wy:3
+copym3m1:m1wd:ad87106e1998b024,m3rd:ad87106e1998b024 m1wx:2,m1wy:3
+copym3m1:m1wd:ad87106e1998b024,m3rd:ad87106e1998b024 m1wx:2,m1wy:4
+copym3m1:m1wd:fc8e986eeb6249c4,m3rd:fc8e986eeb6249c4 m1wx:2,m1wy:4
+copym3m1:m1wd:fc8e986eeb6249c4,m3rd:fc8e986eeb6249c4 m1wx:3,m1wy:0
+copym3m1:m1wd:8c89d62d4a70af5f,m3rd:8c89d62d4a70af5f m1wx:3,m1wy:0
+copym3m1:m1wd:8c89d62d4a70af5f,m3rd:8c89d62d4a70af5f m1wx:3,m1wy:1
+copym3m1:m1wd:c7494310caa8259e,m3rd:c7494310caa8259e m1wx:3,m1wy:1
+copym3m1:m1wd:c7494310caa8259e,m3rd:c7494310caa8259e m1wx:3,m1wy:2
+copym3m1:m1wd:a95e8c0276fc0285,m3rd:a95e8c0276fc0285 m1wx:3,m1wy:2
+copym3m1:m1wd:a95e8c0276fc0285,m3rd:a95e8c0276fc0285 m1wx:3,m1wy:3
+copym3m1:m1wd:6ae8b61cf6f88862,m3rd:6ae8b61cf6f88862 m1wx:3,m1wy:3
+copym3m1:m1wd:6ae8b61cf6f88862,m3rd:6ae8b61cf6f88862 m1wx:3,m1wy:4
+copym3m1:m1wd:e2b0d0f26d58b358,m3rd:e2b0d0f26d58b358 m1wx:3,m1wy:4
+copym3m1:m1wd:e2b0d0f26d58b358,m3rd:e2b0d0f26d58b358 m1wx:4,m1wy:0
+copym3m1:m1wd:caa1ca7b509c68e8,m3rd:caa1ca7b509c68e8 m1wx:4,m1wy:0
+copym3m1:m1wd:caa1ca7b509c68e8,m3rd:caa1ca7b509c68e8 m1wx:4,m1wy:1
+copym3m1:m1wd:ae6d7d804aa86d01,m3rd:ae6d7d804aa86d01 m1wx:4,m1wy:1
+copym3m1:m1wd:ae6d7d804aa86d01,m3rd:ae6d7d804aa86d01 m1wx:4,m1wy:2
+copym3m1:m1wd:11dd707567526deb,m3rd:11dd707567526deb m1wx:4,m1wy:2
+copym3m1:m1wd:11dd707567526deb,m3rd:11dd707567526deb m1wx:4,m1wy:3
+copym3m1:m1wd:d13395d1b558f565,m3rd:d13395d1b558f565 m1wx:4,m1wy:3
+copym3m1:m1wd:d13395d1b558f565,m3rd:d13395d1b558f565 m1wx:4,m1wy:4
+copym3m1:m1wd:eb5192621ebbfd67,m3rd:eb5192621ebbfd67 m1wx:4,m1wy:4
+D:81c4bc1dda8f5b79,m3wy:1,m3wx:0
+D:a9a6d7cc2d812282,m3wy:1,m3wx:0
+D:a9a6d7cc2d812282,m3wy:1,m3wx:1
+D:36972f1db2478c3f,m3wy:1,m3wx:1
+D:36972f1db2478c3f,m3wy:1,m3wx:2
+D:a6e6745a268b47bd,m3wy:1,m3wx:2
+D:a6e6745a268b47bd,m3wy:1,m3wx:3
+D:45f2220f2f14628b,m3wy:1,m3wx:3
+D:45f2220f2f14628b,m3wy:1,m3wx:4
+D:6bbea8380171212f,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:20cmx[round]:8000000080008081,r1_d:0240011088020620,m3wd:82400110080286a1,m3wx;0,m3wy;0
+round:20cmx[round]:8000000080008081,r1_d:d4d5f737ad6b7ef9,m3wd:54d5f7372d6bfe78,m3wx;0,m3wy;0
+copym3m1:m1wd:54d5f7372d6bfe78,m3rd:54d5f7372d6bfe78 m1wx:0,m1wy:0
+copym3m1:m1wd:54d5f7372d6bfe78,m3rd:54d5f7372d6bfe78 m1wx:0,m1wy:1
+copym3m1:m1wd:26744cde74959fc2,m3rd:26744cde74959fc2 m1wx:0,m1wy:1
+copym3m1:m1wd:26744cde74959fc2,m3rd:26744cde74959fc2 m1wx:0,m1wy:2
+copym3m1:m1wd:966a1be9e45e41d5,m3rd:966a1be9e45e41d5 m1wx:0,m1wy:2
+copym3m1:m1wd:966a1be9e45e41d5,m3rd:966a1be9e45e41d5 m1wx:0,m1wy:3
+copym3m1:m1wd:1ecd2f433f286b52,m3rd:1ecd2f433f286b52 m1wx:0,m1wy:3
+copym3m1:m1wd:1ecd2f433f286b52,m3rd:1ecd2f433f286b52 m1wx:0,m1wy:4
+copym3m1:m1wd:ed9ffee817f9f90b,m3rd:ed9ffee817f9f90b m1wx:0,m1wy:4
+copym3m1:m1wd:ed9ffee817f9f90b,m3rd:ed9ffee817f9f90b m1wx:1,m1wy:0
+copym3m1:m1wd:e5b645e3d4ae09ff,m3rd:e5b645e3d4ae09ff m1wx:1,m1wy:0
+copym3m1:m1wd:e5b645e3d4ae09ff,m3rd:e5b645e3d4ae09ff m1wx:1,m1wy:1
+copym3m1:m1wd:ff89f5fc80e4950f,m3rd:ff89f5fc80e4950f m1wx:1,m1wy:1
+copym3m1:m1wd:ff89f5fc80e4950f,m3rd:ff89f5fc80e4950f m1wx:1,m1wy:2
+copym3m1:m1wd:013833599f192ab7,m3rd:013833599f192ab7 m1wx:1,m1wy:2
+copym3m1:m1wd:013833599f192ab7,m3rd:013833599f192ab7 m1wx:1,m1wy:3
+copym3m1:m1wd:fbb9a2e2ed1b4989,m3rd:fbb9a2e2ed1b4989 m1wx:1,m1wy:3
+copym3m1:m1wd:fbb9a2e2ed1b4989,m3rd:fbb9a2e2ed1b4989 m1wx:1,m1wy:4
+copym3m1:m1wd:2ec949720ff1062b,m3rd:2ec949720ff1062b m1wx:1,m1wy:4
+copym3m1:m1wd:2ec949720ff1062b,m3rd:2ec949720ff1062b m1wx:2,m1wy:0
+copym3m1:m1wd:6cf44e22cdfc9bd3,m3rd:6cf44e22cdfc9bd3 m1wx:2,m1wy:0
+copym3m1:m1wd:6cf44e22cdfc9bd3,m3rd:6cf44e22cdfc9bd3 m1wx:2,m1wy:1
+copym3m1:m1wd:09e29497b9f704cd,m3rd:09e29497b9f704cd m1wx:2,m1wy:1
+copym3m1:m1wd:09e29497b9f704cd,m3rd:09e29497b9f704cd m1wx:2,m1wy:2
+copym3m1:m1wd:5ab1d28349d1cc1d,m3rd:5ab1d28349d1cc1d m1wx:2,m1wy:2
+copym3m1:m1wd:5ab1d28349d1cc1d,m3rd:5ab1d28349d1cc1d m1wx:2,m1wy:3
+copym3m1:m1wd:145fa5bfe721d901,m3rd:145fa5bfe721d901 m1wx:2,m1wy:3
+copym3m1:m1wd:145fa5bfe721d901,m3rd:145fa5bfe721d901 m1wx:2,m1wy:4
+copym3m1:m1wd:5b36eb3d632c07f7,m3rd:5b36eb3d632c07f7 m1wx:2,m1wy:4
+copym3m1:m1wd:5b36eb3d632c07f7,m3rd:5b36eb3d632c07f7 m1wx:3,m1wy:0
+copym3m1:m1wd:927a45985d0c2f92,m3rd:927a45985d0c2f92 m1wx:3,m1wy:0
+copym3m1:m1wd:927a45985d0c2f92,m3rd:927a45985d0c2f92 m1wx:3,m1wy:1
+copym3m1:m1wd:a19d18a3be4e56b6,m3rd:a19d18a3be4e56b6 m1wx:3,m1wy:1
+copym3m1:m1wd:a19d18a3be4e56b6,m3rd:a19d18a3be4e56b6 m1wx:3,m1wy:2
+copym3m1:m1wd:89dcb89ca9564abe,m3rd:89dcb89ca9564abe m1wx:3,m1wy:2
+copym3m1:m1wd:89dcb89ca9564abe,m3rd:89dcb89ca9564abe m1wx:3,m1wy:3
+copym3m1:m1wd:ba123785fbc436b2,m3rd:ba123785fbc436b2 m1wx:3,m1wy:3
+copym3m1:m1wd:ba123785fbc436b2,m3rd:ba123785fbc436b2 m1wx:3,m1wy:4
+copym3m1:m1wd:152f34ef841ec8a1,m3rd:152f34ef841ec8a1 m1wx:3,m1wy:4
+copym3m1:m1wd:152f34ef841ec8a1,m3rd:152f34ef841ec8a1 m1wx:4,m1wy:0
+copym3m1:m1wd:edbe87baf796213d,m3rd:edbe87baf796213d m1wx:4,m1wy:0
+copym3m1:m1wd:edbe87baf796213d,m3rd:edbe87baf796213d m1wx:4,m1wy:1
+copym3m1:m1wd:72cdac861bd561f2,m3rd:72cdac861bd561f2 m1wx:4,m1wy:1
+copym3m1:m1wd:72cdac861bd561f2,m3rd:72cdac861bd561f2 m1wx:4,m1wy:2
+copym3m1:m1wd:c81e8a43665db7d9,m3rd:c81e8a43665db7d9 m1wx:4,m1wy:2
+copym3m1:m1wd:c81e8a43665db7d9,m3rd:c81e8a43665db7d9 m1wx:4,m1wy:3
+copym3m1:m1wd:9297d2523d9548f8,m3rd:9297d2523d9548f8 m1wx:4,m1wy:3
+copym3m1:m1wd:9297d2523d9548f8,m3rd:9297d2523d9548f8 m1wx:4,m1wy:4
+copym3m1:m1wd:4cdebcf0dac6efc5,m3rd:4cdebcf0dac6efc5 m1wx:4,m1wy:4
+D:38ab92fcbf92d65a,m3wy:1,m3wx:0
+D:15ca1e713e3ea3e0,m3wy:1,m3wx:0
+D:15ca1e713e3ea3e0,m3wy:1,m3wx:1
+D:f605fcc2e6dea9dc,m3wy:1,m3wx:1
+D:f605fcc2e6dea9dc,m3wy:1,m3wx:2
+D:e47aa54c422462f7,m3wy:1,m3wx:2
+D:e47aa54c422462f7,m3wy:1,m3wx:3
+D:6287d90e634d2da2,m3wy:1,m3wx:3
+D:6287d90e634d2da2,m3wy:1,m3wx:4
+D:3a34059a1f2da9e5,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:21cmx[round]:8000000000008080,r1_d:88400520540881b4,m3wd:0840052054080134,m3wx;0,m3wy;0
+round:21cmx[round]:8000000000008080,r1_d:4d2dac2008794584,m3wd:cd2dac200879c504,m3wx;0,m3wy;0
+copym3m1:m1wd:cd2dac200879c504,m3rd:cd2dac200879c504 m1wx:0,m1wy:0
+copym3m1:m1wd:cd2dac200879c504,m3rd:cd2dac200879c504 m1wx:0,m1wy:1
+copym3m1:m1wd:6fe430615d0cc9ed,m3rd:6fe430615d0cc9ed m1wx:0,m1wy:1
+copym3m1:m1wd:6fe430615d0cc9ed,m3rd:6fe430615d0cc9ed m1wx:0,m1wy:2
+copym3m1:m1wd:26f772426de77006,m3rd:26f772426de77006 m1wx:0,m1wy:2
+copym3m1:m1wd:26f772426de77006,m3rd:26f772426de77006 m1wx:0,m1wy:3
+copym3m1:m1wd:5249f182c2b4d119,m3rd:5249f182c2b4d119 m1wx:0,m1wy:3
+copym3m1:m1wd:5249f182c2b4d119,m3rd:5249f182c2b4d119 m1wx:0,m1wy:4
+copym3m1:m1wd:122da8c2a2f75249,m3rd:122da8c2a2f75249 m1wx:0,m1wy:4
+copym3m1:m1wd:122da8c2a2f75249,m3rd:122da8c2a2f75249 m1wx:1,m1wy:0
+copym3m1:m1wd:f3cd3099e092e4c3,m3rd:f3cd3099e092e4c3 m1wx:1,m1wy:0
+copym3m1:m1wd:f3cd3099e092e4c3,m3rd:f3cd3099e092e4c3 m1wx:1,m1wy:1
+copym3m1:m1wd:31cacebd89b48fca,m3rd:31cacebd89b48fca m1wx:1,m1wy:1
+copym3m1:m1wd:31cacebd89b48fca,m3rd:31cacebd89b48fca m1wx:1,m1wy:2
+copym3m1:m1wd:e44fbede74f88793,m3rd:e44fbede74f88793 m1wx:1,m1wy:2
+copym3m1:m1wd:e44fbede74f88793,m3rd:e44fbede74f88793 m1wx:1,m1wy:3
+copym3m1:m1wd:aaf25023fa177af6,m3rd:aaf25023fa177af6 m1wx:1,m1wy:3
+copym3m1:m1wd:aaf25023fa177af6,m3rd:aaf25023fa177af6 m1wx:1,m1wy:4
+copym3m1:m1wd:8ff1ed66dcce81bf,m3rd:8ff1ed66dcce81bf m1wx:1,m1wy:4
+copym3m1:m1wd:8ff1ed66dcce81bf,m3rd:8ff1ed66dcce81bf m1wx:2,m1wy:0
+copym3m1:m1wd:837ff5aeca3e755d,m3rd:837ff5aeca3e755d m1wx:2,m1wy:0
+copym3m1:m1wd:837ff5aeca3e755d,m3rd:837ff5aeca3e755d m1wx:2,m1wy:1
+copym3m1:m1wd:1ee1248ef7261d2c,m3rd:1ee1248ef7261d2c m1wx:2,m1wy:1
+copym3m1:m1wd:1ee1248ef7261d2c,m3rd:1ee1248ef7261d2c m1wx:2,m1wy:2
+copym3m1:m1wd:25b411d37ad85694,m3rd:25b411d37ad85694 m1wx:2,m1wy:2
+copym3m1:m1wd:25b411d37ad85694,m3rd:25b411d37ad85694 m1wx:2,m1wy:3
+copym3m1:m1wd:f438458a3e09ac39,m3rd:f438458a3e09ac39 m1wx:2,m1wy:3
+copym3m1:m1wd:f438458a3e09ac39,m3rd:f438458a3e09ac39 m1wx:2,m1wy:4
+copym3m1:m1wd:fa2d8cb8b5db7761,m3rd:fa2d8cb8b5db7761 m1wx:2,m1wy:4
+copym3m1:m1wd:fa2d8cb8b5db7761,m3rd:fa2d8cb8b5db7761 m1wx:3,m1wy:0
+copym3m1:m1wd:90765927604e52bd,m3rd:90765927604e52bd m1wx:3,m1wy:0
+copym3m1:m1wd:90765927604e52bd,m3rd:90765927604e52bd m1wx:3,m1wy:1
+copym3m1:m1wd:dc0eb19680cad031,m3rd:dc0eb19680cad031 m1wx:3,m1wy:1
+copym3m1:m1wd:dc0eb19680cad031,m3rd:dc0eb19680cad031 m1wx:3,m1wy:2
+copym3m1:m1wd:86d49860bca11da8,m3rd:86d49860bca11da8 m1wx:3,m1wy:2
+copym3m1:m1wd:86d49860bca11da8,m3rd:86d49860bca11da8 m1wx:3,m1wy:3
+copym3m1:m1wd:84798680dbe37c02,m3rd:84798680dbe37c02 m1wx:3,m1wy:3
+copym3m1:m1wd:84798680dbe37c02,m3rd:84798680dbe37c02 m1wx:3,m1wy:4
+copym3m1:m1wd:2d904c0e0d226402,m3rd:2d904c0e0d226402 m1wx:3,m1wy:4
+copym3m1:m1wd:2d904c0e0d226402,m3rd:2d904c0e0d226402 m1wx:4,m1wy:0
+copym3m1:m1wd:0c9aa1e2110abfd9,m3rd:0c9aa1e2110abfd9 m1wx:4,m1wy:0
+copym3m1:m1wd:0c9aa1e2110abfd9,m3rd:0c9aa1e2110abfd9 m1wx:4,m1wy:1
+copym3m1:m1wd:87e9c642a4510ab2,m3rd:87e9c642a4510ab2 m1wx:4,m1wy:1
+copym3m1:m1wd:87e9c642a4510ab2,m3rd:87e9c642a4510ab2 m1wx:4,m1wy:2
+copym3m1:m1wd:c26ca3a1fbb76fee,m3rd:c26ca3a1fbb76fee m1wx:4,m1wy:2
+copym3m1:m1wd:c26ca3a1fbb76fee,m3rd:c26ca3a1fbb76fee m1wx:4,m1wy:3
+copym3m1:m1wd:abc5aaccd8a67901,m3rd:abc5aaccd8a67901 m1wx:4,m1wy:3
+copym3m1:m1wd:abc5aaccd8a67901,m3rd:abc5aaccd8a67901 m1wx:4,m1wy:4
+copym3m1:m1wd:eb72d3e3f0b63e6b,m3rd:eb72d3e3f0b63e6b m1wx:4,m1wy:4
+D:4cefd9c5e97200c0,m3wy:1,m3wx:0
+D:0f3f465010f2b249,m3wy:1,m3wx:0
+D:0f3f465010f2b249,m3wy:1,m3wx:1
+D:a824a4c0c0f434c4,m3wy:1,m3wx:1
+D:a824a4c0c0f434c4,m3wy:1,m3wx:2
+D:c5c089002ece199b,m3wy:1,m3wx:2
+D:c5c089002ece199b,m3wy:1,m3wx:3
+D:a56e739d01ebde63,m3wy:1,m3wx:3
+D:a56e739d01ebde63,m3wy:1,m3wx:4
+D:ebf0d4d93b47785b,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:22cmx[round]:0000000080000001,r1_d:2810204004c08086,m3wd:2810204084c08087,m3wx;0,m3wy;0
+round:22cmx[round]:0000000080000001,r1_d:725afc7118cb7d6d,m3wd:725afc7198cb7d6c,m3wx;0,m3wy;0
+copym3m1:m1wd:725afc7198cb7d6c,m3rd:725afc7198cb7d6c m1wx:0,m1wy:0
+copym3m1:m1wd:725afc7198cb7d6c,m3rd:725afc7198cb7d6c m1wx:0,m1wy:1
+copym3m1:m1wd:e05a585d237990c3,m3rd:e05a585d237990c3 m1wx:0,m1wy:1
+copym3m1:m1wd:e05a585d237990c3,m3rd:e05a585d237990c3 m1wx:0,m1wy:2
+copym3m1:m1wd:84c3bcb3c48bf00f,m3rd:84c3bcb3c48bf00f m1wx:0,m1wy:2
+copym3m1:m1wd:84c3bcb3c48bf00f,m3rd:84c3bcb3c48bf00f m1wx:0,m1wy:3
+copym3m1:m1wd:f95a2eac25734f88,m3rd:f95a2eac25734f88 m1wx:0,m1wy:3
+copym3m1:m1wd:f95a2eac25734f88,m3rd:f95a2eac25734f88 m1wx:0,m1wy:4
+copym3m1:m1wd:c1ac95bf73073751,m3rd:c1ac95bf73073751 m1wx:0,m1wy:4
+copym3m1:m1wd:c1ac95bf73073751,m3rd:c1ac95bf73073751 m1wx:1,m1wy:0
+copym3m1:m1wd:0a33e98aae87f4ca,m3rd:0a33e98aae87f4ca m1wx:1,m1wy:0
+copym3m1:m1wd:0a33e98aae87f4ca,m3rd:0a33e98aae87f4ca m1wx:1,m1wy:1
+copym3m1:m1wd:083fb12f3886a495,m3rd:083fb12f3886a495 m1wx:1,m1wy:1
+copym3m1:m1wd:083fb12f3886a495,m3rd:083fb12f3886a495 m1wx:1,m1wy:2
+copym3m1:m1wd:cc6f63d61b0127f6,m3rd:cc6f63d61b0127f6 m1wx:1,m1wy:2
+copym3m1:m1wd:cc6f63d61b0127f6,m3rd:cc6f63d61b0127f6 m1wx:1,m1wy:3
+copym3m1:m1wd:9de2ba65c5a763d8,m3rd:9de2ba65c5a763d8 m1wx:1,m1wy:3
+copym3m1:m1wd:9de2ba65c5a763d8,m3rd:9de2ba65c5a763d8 m1wx:1,m1wy:4
+copym3m1:m1wd:adf8904b24849103,m3rd:adf8904b24849103 m1wx:1,m1wy:4
+copym3m1:m1wd:adf8904b24849103,m3rd:adf8904b24849103 m1wx:2,m1wy:0
+copym3m1:m1wd:b23ccdebb54e9aa0,m3rd:b23ccdebb54e9aa0 m1wx:2,m1wy:0
+copym3m1:m1wd:b23ccdebb54e9aa0,m3rd:b23ccdebb54e9aa0 m1wx:2,m1wy:1
+copym3m1:m1wd:48780036e9cc9afa,m3rd:48780036e9cc9afa m1wx:2,m1wy:1
+copym3m1:m1wd:48780036e9cc9afa,m3rd:48780036e9cc9afa m1wx:2,m1wy:2
+copym3m1:m1wd:717a5d93964751dc,m3rd:717a5d93964751dc m1wx:2,m1wy:2
+copym3m1:m1wd:717a5d93964751dc,m3rd:717a5d93964751dc m1wx:2,m1wy:3
+copym3m1:m1wd:ade08ccc33c19c33,m3rd:ade08ccc33c19c33 m1wx:2,m1wy:3
+copym3m1:m1wd:ade08ccc33c19c33,m3rd:ade08ccc33c19c33 m1wx:2,m1wy:4
+copym3m1:m1wd:6b1adc94debbec28,m3rd:6b1adc94debbec28 m1wx:2,m1wy:4
+copym3m1:m1wd:6b1adc94debbec28,m3rd:6b1adc94debbec28 m1wx:3,m1wy:0
+copym3m1:m1wd:e1ab0914442755b3,m3rd:e1ab0914442755b3 m1wx:3,m1wy:0
+copym3m1:m1wd:e1ab0914442755b3,m3rd:e1ab0914442755b3 m1wx:3,m1wy:1
+copym3m1:m1wd:c9c418123e8d657c,m3rd:c9c418123e8d657c m1wx:3,m1wy:1
+copym3m1:m1wd:c9c418123e8d657c,m3rd:c9c418123e8d657c m1wx:3,m1wy:2
+copym3m1:m1wd:30ef3543a1ccda44,m3rd:30ef3543a1ccda44 m1wx:3,m1wy:2
+copym3m1:m1wd:30ef3543a1ccda44,m3rd:30ef3543a1ccda44 m1wx:3,m1wy:3
+copym3m1:m1wd:fe170863dee20afd,m3rd:fe170863dee20afd m1wx:3,m1wy:3
+copym3m1:m1wd:fe170863dee20afd,m3rd:fe170863dee20afd m1wx:3,m1wy:4
+copym3m1:m1wd:8c6c7999647bafb5,m3rd:8c6c7999647bafb5 m1wx:3,m1wy:4
+copym3m1:m1wd:8c6c7999647bafb5,m3rd:8c6c7999647bafb5 m1wx:4,m1wy:0
+copym3m1:m1wd:886eb372b7a880b0,m3rd:886eb372b7a880b0 m1wx:4,m1wy:0
+copym3m1:m1wd:886eb372b7a880b0,m3rd:886eb372b7a880b0 m1wx:4,m1wy:1
+copym3m1:m1wd:4e5c01951fe4eccf,m3rd:4e5c01951fe4eccf m1wx:4,m1wy:1
+copym3m1:m1wd:4e5c01951fe4eccf,m3rd:4e5c01951fe4eccf m1wx:4,m1wy:2
+copym3m1:m1wd:f2628b13ba0079bb,m3rd:f2628b13ba0079bb m1wx:4,m1wy:2
+copym3m1:m1wd:f2628b13ba0079bb,m3rd:f2628b13ba0079bb m1wx:4,m1wy:3
+copym3m1:m1wd:672d6e7d9b88e9ae,m3rd:672d6e7d9b88e9ae m1wx:4,m1wy:3
+copym3m1:m1wd:672d6e7d9b88e9ae,m3rd:672d6e7d9b88e9ae m1wx:4,m1wy:4
+copym3m1:m1wd:b74506d8742a556a,m3rd:b74506d8742a556a m1wx:4,m1wy:4
+D:725ee4947bd7af8b,m3wy:1,m3wx:0
+D:18ca73eb25a9a3e5,m3wy:1,m3wx:0
+D:18ca73eb25a9a3e5,m3wy:1,m3wx:1
+D:b5bc23a066332643,m3wy:1,m3wx:1
+D:b5bc23a066332643,m3wy:1,m3wx:2
+D:2b8fba23afdd1af4,m3wy:1,m3wx:2
+D:2b8fba23afdd1af4,m3wy:1,m3wx:3
+D:85b462b5dc62739c,m3wy:1,m3wx:3
+D:85b462b5dc62739c,m3wy:1,m3wx:4
+D:369012a733658531,m3wy:1,m3wx:4
+donetheta
+donetheta
+round:23cmx[round]:8000000080008008,r1_d:5002200d5151178a,m3wd:d002200dd1519782,m3wx;0,m3wy;0
+round:23cmx[round]:8000000080008008,r1_d:e8c08f9d3b77de8d,m3wd:68c08f9dbb775e85,m3wx;0,m3wy;0
+copym3m1:m1wd:68c08f9dbb775e85,m3rd:68c08f9dbb775e85 m1wx:0,m1wy:0
+copym3m1:m1wd:68c08f9dbb775e85,m3rd:68c08f9dbb775e85 m1wx:0,m1wy:1
+copym3m1:m1wd:d9c860a3f651e5ae,m3rd:d9c860a3f651e5ae m1wx:0,m1wy:1
+copym3m1:m1wd:d9c860a3f651e5ae,m3rd:d9c860a3f651e5ae m1wx:0,m1wy:2
+copym3m1:m1wd:7f0ecc57a0631134,m3rd:7f0ecc57a0631134 m1wx:0,m1wy:2
+copym3m1:m1wd:7f0ecc57a0631134,m3rd:7f0ecc57a0631134 m1wx:0,m1wy:3
+copym3m1:m1wd:ac26a1bc4df3b189,m3rd:ac26a1bc4df3b189 m1wx:0,m1wy:3
+copym3m1:m1wd:ac26a1bc4df3b189,m3rd:ac26a1bc4df3b189 m1wx:0,m1wy:4
+copym3m1:m1wd:a4b498b02ea86851,m3rd:a4b498b02ea86851 m1wx:0,m1wy:4
+copym3m1:m1wd:a4b498b02ea86851,m3rd:a4b498b02ea86851 m1wx:1,m1wy:0
+copym3m1:m1wd:50ad7bd0392a81ca,m3rd:50ad7bd0392a81ca m1wx:1,m1wy:0
+copym3m1:m1wd:50ad7bd0392a81ca,m3rd:50ad7bd0392a81ca m1wx:1,m1wy:1
+copym3m1:m1wd:3b93cd1e4dcface3,m3rd:3b93cd1e4dcface3 m1wx:1,m1wy:1
+copym3m1:m1wd:3b93cd1e4dcface3,m3rd:3b93cd1e4dcface3 m1wx:1,m1wy:2
+copym3m1:m1wd:ecea07f9c8640ac8,m3rd:ecea07f9c8640ac8 m1wx:1,m1wy:2
+copym3m1:m1wd:ecea07f9c8640ac8,m3rd:ecea07f9c8640ac8 m1wx:1,m1wy:3
+copym3m1:m1wd:ff7534658a63b970,m3rd:ff7534658a63b970 m1wx:1,m1wy:3
+copym3m1:m1wd:ff7534658a63b970,m3rd:ff7534658a63b970 m1wx:1,m1wy:4
+copym3m1:m1wd:7526a2bc5343738a,m3rd:7526a2bc5343738a m1wx:1,m1wy:4
+copym3m1:m1wd:7526a2bc5343738a,m3rd:7526a2bc5343738a m1wx:2,m1wy:0
+copym3m1:m1wd:d746c3077f2d01dc,m3rd:d746c3077f2d01dc m1wx:2,m1wy:0
+copym3m1:m1wd:d746c3077f2d01dc,m3rd:d746c3077f2d01dc m1wx:2,m1wy:1
+copym3m1:m1wd:e04ef2132516d5dd,m3rd:e04ef2132516d5dd m1wx:2,m1wy:1
+copym3m1:m1wd:e04ef2132516d5dd,m3rd:e04ef2132516d5dd m1wx:2,m1wy:2
+copym3m1:m1wd:ecfa5d41a3f9d625,m3rd:ecfa5d41a3f9d625 m1wx:2,m1wy:2
+copym3m1:m1wd:ecfa5d41a3f9d625,m3rd:ecfa5d41a3f9d625 m1wx:2,m1wy:3
+copym3m1:m1wd:6d09c9e5e49ecd2f,m3rd:6d09c9e5e49ecd2f m1wx:2,m1wy:3
+copym3m1:m1wd:6d09c9e5e49ecd2f,m3rd:6d09c9e5e49ecd2f m1wx:2,m1wy:4
+copym3m1:m1wd:f2fc414e73088b44,m3rd:f2fc414e73088b44 m1wx:2,m1wy:4
+copym3m1:m1wd:f2fc414e73088b44,m3rd:f2fc414e73088b44 m1wx:3,m1wy:0
+copym3m1:m1wd:70405e07254f6ae5,m3rd:70405e07254f6ae5 m1wx:3,m1wy:0
+copym3m1:m1wd:70405e07254f6ae5,m3rd:70405e07254f6ae5 m1wx:3,m1wy:1
+copym3m1:m1wd:9937372bc3799452,m3rd:9937372bc3799452 m1wx:3,m1wy:1
+copym3m1:m1wd:9937372bc3799452,m3rd:9937372bc3799452 m1wx:3,m1wy:2
+copym3m1:m1wd:db725eed6c441f51,m3rd:db725eed6c441f51 m1wx:3,m1wy:2
+copym3m1:m1wd:db725eed6c441f51,m3rd:db725eed6c441f51 m1wx:3,m1wy:3
+copym3m1:m1wd:1f51ee2a42242735,m3rd:1f51ee2a42242735 m1wx:3,m1wy:3
+copym3m1:m1wd:1f51ee2a42242735,m3rd:1f51ee2a42242735 m1wx:3,m1wy:4
+copym3m1:m1wd:b3b4cb91249aae14,m3rd:b3b4cb91249aae14 m1wx:3,m1wy:4
+copym3m1:m1wd:b3b4cb91249aae14,m3rd:b3b4cb91249aae14 m1wx:4,m1wy:0
+copym3m1:m1wd:5532b193f41ec117,m3rd:5532b193f41ec117 m1wx:4,m1wy:0
+copym3m1:m1wd:5532b193f41ec117,m3rd:5532b193f41ec117 m1wx:4,m1wy:1
+copym3m1:m1wd:aa3024c2e78ad69a,m3rd:aa3024c2e78ad69a m1wx:4,m1wy:1
+copym3m1:m1wd:aa3024c2e78ad69a,m3rd:aa3024c2e78ad69a m1wx:4,m1wy:2
+copym3m1:m1wd:19b15bba56d36713,m3rd:19b15bba56d36713 m1wx:4,m1wy:2
+copym3m1:m1wd:19b15bba56d36713,m3rd:19b15bba56d36713 m1wx:4,m1wy:3
+copym3m1:m1wd:6808ca58acb813bc,m3rd:6808ca58acb813bc m1wx:4,m1wy:3
+copym3m1:m1wd:6808ca58acb813bc,m3rd:6808ca58acb813bc m1wx:4,m1wy:4
+copym3m1:m1wd:3110efa05b8fca8a,m3rd:3110efa05b8fca8a m1wx:4,m1wy:4
+DONE PERM
+DONE PERM
+copym3m4:m4wd:68c08f9dbb775e85,m3rd:68c08f9dbb775e85 m4wx:0,m4wy:0
+copym3m4:m4wd:68c08f9dbb775e85,m3rd:68c08f9dbb775e85 m4wx:0,m4wy:1
+copym3m4:m4wd:d9c860a3f651e5ae,m3rd:d9c860a3f651e5ae m4wx:0,m4wy:1
+copym3m4:m4wd:d9c860a3f651e5ae,m3rd:d9c860a3f651e5ae m4wx:0,m4wy:2
+copym3m4:m4wd:7f0ecc57a0631134,m3rd:7f0ecc57a0631134 m4wx:0,m4wy:2
+copym3m4:m4wd:7f0ecc57a0631134,m3rd:7f0ecc57a0631134 m4wx:0,m4wy:3
+copym3m4:m4wd:ac26a1bc4df3b189,m3rd:ac26a1bc4df3b189 m4wx:0,m4wy:3
+copym3m4:m4wd:ac26a1bc4df3b189,m3rd:ac26a1bc4df3b189 m4wx:0,m4wy:4
+copym3m4:m4wd:a4b498b02ea86851,m3rd:a4b498b02ea86851 m4wx:0,m4wy:4
+copym3m4:m4wd:a4b498b02ea86851,m3rd:a4b498b02ea86851 m4wx:1,m4wy:0
+copym3m4:m4wd:50ad7bd0392a81ca,m3rd:50ad7bd0392a81ca m4wx:1,m4wy:0
+copym3m4:m4wd:50ad7bd0392a81ca,m3rd:50ad7bd0392a81ca m4wx:1,m4wy:1
+copym3m4:m4wd:3b93cd1e4dcface3,m3rd:3b93cd1e4dcface3 m4wx:1,m4wy:1
+copym3m4:m4wd:3b93cd1e4dcface3,m3rd:3b93cd1e4dcface3 m4wx:1,m4wy:2
+copym3m4:m4wd:ecea07f9c8640ac8,m3rd:ecea07f9c8640ac8 m4wx:1,m4wy:2
+copym3m4:m4wd:ecea07f9c8640ac8,m3rd:ecea07f9c8640ac8 m4wx:1,m4wy:3
+copym3m4:m4wd:ff7534658a63b970,m3rd:ff7534658a63b970 m4wx:1,m4wy:3
+copym3m4:m4wd:ff7534658a63b970,m3rd:ff7534658a63b970 m4wx:1,m4wy:4
+copym3m4:m4wd:7526a2bc5343738a,m3rd:7526a2bc5343738a m4wx:1,m4wy:4
+copym3m4:m4wd:7526a2bc5343738a,m3rd:7526a2bc5343738a m4wx:2,m4wy:0
+copym3m4:m4wd:d746c3077f2d01dc,m3rd:d746c3077f2d01dc m4wx:2,m4wy:0
+copym3m4:m4wd:d746c3077f2d01dc,m3rd:d746c3077f2d01dc m4wx:2,m4wy:1
+copym3m4:m4wd:e04ef2132516d5dd,m3rd:e04ef2132516d5dd m4wx:2,m4wy:1
+copym3m4:m4wd:e04ef2132516d5dd,m3rd:e04ef2132516d5dd m4wx:2,m4wy:2
+copym3m4:m4wd:ecfa5d41a3f9d625,m3rd:ecfa5d41a3f9d625 m4wx:2,m4wy:2
+copym3m4:m4wd:ecfa5d41a3f9d625,m3rd:ecfa5d41a3f9d625 m4wx:2,m4wy:3
+copym3m4:m4wd:6d09c9e5e49ecd2f,m3rd:6d09c9e5e49ecd2f m4wx:2,m4wy:3
+copym3m4:m4wd:6d09c9e5e49ecd2f,m3rd:6d09c9e5e49ecd2f m4wx:2,m4wy:4
+copym3m4:m4wd:f2fc414e73088b44,m3rd:f2fc414e73088b44 m4wx:2,m4wy:4
+copym3m4:m4wd:f2fc414e73088b44,m3rd:f2fc414e73088b44 m4wx:3,m4wy:0
+copym3m4:m4wd:70405e07254f6ae5,m3rd:70405e07254f6ae5 m4wx:3,m4wy:0
+copym3m4:m4wd:70405e07254f6ae5,m3rd:70405e07254f6ae5 m4wx:3,m4wy:1
+copym3m4:m4wd:9937372bc3799452,m3rd:9937372bc3799452 m4wx:3,m4wy:1
+copym3m4:m4wd:9937372bc3799452,m3rd:9937372bc3799452 m4wx:3,m4wy:2
+copym3m4:m4wd:db725eed6c441f51,m3rd:db725eed6c441f51 m4wx:3,m4wy:2
+copym3m4:m4wd:db725eed6c441f51,m3rd:db725eed6c441f51 m4wx:3,m4wy:3
+copym3m4:m4wd:1f51ee2a42242735,m3rd:1f51ee2a42242735 m4wx:3,m4wy:3
+copym3m4:m4wd:1f51ee2a42242735,m3rd:1f51ee2a42242735 m4wx:3,m4wy:4
+copym3m4:m4wd:b3b4cb91249aae14,m3rd:b3b4cb91249aae14 m4wx:3,m4wy:4
+copym3m4:m4wd:b3b4cb91249aae14,m3rd:b3b4cb91249aae14 m4wx:4,m4wy:0
+copym3m4:m4wd:5532b193f41ec117,m3rd:5532b193f41ec117 m4wx:4,m4wy:0
+copym3m4:m4wd:5532b193f41ec117,m3rd:5532b193f41ec117 m4wx:4,m4wy:1
+copym3m4:m4wd:aa3024c2e78ad69a,m3rd:aa3024c2e78ad69a m4wx:4,m4wy:1
+copym3m4:m4wd:aa3024c2e78ad69a,m3rd:aa3024c2e78ad69a m4wx:4,m4wy:2
+copym3m4:m4wd:19b15bba56d36713,m3rd:19b15bba56d36713 m4wx:4,m4wy:2
+copym3m4:m4wd:19b15bba56d36713,m3rd:19b15bba56d36713 m4wx:4,m4wy:3
+copym3m4:m4wd:6808ca58acb813bc,m3rd:6808ca58acb813bc m4wx:4,m4wy:3
+copym3m4:m4wd:6808ca58acb813bc,m3rd:6808ca58acb813bc m4wx:4,m4wy:4
+copym3m4:m4wd:3110efa05b8fca8a,m3rd:3110efa05b8fca8a m4wx:4,m4wy:4
+dout:68c08f9dbb775e85,m4rx:0,m4ry:0
+dout:68c08f9dbb775e85,m4rx:0,m4ry:0
+$finish called from file "tb_self.sv", line 103.
+$finish at simulation time             10026000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 100260000 ps
+CPU Time:      0.200 seconds;       Data structure size:   0.0Mb
+Fri Sep 25 17:58:42 2020

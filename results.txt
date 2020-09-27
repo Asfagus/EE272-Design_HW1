@@ -1,0 +1,6 @@
+runsha3 script run started on Sat Sep 26 00:38:16 2020
+run on machine coe-ee-cad25.sjsuad.sjsu.edu
+
+Run with a clock period of 4.65
+options syn False gates False
+VCS FAILED TO WORK
