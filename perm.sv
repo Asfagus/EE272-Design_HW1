@@ -13,29 +13,34 @@ module perm_blk(
 	output reg [2:0] m4wx, output reg [2:0] m4wy, output reg m4wr, output reg [63:0] m4wd, //write mem4
 	output reg pushout, input stopout, output reg firstout, output reg [63:0] dout 
 );
-    const reg [0:23][63:0] cmx={
-        64'h0000000000000001, 64'h0000000000008082,
-        64'h800000000000808a, 64'h8000000080008000,
-        64'h000000000000808b, 64'h0000000080000001,
-        64'h8000000080008081, 64'h8000000000008009,
-        64'h000000000000008a, 64'h0000000000000088,
-        64'h0000000080008009, 64'h000000008000000a,
-        64'h000000008000808b, 64'h800000000000008b,
-        64'h8000000000008089, 64'h8000000000008003,
-        64'h8000000000008002, 64'h8000000000000080,
-        64'h000000000000800a, 64'h800000008000000a,
-        64'h8000000080008081, 64'h8000000000008080,
-        64'h0000000080000001, 64'h8000000080008008    
-    };
+const reg [0:23][63:0] cmx={
+    64'h0000000000000001, 64'h0000000000008082,
+    64'h800000000000808a, 64'h8000000080008000,
+    64'h000000000000808b, 64'h0000000080000001,
+    64'h8000000080008081, 64'h8000000000008009,
+    64'h000000000000008a, 64'h0000000000000088,
+    64'h0000000080008009, 64'h000000008000000a,
+    64'h000000008000808b, 64'h800000000000008b,
+    64'h8000000000008089, 64'h8000000000008003,
+    64'h8000000000008002, 64'h8000000000000080,
+    64'h000000000000800a, 64'h800000008000000a,
+    64'h8000000080008081, 64'h8000000000008080,
+    64'h0000000080000001, 64'h8000000080008008    
+};
     
-    //rotation for rho  	//y,x
-    const reg [0:4] [0:4] [63:0] rot ={
-		   	64'd0,64'd1,64'd62,64'd28,64'd27,
-		   	64'd36,64'd44,64'd6,64'd55,64'd20,
-		   	64'd3,64'd10,64'd43,64'd25,64'd39,
-		   	64'd41,64'd45,64'd15,64'd21,64'd8,
-		   	64'd18,64'd2,64'd61,64'd56,64'd14
-		};
+//rotation for rho  	//y,x
+const reg [0:4] [0:4] [63:0] rot ={
+	   	64'd0,64'd1,64'd62,64'd28,64'd27,
+	   	64'd36,64'd44,64'd6,64'd55,64'd20,
+	   	64'd3,64'd10,64'd43,64'd25,64'd39,
+	   	64'd41,64'd45,64'd15,64'd21,64'd8,
+	   	64'd18,64'd2,64'd61,64'd56,64'd14
+	};
+	
+//hardcoding d values	
+const reg [0:4][3:0]cxminus1={4'd4,4'd0,4'd1,4'd2,4'd3};
+const reg [0:4][3:0]cxplus1={4'd1,4'd2,4'd3,4'd4,4'd0};
+reg [3:0] i,i_d,j_d,j;//counter for cxminus1 
 
 //round keeps track of 24 rounds
 reg [4:0] round,round_d;
@@ -92,7 +97,7 @@ enum reg [1:0] {
 } cs,ns;
 
 enum reg [4:0]{
-	reset_perm,findC,findD,dotheta,dorho,donothing,copym3tom2,dochi1,dochi2,dochi3,doiota,donothing2,copym3m1,doout,copym3m4,done_perm,doneoutput
+	reset_perm,findC,dummy,findD,findD1,copym1m2,dotheta,dotheta1,dorho,donothing,copym3tom2,dochi1,dochi2,dochi3,doiota,donothing2,copym3m1,doout,copym3m4,done_perm,doneoutput
 }cs_perm,ns_perm;
 
 
@@ -149,6 +154,8 @@ always @ (*)begin
 	firstout=0;
 	dout=0;
 	next_data_d=next_data;
+	i_d=i;
+	j_d=j;
 	if (pushin&&!m1_done)begin
 		//To put data in 25 locations mem1 
 		case(cs)
@@ -277,6 +284,7 @@ always @ (*)begin
 				m3wr=1;
 				m3wd=r2_d;	//Not passing through flip flop r2_d
 				//m3wr=0;
+				
 				m3wx_d=m3wx+1;
 				
 				
@@ -294,81 +302,163 @@ always @ (*)begin
 			
 			if (m1ry==4 && m1rx==4)begin
 				//$display("doneC");
-				ns_perm=findD;
-				//start from these values for D
-				m2ry_d=0;
-				m2rx_d=modulo(-1,5);	//4
-				m3ry_d=0;
-				m3rx_d=modulo(1,5);   	//1
+				m3wr=1;	//might be for C
+				ns_perm=dummy;
 				
-				m3wx_d=0;
-				m3wy_d=1;	//Store D in m3 y=1
 			end
 			else ns_perm=findC;
 					
 			c_round_d=c_round+1;			
 		end
+		dummy:begin
+			ns_perm=findD;
+			m3wr=0;
+			//start from these values for D
+			m2ry_d=0;
+			j_d=j+1;
+			m2rx_d=cxminus1[i];	//4
+			m3ry_d=0;
+			m3rx_d=cxplus1[i];   	//1
+			m3wx_d=0;
+			m3wy_d=1;	//Store D in m3 y=1
+			
+		end
 		findD:begin
 			//$display("m2rd:%h, m3rd:%h. m2rx:%d,m3rx:%d,m2ry:%d",m2rd, m3rd, m2rx,m3rx,m2ry);
-			m3wr=0;//reading from m3
+			m3wr=0;//reading from m3 future values
+			m2wr=0;//reading from m2 past values
 			r1_d=m2rd;
-			r2_d=m3rd;
 			
-			if (m2rx>=4)
-				m2rx_d=0;
-			else m2rx_d=modulo(m2rx+1,5);
-			if (m3rx>=4)
-				m3rx_d=0;
-			else m3rx_d=modulo(m3rx+1,5);
+			//changed to use constant regs
+			m2rx_d=cxminus1[i];
 			
-			r3_d=r1_d^{r2_d[62:0],r2_d[63]};	//Not using flip flops
+						//Not using flip flops
 			
-			if(m2rx==3 && m3rx==0)begin
+			if(i==4)begin
 				r3_d=r1_d^{r2_d[62:0],r2_d[63]};
+								
+				//r1_d=0;
+			//	r2_d=0;
+				//r3_d=0;
+			end
+			 
+			ns_perm=findD1;
+			m3rx_d=cxminus1[i];	//set for the lower part
+			r2_d=m3rd;
+			//$display("D:%h,m3wy:%h,m3wx:%h",m3wd,m3wy,m3wx);
+		end
+		findD1:begin
+		//D part 2: xor cxplus1 with prev value and store in m3 
+			ns_perm=findD;
+			if (i==4)
+				i_d=0;	
+			else i_d=i+1;
+
+			if (j==4)
+				j_d=0;	
+			else j_d=j+1;
+			m3rx_d=cxplus1[j];	//for the upper part	
+			r1_d=m3rd;
+			r3_d=r1_d^{r2_d[62:0],r2_d[63]};
+			
+			m3wr=1;
+			m3wd=r3_d;	
+			m3wx_d=m3wx+1;
+
+			if (j==0) begin
+				ns_perm=copym1m2;
+				j_d=0;
+				i_d=0;
+
+				//resetting ffs for theta take i/p from m1,m3 store in m2
+				m1wr=0;
+				//m3wr=0;
+				m1ry_d=0;
+				m1rx_d=0;
+				m3ry_d=0;
+				m3rx_d=0;
+				m2wr=0;
+				m2wx_d=0;
+				m2wy_d=0;
+
+			end
+		end
+		copym1m2:begin
+		//copy data from m1 to m2
+		
+			//code for copying m3 to m1
+			m1wr=0;
+			m2wr=1;
+			//Increment m3r	//changed ffs x,y
+			if (m1ry>=4)begin
+				m1ry_d=0;
+				if (m1rx>=4)
+					m1rx_d=0;
+				else begin
+					m1rx_d=m1rx+1; 
+				end
+			end
+			else begin
+				m1ry_d=m1ry+1;			
+			end			
+			
+			m2wx_d=m1rx_d;
+			m2wy_d=m1ry_d;
+			
+			m2wd=m1rd;
+			
+			if(m1rx==4&&m1ry==4)begin
 				ns_perm=dotheta;
+				m2wx_d=0;
+				m2wy_d=0;
+				
+				//new theta setup
 				//resetting ffs for theta take i/p from m1,m3 store in m2
 				m1wr=0;
 				m3wr=0;
 				m1ry_d=0;
 				m1rx_d=0;
+				
+				//converting from m1 to m2
+				m2ry_d=0;
+				m2rx_d=0;
+
 				m3ry_d=1;
 				m3rx_d=0;
-				m2wr=0;
 				m2wx_d=0;
 				m2wy_d=0;
 				//r1_d=0;
 			//	r2_d=0;
 				//r3_d=0;
 			end
-			else ns_perm=findD;
-			
-			m3wr=1;
-			m3wd=r3_d;			//Not using ffs //storing in m3
-			m3wx_d=m3wx+1;
-	//		$display("D:%h,m3wy:%h,m3wx:%h",m3wd,m3wy,m3wx);
+			else ns_perm=copym1m2;
+		//	$display("copym3m1:m1wd:%h,m3rd:%h m1wx:%h,m1wy:%h",m1wd,m3rd,m1wx,m1wy);
+		
 		end		
 		dotheta:begin
 			theta_start=1;
 			m1wr=0;
 			m3wr=0;
-			
-			r1_d=m1rd;
+
+			//added m2
+			m2wr=0;
+			r3=m2rd;	//check m2 read correct
+			//$display("m1rd:%h,m2rd:%h diff:%d",m1rd,m2rd,m2rd-m1rd);
+			r1_d=m2rd;
 			r2_d=m3rd;
 			r3_d=r1_d^r2_d;
-			m2wr=1;
-			m2wd=r3_d;
-			
+						
 			//Increment m1 //input
-			if (m1rx>=4)begin
-				m1rx_d=0;
-				if (m1ry>=4)
-					m1ry_d=0;
+			if (m2rx>=4)begin
+				m2rx_d=0;
+				if (m2ry>=4)
+					m2ry_d=0;
 				else begin
-					m1ry_d=m1ry+1; 
+					m2ry_d=m2ry+1; 
 				end
 			end
 			else begin
-				m1rx_d=m1rx+1;			
+				m2rx_d=m2rx+1;			
 			end
 			
 			//m3
@@ -381,29 +471,9 @@ always @ (*)begin
 				m3rx_d=m3rx+1;			
 			end
 			
-			//Increment m2	//Changed x to ys to read row-col //output
-			
-			if (m2wy>=4)begin
-				m2wy_d=0;
-				if (m2wx>=4)begin
-					m2wx_d=0;
-				end
-				else begin
-					m2wx_d=m2wx+1;			
-				end
-			end
-			else begin
-				m2wy_d=m2wy+1; 
-			end
-			
-			//writing to same location
-			m2wx_d=m1rx_d;
-			m2wy_d=m1ry_d;
-			
-			if(m2wx==4&&m2wy==4)begin
+			if(m2rx==4&&m2ry==4)begin
 				theta_start=0;
 				m2wd=r3_d;
-				ns_perm=dorho;
 			//	$display("donetheta");
 				//resetting for rhopi
 				//m2wr=0;
@@ -412,10 +482,35 @@ always @ (*)begin
 				m3wx_d=0;
 				m3wy_d=0;
 			end
-			else ns_perm=dotheta;
+			 ns_perm=dotheta1;
 			
 			//$display(" Thetam1ry:%h,m1rx:%h,m1rd:%h m3ry:%h,m3rx:%h,m3rd:%h m2wy:%h,m2wx:%h,m2wd:%h",m1ry,m1rx,m1rd,m3ry,m3rx,m3rd,m2wy,m2wx,r3_d);
 			
+		end
+		dotheta1:begin
+			//m2write here
+
+			if (m2wx>=4)begin
+				m2wx_d=0;
+				if (m2wy>=4)begin
+					m2wy_d=0;
+				end
+				else begin
+					m2wy_d=m2wy+1;			
+				end
+			end
+			else begin
+				m2wx_d=m2wx+1; 
+			end
+
+			m2wr=1;
+			m2wd=r3_d;
+
+			ns_perm=dotheta;
+
+			if(m2wx==4&&m2wy==4)begin
+				ns_perm=dorho;
+			end
 		end
 		//step4
 		dorho:begin
@@ -728,6 +823,7 @@ always @ (*)begin
 			ns_perm=copym3m1;
 		end
 		copym3m1:begin
+			//code for copying m3 to m1
 			m1wr=1;
 			m3wr=0;
 			//Increment m3r	//changed ffs x,y
@@ -816,9 +912,7 @@ always @ (*)begin
 				
 			dout=m4rd;
 			
-			if(stopout==0)
-				pushout=1;
-			else pushout=0;
+			pushout=1;
 			
 			if(m4rx==0 && m4ry==0)
 				firstout=1;
@@ -879,6 +973,8 @@ always @(posedge(clk) or posedge(rst)) begin
 		m4rx<=0;
 		m4ry<=0;
 		next_data<=0;
+		i<=0;
+		j<=0;
 	end else begin
 		cs<= #1 ns;
 		m1wx<= #1 m1wx_d;
@@ -911,6 +1007,9 @@ always @(posedge(clk) or posedge(rst)) begin
 		m4rx<= #1 m4rx_d;
 		m4ry<= #1 m4ry_d;
 		next_data<= #1 next_data_d;
+		i<=#1 i_d;
+		j<=#1 j_d;
+		
 	end
 end
 

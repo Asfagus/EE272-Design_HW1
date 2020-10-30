@@ -1,5 +1,0 @@
-//
-// File created by:  irun
-// Do not modify this file
-
-s1::(15Sep2020:18:19:59):( ncverilog +libext+.tsbvlibp -y /apps/toshiba/sjsu/verilog/tc240c +access+r tbp_gates.sv )

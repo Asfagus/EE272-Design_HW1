@@ -19,6 +19,7 @@
  of a written license agreement with Synopsys, Inc. All other use, reproduction,
             or distribution of this software is strictly prohibited.
 Initializing...
+Initializing gui preferences from file  /home/014538550/.synopsys_dv_prefs.tcl
 set link_library {/apps/toshiba/sjsu/synopsys/tc240c/tc240c.db_NOMIN25 /apps/synopsys/I-2013.12-SP5/libraries/syn/dw_foundation.sldb}
 /apps/toshiba/sjsu/synopsys/tc240c/tc240c.db_NOMIN25 /apps/synopsys/I-2013.12-SP5/libraries/syn/dw_foundation.sldb
 set target_library {/apps/toshiba/sjsu/synopsys/tc240c/tc240c.db_NOMIN25}
@@ -30,50 +31,51 @@ Loading db file '/apps/synopsys/SYNTH/libraries/syn/gtech.db'
 Loading db file '/apps/synopsys/SYNTH/libraries/syn/standard.sldb'
   Loading link library 'tc240c'
   Loading link library 'gtech'
-Loading sverilog file '/home/014538550/272/designhw1/perm.sv'
+Loading sverilog file '/home/014538550/272/designhw1/original/designhw1/perm.sv'
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /home/014538550/272/designhw1/perm.sv
-Warning:  /home/014538550/272/designhw1/perm.sv:883: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:884: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:885: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:886: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:887: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:888: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:889: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:890: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:891: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:892: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:895: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:896: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:897: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:898: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:899: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:900: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:901: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:902: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:904: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:905: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:906: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:907: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:908: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:909: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:910: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:911: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:912: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:913: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
-Warning:  /home/014538550/272/designhw1/perm.sv:300: signed to unsigned assignment occurs. (VER-318)
-Warning:  /home/014538550/272/designhw1/perm.sv:302: signed to unsigned assignment occurs. (VER-318)
-Warning:  /home/014538550/272/designhw1/perm.sv:319: signed to unsigned assignment occurs. (VER-318)
-Warning:  /home/014538550/272/designhw1/perm.sv:322: signed to unsigned assignment occurs. (VER-318)
-Warning:  /home/014538550/272/designhw1/perm.sv:451: signed to unsigned assignment occurs. (VER-318)
-Warning:  /home/014538550/272/designhw1/perm.sv:501: signed to unsigned assignment occurs. (VER-318)
-Warning:  /home/014538550/272/designhw1/perm.sv:520: signed to unsigned assignment occurs. (VER-318)
-Warning:  /home/014538550/272/designhw1/perm.sv:548: signed to unsigned assignment occurs. (VER-318)
+Compiling source file /home/014538550/272/designhw1/original/designhw1/perm.sv
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:939: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:940: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:941: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:942: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:943: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:944: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:945: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:946: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:947: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:948: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:951: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:952: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:953: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:954: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:955: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:956: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:957: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:958: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:960: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:961: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:962: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:963: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:964: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:965: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:966: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:967: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:968: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:969: Intraassignment delays for nonblocking assignments are ignored. (VER-130)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:300: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:302: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:321: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:326: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:506: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:556: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:575: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/014538550/272/designhw1/original/designhw1/perm.sv:603: signed to unsigned assignment occurs. (VER-318)
+$display output: D:????????????????,m3wy:?,m3wx:?
 
 Statistics for case statements in always block at line 105 in file
-	'/home/014538550/272/designhw1/perm.sv'
+	'/home/014538550/272/designhw1/original/designhw1/perm.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -82,8 +84,8 @@ Statistics for case statements in always block at line 105 in file
 ===============================================
 
 Inferred memory devices in process
-	in routine perm_blk line 850 in file
-		'/home/014538550/272/designhw1/perm.sv'.
+	in routine perm_blk line 906 in file
+		'/home/014538550/272/designhw1/original/designhw1/perm.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -112,7 +114,7 @@ Inferred memory devices in process
 |      m4ry_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Current design is now '/home/014538550/272/designhw1/perm_blk.db:perm_blk'
+Current design is now '/home/014538550/272/designhw1/original/designhw1/perm_blk.db:perm_blk'
 Loaded 1 design.
 Current design is 'perm_blk'.
 perm_blk
@@ -811,7 +813,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 
 Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
 
-Information: There are 46 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 48 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
   Simplifying Design 'perm_blk'
 
@@ -905,35 +907,6 @@ Loading db file '/apps/synopsys/SYNTH/libraries/syn/dw_foundation.sldb'
   Mapping 'perm_blk_DW01_add_23'
   Mapping 'perm_blk_DW01_add_24'
   Mapping 'DW_inc'
-  Building model 'DW01_absval_width7' (cla)
-  Building model 'DW01_absval_width7' (cla)
-  Structuring 'perm_blk_DW_div_tc_3'
-  Mapping 'perm_blk_DW_div_tc_3'
-  Structuring 'perm_blk_DW01_absval_3'
-  Mapping 'perm_blk_DW01_absval_3'
-  Structuring 'perm_blk_DW01_inc_3'
-  Mapping 'perm_blk_DW01_inc_3'
-  Mapping 'perm_blk_DW01_add_25'
-  Mapping 'perm_blk_DW01_add_26'
-  Mapping 'perm_blk_DW01_sub_1'
-  Mapping 'perm_blk_DW01_add_28'
-  Mapping 'perm_blk_DW01_add_35'
-  Mapping 'perm_blk_DW01_add_36'
-  Mapping 'perm_blk_DW01_add_37'
-  Mapping 'perm_blk_DW01_add_38'
-  Mapping 'perm_blk_DW01_add_39'
-  Mapping 'perm_blk_DW01_add_40'
-  Mapping 'perm_blk_DW01_add_41'
-  Mapping 'perm_blk_DW01_add_42'
-  Mapping 'perm_blk_DW01_add_43'
-  Mapping 'perm_blk_DW01_add_44'
-  Mapping 'perm_blk_DW01_add_45'
-  Mapping 'perm_blk_DW01_add_46'
-  Mapping 'perm_blk_DW01_add_47'
-  Mapping 'perm_blk_DW01_add_48'
-  Mapping 'DW_inc'
-  Mapping 'perm_blk_DW01_absval_3'
-  Mapping 'perm_blk_DW_div_tc_3'
   Mapping Optimization (Phase 1)
 
   Beginning Constant Register Removal
@@ -989,33 +962,33 @@ Information: Input delay ('rise') on clock port 'clk' will be added to the clock
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:22    4596.5      0.18       0.2     441.5                              0.0000      0.00  
-    0:00:22    4613.0      0.00       0.0     441.5                              0.0000      0.00  
-    0:00:22    4613.0      0.00       0.0     441.5                              0.0000      0.00  
-    0:00:22    4616.0      0.00       0.0     431.5                              0.0000      0.00  
+    0:00:26    4628.0      0.11       0.2     541.5                              0.0000      0.00  
+    0:00:26    4633.0      0.00       0.0     545.4                              0.0000      0.00  
+    0:00:26    4633.0      0.00       0.0     545.4                              0.0000      0.00  
+    0:00:26    4636.0      0.00       0.0     535.5                              0.0000      0.00  
 
   Beginning WLM Backend Optimization
   --------------------------------------
-    0:00:23    4590.0      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
+    0:00:27    4634.0      0.00       0.0     535.5                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
 
 
   Beginning Design Rule Fixing  (max_capacitance)
@@ -1025,49 +998,49 @@ Information: Input delay ('rise') on clock port 'clk' will be added to the clock
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:23    4585.5      0.00       0.0     431.5                              0.0000      0.00  
+    0:00:28    4631.5      0.00       0.0     477.4                              0.0000      0.00  
   Global Optimization (Phase 32)
   Global Optimization (Phase 33)
   Global Optimization (Phase 34)
-    0:00:23    4586.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:23    4586.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:23    4586.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:23    4586.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:23    4586.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
 
                                   TOTAL                                                            
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:24    4585.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4556.5      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4556.5      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4556.5      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:24    4556.5      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:25    4534.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:25    4534.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:25    4534.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:25    4534.0      0.00       0.0       0.0                              0.0000      0.00  
-    0:00:25    4521.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4631.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4587.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4587.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:28    4587.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:29    4587.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:29    4567.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:29    4567.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:29    4567.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:29    4567.0      0.00       0.0       0.0                              0.0000      0.00  
+    0:00:29    4559.0      0.00       0.0       0.0                              0.0000      0.00  
 Loading db file '/apps/toshiba/sjsu/synopsys/tc240c/tc240c.db_NOMIN25'
 
 
@@ -1094,29 +1067,33 @@ Report : timing
         -max_paths 5
 Design : perm_blk
 Version: K-2015.06-SP5-1
-Date   : Sat Sep 26 00:42:09 2020
+Date   : Wed Oct 28 10:41:36 2020
 ****************************************
 
 Operating Conditions: NOMIN25   Library: tc240c
 Wire Load Model Mode: top
 
-  Startpoint: pushin (input port clocked by clk)
-  Endpoint: m1wd[4] (output port clocked by clk)
+  Startpoint: m2rd[5] (input port clocked by clk)
+  Endpoint: m3wd[45] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Point                                    Incr       Path
   -----------------------------------------------------------
-  input external delay                     0.60       0.60 r
-  pushin (in)                              0.02       0.62 r
-  U3620/Z (CNR2IX1)                        0.19       0.80 r
-  U2714/Z (CIVX1)                          0.08       0.88 f
-  U3943/Z (CNR2X1)                         0.11       0.99 r
-  U3455/Z (CIVX2)                          0.07       1.06 f
-  U2369/Z (CNR2X1)                         0.75       1.81 r
-  U4393/Z (CAOR2XL)                        0.26       2.07 r
-  m1wd[4] (out)                            0.00       2.07 r
-  data arrival time                                   2.07
+  input external delay                     0.60       0.60 f
+  m2rd[5] (in)                             0.04       0.64 f
+  U4359/Z (CANR2XL)                        0.20       0.84 r
+  U4360/Z (CND2X1)                         0.11       0.95 f
+  U2769/Z (CND2XL)                         0.06       1.02 r
+  U4532/Z (COND1XL)                        0.12       1.14 f
+  U4645/Z (CNR2IX1)                        0.08       1.22 r
+  U4646/Z (COND2X1)                        0.10       1.32 f
+  U4647/Z (CAOR1X1)                        0.21       1.53 f
+  U4648/Z (CMXI2X1)                        0.12       1.65 r
+  U4788/Z (COND2XL)                        0.13       1.78 f
+  U4789/Z (COR4X1)                         0.23       2.01 f
+  m3wd[45] (out)                           0.00       2.01 f
+  data arrival time                                   2.01
 
   max_delay                                3.26       3.26
   clock uncertainty                       -0.25       3.01
@@ -1124,28 +1101,32 @@ Wire Load Model Mode: top
   data required time                                  2.71
   -----------------------------------------------------------
   data required time                                  2.71
-  data arrival time                                  -2.07
+  data arrival time                                  -2.01
   -----------------------------------------------------------
-  slack (MET)                                         0.63
+  slack (MET)                                         0.70
 
 
-  Startpoint: pushin (input port clocked by clk)
-  Endpoint: m1wd[3] (output port clocked by clk)
+  Startpoint: m2rd[5] (input port clocked by clk)
+  Endpoint: m3wd[13] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Point                                    Incr       Path
   -----------------------------------------------------------
-  input external delay                     0.60       0.60 r
-  pushin (in)                              0.02       0.62 r
-  U3620/Z (CNR2IX1)                        0.19       0.80 r
-  U2714/Z (CIVX1)                          0.08       0.88 f
-  U3943/Z (CNR2X1)                         0.11       0.99 r
-  U3455/Z (CIVX2)                          0.07       1.06 f
-  U2369/Z (CNR2X1)                         0.75       1.81 r
-  U4392/Z (CAOR2XL)                        0.26       2.07 r
-  m1wd[3] (out)                            0.00       2.07 r
-  data arrival time                                   2.07
+  input external delay                     0.60       0.60 f
+  m2rd[5] (in)                             0.04       0.64 f
+  U4359/Z (CANR2XL)                        0.20       0.84 r
+  U4360/Z (CND2X1)                         0.11       0.95 f
+  U2769/Z (CND2XL)                         0.06       1.02 r
+  U4532/Z (COND1XL)                        0.12       1.14 f
+  U4645/Z (CNR2IX1)                        0.08       1.22 r
+  U4646/Z (COND2X1)                        0.10       1.32 f
+  U4647/Z (CAOR1X1)                        0.21       1.53 f
+  U4648/Z (CMXI2X1)                        0.12       1.65 r
+  U4649/Z (COND2XL)                        0.13       1.78 f
+  U4650/Z (COR4X1)                         0.23       2.01 f
+  m3wd[13] (out)                           0.00       2.01 f
+  data arrival time                                   2.01
 
   max_delay                                3.26       3.26
   clock uncertainty                       -0.25       3.01
@@ -1153,28 +1134,32 @@ Wire Load Model Mode: top
   data required time                                  2.71
   -----------------------------------------------------------
   data required time                                  2.71
-  data arrival time                                  -2.07
+  data arrival time                                  -2.01
   -----------------------------------------------------------
-  slack (MET)                                         0.63
+  slack (MET)                                         0.70
 
 
-  Startpoint: pushin (input port clocked by clk)
-  Endpoint: m1wd[2] (output port clocked by clk)
+  Startpoint: m2rd[5] (input port clocked by clk)
+  Endpoint: m3wd[61] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Point                                    Incr       Path
   -----------------------------------------------------------
-  input external delay                     0.60       0.60 r
-  pushin (in)                              0.02       0.62 r
-  U3620/Z (CNR2IX1)                        0.19       0.80 r
-  U2714/Z (CIVX1)                          0.08       0.88 f
-  U3943/Z (CNR2X1)                         0.11       0.99 r
-  U3455/Z (CIVX2)                          0.07       1.06 f
-  U2369/Z (CNR2X1)                         0.75       1.81 r
-  U4391/Z (CAOR2XL)                        0.26       2.07 r
-  m1wd[2] (out)                            0.00       2.07 r
-  data arrival time                                   2.07
+  input external delay                     0.60       0.60 f
+  m2rd[5] (in)                             0.04       0.64 f
+  U4359/Z (CANR2XL)                        0.20       0.84 r
+  U4360/Z (CND2X1)                         0.11       0.95 f
+  U2769/Z (CND2XL)                         0.06       1.02 r
+  U4532/Z (COND1XL)                        0.12       1.14 f
+  U4645/Z (CNR2IX1)                        0.08       1.22 r
+  U4646/Z (COND2X1)                        0.10       1.32 f
+  U4647/Z (CAOR1X1)                        0.21       1.53 f
+  U4737/Z (CMXI2X1)                        0.12       1.65 r
+  U4840/Z (COND2XL)                        0.12       1.77 f
+  U4841/Z (COR4X1)                         0.23       1.99 f
+  m3wd[61] (out)                           0.00       1.99 f
+  data arrival time                                   1.99
 
   max_delay                                3.26       3.26
   clock uncertainty                       -0.25       3.01
@@ -1182,28 +1167,32 @@ Wire Load Model Mode: top
   data required time                                  2.71
   -----------------------------------------------------------
   data required time                                  2.71
-  data arrival time                                  -2.07
+  data arrival time                                  -1.99
   -----------------------------------------------------------
-  slack (MET)                                         0.63
+  slack (MET)                                         0.71
 
 
-  Startpoint: pushin (input port clocked by clk)
-  Endpoint: m1wd[1] (output port clocked by clk)
+  Startpoint: m2rd[5] (input port clocked by clk)
+  Endpoint: m3wd[29] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Point                                    Incr       Path
   -----------------------------------------------------------
-  input external delay                     0.60       0.60 r
-  pushin (in)                              0.02       0.62 r
-  U3620/Z (CNR2IX1)                        0.19       0.80 r
-  U2714/Z (CIVX1)                          0.08       0.88 f
-  U3943/Z (CNR2X1)                         0.11       0.99 r
-  U3455/Z (CIVX2)                          0.07       1.06 f
-  U2369/Z (CNR2X1)                         0.75       1.81 r
-  U4390/Z (CAOR2XL)                        0.26       2.07 r
-  m1wd[1] (out)                            0.00       2.07 r
-  data arrival time                                   2.07
+  input external delay                     0.60       0.60 f
+  m2rd[5] (in)                             0.04       0.64 f
+  U4359/Z (CANR2XL)                        0.20       0.84 r
+  U4360/Z (CND2X1)                         0.11       0.95 f
+  U2769/Z (CND2XL)                         0.06       1.02 r
+  U4532/Z (COND1XL)                        0.12       1.14 f
+  U4645/Z (CNR2IX1)                        0.08       1.22 r
+  U4646/Z (COND2X1)                        0.10       1.32 f
+  U4647/Z (CAOR1X1)                        0.21       1.53 f
+  U4737/Z (CMXI2X1)                        0.12       1.65 r
+  U4738/Z (COND2XL)                        0.12       1.77 f
+  U4739/Z (COR4X1)                         0.23       1.99 f
+  m3wd[29] (out)                           0.00       1.99 f
+  data arrival time                                   1.99
 
   max_delay                                3.26       3.26
   clock uncertainty                       -0.25       3.01
@@ -1211,28 +1200,31 @@ Wire Load Model Mode: top
   data required time                                  2.71
   -----------------------------------------------------------
   data required time                                  2.71
-  data arrival time                                  -2.07
+  data arrival time                                  -1.99
   -----------------------------------------------------------
-  slack (MET)                                         0.63
+  slack (MET)                                         0.71
 
 
-  Startpoint: pushin (input port clocked by clk)
-  Endpoint: m1wd[0] (output port clocked by clk)
+  Startpoint: m2rd[5] (input port clocked by clk)
+  Endpoint: m3wd[5] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Point                                    Incr       Path
   -----------------------------------------------------------
-  input external delay                     0.60       0.60 r
-  pushin (in)                              0.02       0.62 r
-  U3620/Z (CNR2IX1)                        0.19       0.80 r
-  U2714/Z (CIVX1)                          0.08       0.88 f
-  U3943/Z (CNR2X1)                         0.11       0.99 r
-  U3455/Z (CIVX2)                          0.07       1.06 f
-  U2369/Z (CNR2X1)                         0.75       1.81 r
-  U4388/Z (CAOR2XL)                        0.26       2.07 r
-  m1wd[0] (out)                            0.00       2.07 r
-  data arrival time                                   2.07
+  input external delay                     0.60       0.60 f
+  m2rd[5] (in)                             0.04       0.64 f
+  U4359/Z (CANR2XL)                        0.20       0.84 r
+  U4360/Z (CND2X1)                         0.11       0.95 f
+  U2769/Z (CND2XL)                         0.06       1.02 r
+  U4532/Z (COND1XL)                        0.12       1.14 f
+  U2721/Z (CND2XL)                         0.06       1.20 r
+  U2712/Z (COND4CXL)                       0.15       1.34 f
+  U4533/Z (CMXI2XL)                        0.15       1.50 r
+  U4534/Z (COND2XL)                        0.14       1.64 f
+  U4535/Z (COR4X1)                         0.23       1.87 f
+  m3wd[5] (out)                            0.00       1.87 f
+  data arrival time                                   1.87
 
   max_delay                                3.26       3.26
   clock uncertainty                       -0.25       3.01
@@ -1240,14 +1232,14 @@ Wire Load Model Mode: top
   data required time                                  2.71
   -----------------------------------------------------------
   data required time                                  2.71
-  data arrival time                                  -2.07
+  data arrival time                                  -1.87
   -----------------------------------------------------------
-  slack (MET)                                         0.63
+  slack (MET)                                         0.84
 
 
 1
 write -hierarchy -format verilog -output perm_gates.v
-Writing verilog file '/home/014538550/272/designhw1/perm_gates.v'.
+Writing verilog file '/home/014538550/272/designhw1/original/designhw1/perm_gates.v'.
 Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
 1
 quit

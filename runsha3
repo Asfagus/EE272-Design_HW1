@@ -62,7 +62,7 @@ def runvcs(debopt):
       bob=42
   dtxt="-DRSEED={0}".format(bob)
   subprocess.call(["csh","-c",
-    "./sv_vcs tbp.sv | tee simres.txt"])
+    "./sv_vcs tbpm.sv | tee simres.txt"])
   if(filehas("simres.txt",success)):
     if(debopt):
       resfile.write("debug {0} \n".format(debopt))
@@ -81,7 +81,7 @@ def runnc(debopt):
   subprocess.call(["rm","-rf","simres.txt"])
   dtxt=""
   subprocess.call(["csh","-c",
-    "./sv_nc tbp.sv | tee simres.txt"])
+    "./sv_nc tbpm.sv | tee simres.txt"])
   if(filehas("simres.txt",success)):
     if(debopt):
       resfile.write("debug {0} \n".format(debopt))

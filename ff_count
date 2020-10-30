@@ -1,0 +1,11 @@
+#!/usr/bin/python3
+
+#This is a script to detect if bug was present but was not Offending
+
+f3=open("log.txt","r")
+
+for ln in f3.readlines():
+	if "Flip-Flop in ln:
+		print(ln)
+		
+
