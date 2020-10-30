@@ -97,7 +97,7 @@ enum reg [1:0] {
 } cs,ns;
 
 enum reg [4:0]{
-	reset_perm,findC,dummy,findD,findD1,copym1m2,dotheta,dotheta1,dorho,donothing,copym3tom2,dochi1,dochi2,dochi3,doiota,donothing2,copym3m1,doout,copym3m4,done_perm,doneoutput
+	reset_perm,copym1m2,findC,dummy,findD,findD1,dotheta,dotheta1,dorho,donothing,copym3tom2,dochi1,dochi2,dochi3,doiota,donothing2,copym3m1,doout,copym3m4,done_perm,doneoutput
 }cs_perm,ns_perm;
 
 
@@ -229,12 +229,12 @@ always @ (*)begin
 	end
 	
 	//Do Perm
-	if (m1_done||cs_perm) begin
-		case (cs_perm)
+	case (cs_perm)
 		reset_perm:begin
 			round_d=0;
 			c_round_d=0;		//Have not reset this at top, might create a latch
-			ns_perm=findC;
+			if(m1_done)
+				ns_perm=copym1m2;
 			m1rx_d=0;
 			m1ry_d=0;
 			m2rx_d=0;
@@ -254,28 +254,58 @@ always @ (*)begin
 			//next_data_d<=next_data;
 		//	$display("perm reset state");
 		end
+		copym1m2:begin
+		//copy data from m1 to m2
+		
+			//code for copying m3 to m1
+			m1wr=0;
+			m2wr=1;
+			//Increment m3r	//changed ffs x,y
+			if (m1ry>=4)begin
+				m1ry_d=0;
+				if (m1rx>=4)
+					m1rx_d=0;
+				else begin
+					m1rx_d=m1rx+1; 
+				end
+			end
+			else begin
+				m1ry_d=m1ry+1;			
+			end			
+			
+			m2wx_d=m1rx_d;
+			m2wy_d=m1ry_d;
+			
+			m2wd=m1rd;
+			
+			if(m1rx==4&&m1ry==4)begin
+				ns_perm=findC;
+				stopin_d=0;
+			end
+			else ns_perm=copym1m2;
+		//	$display("copym3m1:m1wd:%h,m3rd:%h m1wx:%h,m1wy:%h",m1wd,m3rd,m1wx,m1wy);
+		
+		end	
 		findC:begin
 			//$display("perm findC state,m1ry:%d,m1rx:%d,c_round_d:%d m1rd:%h m1_done:%b r1=%h",m1ry,m1rx,c_round_d,m1rd,m1_done,r1);
 			//input in r1
-			m1wr=0;		//read
+			m2wr=0;		//read
 			//r2=1;
-			if (m1ry==0)begin		
-				r1_d=m1rd;
+			if (m2ry==0)begin		
+				r1_d=m2rd;
 				//$display("m1ry==0");
 			end
-			else r1_d=r1_d^m1rd;						
+			else r1_d=r1_d^m2rd;						
 			
-			if (m1ry>=4)begin
+			if (m2ry>=4)begin
 				//done one x 
-				m2wr=1;
 				m3wr=1;
 				//$display($time,"r1:%h m1ry%d,m1rx:%d",r1,m1ry,m1rx); 
-				m1ry_d=0;
+				m2ry_d=0;
 				r2_d=r1_d;
 				
 				//inputting in m2 & m3
 				m2wy_d=0;			
-				m2wr=1;
 				m2wd=r2_d;	//Not passing through flip flop r2_d
 				//m2wr=0;
 				m2wx_d=m2wx+1;
@@ -288,19 +318,19 @@ always @ (*)begin
 				m3wx_d=m3wx+1;
 				
 				
-				if(m1rx>=4)begin
-					m1rx_d=0;
+				if(m2rx>=4)begin
+					m2rx_d=0;
 				end
 				else begin 
-					m1rx_d=m1rx+1;
+					m2rx_d=m2rx+1;
 				end
 			end
 			else begin
 				//$display($time,"m1ry_d:%d",m1ry_d); 
-				m1ry_d=m1ry+1;	
+				m2ry_d=m2ry+1;	
 			end
 			
-			if (m1ry==4 && m1rx==4)begin
+			if (m2ry==4 && m2rx==4)begin
 				//$display("doneC");
 				m3wr=1;	//might be for C
 				ns_perm=dummy;
@@ -366,7 +396,7 @@ always @ (*)begin
 			m3wx_d=m3wx+1;
 
 			if (j==0) begin
-				ns_perm=copym1m2;
+				ns_perm=dotheta;
 				j_d=0;
 				i_d=0;
 
@@ -381,41 +411,10 @@ always @ (*)begin
 				m2wx_d=0;
 				m2wy_d=0;
 
-			end
-		end
-		copym1m2:begin
-		//copy data from m1 to m2
-		
-			//code for copying m3 to m1
-			m1wr=0;
-			m2wr=1;
-			//Increment m3r	//changed ffs x,y
-			if (m1ry>=4)begin
-				m1ry_d=0;
-				if (m1rx>=4)
-					m1rx_d=0;
-				else begin
-					m1rx_d=m1rx+1; 
-				end
-			end
-			else begin
-				m1ry_d=m1ry+1;			
-			end			
-			
-			m2wx_d=m1rx_d;
-			m2wy_d=m1ry_d;
-			
-			m2wd=m1rd;
-			
-			if(m1rx==4&&m1ry==4)begin
-				ns_perm=dotheta;
-				m2wx_d=0;
-				m2wy_d=0;
-				
+				//new theta setup copied frojm cpm1m2
 				//new theta setup
 				//resetting ffs for theta take i/p from m1,m3 store in m2
 				m1wr=0;
-				m3wr=0;
 				m1ry_d=0;
 				m1rx_d=0;
 				
@@ -427,14 +426,10 @@ always @ (*)begin
 				m3rx_d=0;
 				m2wx_d=0;
 				m2wy_d=0;
-				//r1_d=0;
-			//	r2_d=0;
-				//r3_d=0;
+
 			end
-			else ns_perm=copym1m2;
-		//	$display("copym3m1:m1wd:%h,m3rd:%h m1wx:%h,m1wy:%h",m1wd,m3rd,m1wx,m1wy);
-		
-		end		
+		end
+	
 		dotheta:begin
 			theta_start=1;
 			m1wr=0;
@@ -442,7 +437,6 @@ always @ (*)begin
 
 			//added m2
 			m2wr=0;
-			r3=m2rd;	//check m2 read correct
 			//$display("m1rd:%h,m2rd:%h diff:%d",m1rd,m2rd,m2rd-m1rd);
 			r1_d=m2rd;
 			r2_d=m3rd;
@@ -824,7 +818,7 @@ always @ (*)begin
 		end
 		copym3m1:begin
 			//code for copying m3 to m1
-			m1wr=1;
+			m2wr=1;
 			m3wr=0;
 			//Increment m3r	//changed ffs x,y
 			if (m3ry>=4)begin
@@ -839,15 +833,15 @@ always @ (*)begin
 				m3ry_d=m3ry+1;			
 			end			
 			
-			m1wx_d=m3rx_d;
-			m1wy_d=m3ry_d;
+			m2wx_d=m3rx_d;
+			m2wy_d=m3ry_d;
 			
-			m1wd=m3rd;
+			m2wd=m3rd;
 			
 			if(m3rx==4&&m3ry==4)begin
 				ns_perm=doout;
-				m1wx_d=0;
-				m1wy_d=0;
+				m2wx_d=0;
+				m2wy_d=0;
 			end
 			else ns_perm=copym3m1;
 		//	$display("copym3m1:m1wd:%h,m3rd:%h m1wx:%h,m1wy:%h",m1wd,m3rd,m1wx,m1wy);
@@ -927,7 +921,6 @@ always @ (*)begin
 		doneoutput:begin
 			ns_perm=reset_perm;
 			//add condition for round 0
-			//stopin_d=0;
 			m1_done_d=0;
 			firstout=0;
 			next_data_d=1;
@@ -936,8 +929,8 @@ always @ (*)begin
 			round_d=0;
 			ns_perm=reset_perm;	
 		end
-		endcase
-	end
+	endcase
+	
 end
 
 //Always seq to put input data in mem1
