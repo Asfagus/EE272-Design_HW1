@@ -100,6 +100,10 @@ enum reg [4:0]{
 	reset_perm,copym1m2,findC,dummy,findD,findD1,dotheta,dotheta1,dorho,donothing,copym3tom2,dochi1,dochi2,dochi3,doiota,donothing2,copym3m1,doout,copym3m4,done_perm,doneoutput
 }cs_perm,ns_perm;
 
+enum reg [1:0]{reset_out,working_out,done_out}cs_out,ns_out;
+
+//perm is done
+reg perm_finish;
 
 //for simulation
 //assign dout=0;
@@ -156,6 +160,8 @@ always @ (*)begin
 	next_data_d=next_data;
 	i_d=i;
 	j_d=j;
+	perm_finish=0;
+	cs_out=ns_out;
 	if (pushin&&!m1_done)begin
 		//To put data in 25 locations mem1 
 		case(cs)
@@ -280,7 +286,10 @@ always @ (*)begin
 			
 			if(m1rx==4&&m1ry==4)begin
 				ns_perm=findC;
-				stopin_d=0;
+				//make m1 free
+				
+				next_data_d=1;
+				m1_done_d=0;
 			end
 			else ns_perm=copym1m2;
 		//	$display("copym3m1:m1wd:%h,m3rd:%h m1wx:%h,m1wy:%h",m1wd,m3rd,m1wx,m1wy);
@@ -361,8 +370,6 @@ always @ (*)begin
 			
 			//changed to use constant regs
 			m2rx_d=cxminus1[i];
-			
-						//Not using flip flops
 			
 			if(i==4)begin
 				r3_d=r1_d^{r2_d[62:0],r2_d[63]};
@@ -851,6 +858,7 @@ always @ (*)begin
 		//check 24 rounds working
 			if (round==24) begin
 				ns_perm=copym3m4;
+				perm_finish=1;
 			//	$display("DONE PERM");
 			end
 			else begin 
@@ -921,14 +929,16 @@ always @ (*)begin
 		doneoutput:begin
 			ns_perm=reset_perm;
 			//add condition for round 0
-			m1_done_d=0;
 			firstout=0;
-			next_data_d=1;
 		end
 		default:begin
 			round_d=0;
 			ns_perm=reset_perm;	
 		end
+	endcase
+	
+	//output state machine
+	case (cs_out)
 	endcase
 	
 end
@@ -968,6 +978,7 @@ always @(posedge(clk) or posedge(rst)) begin
 		next_data<=0;
 		i<=0;
 		j<=0;
+		cs_out<= reset_out;
 	end else begin
 		cs<= #1 ns;
 		m1wx<= #1 m1wx_d;
@@ -1002,7 +1013,7 @@ always @(posedge(clk) or posedge(rst)) begin
 		next_data<= #1 next_data_d;
 		i<=#1 i_d;
 		j<=#1 j_d;
-		
+		cs_out<=#1 ns_out;
 	end
 end
 
