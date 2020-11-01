@@ -104,6 +104,7 @@ enum reg [1:0]{reset_out,working_out,done_out}cs_out,ns_out;
 
 //perm is done
 reg perm_finish;
+reg output_working,output_working_d;//tells if output is complete or going on
 
 //for simulation
 //assign dout=0;
@@ -161,7 +162,8 @@ always @ (*)begin
 	i_d=i;
 	j_d=j;
 	perm_finish=0;
-	cs_out=ns_out;
+	ns_out=cs_out;
+
 	if (pushin&&!m1_done)begin
 		//To put data in 25 locations mem1 
 		case(cs)
@@ -233,6 +235,8 @@ always @ (*)begin
 			end
 		endcase
 	end
+	if(next_data) 
+		stopin_d=0;
 	
 	//Do Perm
 	case (cs_perm)
@@ -288,6 +292,7 @@ always @ (*)begin
 				ns_perm=findC;
 				//make m1 free
 				
+				//stopin_d=0;	//added stopin here
 				next_data_d=1;
 				m1_done_d=0;
 			end
@@ -790,16 +795,18 @@ always @ (*)begin
 		end
 		doiota:begin
 			//  A[0,0] = A[0,0] xor RC
+			//also storing in m2 to save clock cycle
 			m3wr=0;
 			r1_d=m3rd;
 			m3wr=1;
+			
 			r2_d=r1_d^cmx[round];
 			m3wd=r2_d;
 		//	$display("round:%dcmx[round]:%h,r1_d:%h,m3wd:%h,m3wx;%h,m3wy;%h",round,cmx[round],r1_d,m3wd,m3wx,m3wy);			
 			
 			//m3wx_d=m3wx+1;			
 			if(m3wy==0 &&m3wx==0) begin
-				ns_perm=donothing2;
+				ns_perm=copym3m1;
 				m3wr=0;
 				r1_d=m3rd;
 				m3wr=1;
@@ -818,13 +825,15 @@ always @ (*)begin
 		else round_d=round+1;	// check latch	
 		
 		end
+		//removed state
 		donothing2:begin
 			m3wr=0;
 			r2_d=0;
 			ns_perm=copym3m1;
 		end
 		copym3m1:begin
-			//code for copying m3 to m1
+			//its actually copying to m2
+			//code for copying m3 to m2
 			m2wr=1;
 			m3wr=0;
 			//Increment m3r	//changed ffs x,y
@@ -856,9 +865,8 @@ always @ (*)begin
 		//state11
 		doout:begin
 		//check 24 rounds working
-			if (round==24) begin
+			if (round==24&&cs_out==0) begin	//added line for check output state machine in reset state
 				ns_perm=copym3m4;
-				perm_finish=1;
 			//	$display("DONE PERM");
 			end
 			else begin 
@@ -887,47 +895,21 @@ always @ (*)begin
 			m4wd=m3rd;
 			
 			if(m3rx==4&&m3ry==4)begin
-				ns_perm=done_perm;
-				m4wx_d=0;
-				m4wy_d=0;
+				ns_perm=doneoutput;	//changed to LAST state
+								//setting flag for 3rd sm
+				perm_finish=1;
 			end
 			else ns_perm = copym3m4;
 	//		$display("copym3m4:m4wd:%h,m3rd:%h m4wx:%h,m4wy:%h",m4wd,m3rd,m4wx,m4wy);
 		end
 		done_perm:begin
-			m4wr=0;
-			//set flag high and give data to new state machine
-			//Increment m3r	//changed ffs x,y
-			if(stopout==0)
-				if (m4rx>=4)begin
-					m4rx_d=0;
-					if (m4ry>=4) begin
-						m4ry_d=0;
-					end
-					else begin
-						m4ry_d=m4ry+1; 
-					end
-				end
-				else begin
-					m4rx_d=m4rx+1;			
-				end
-				
-			dout=m4rd;
-			
-			pushout=1;
-			
-			if(m4rx==0 && m4ry==0)
-				firstout=1;
-			else firstout=0;
-	//		$display("dout:%h,m4rx:%h,m4ry:%h",dout,m4rx,m4ry);
-			if(m4rx==4&&m4ry==4 && !stopout)begin		//added !stopout
-				ns_perm=doneoutput;
-			end
-			else ns_perm=done_perm; 
-			
+			//check if 3rd sm finishes
+			ns_perm=doneoutput;
+			perm_finish=0; //set perm finish to low
 		end
 		doneoutput:begin
 			ns_perm=reset_perm;
+			perm_finish=0; //set perm finish to low
 			//add condition for round 0
 			firstout=0;
 		end
@@ -937,8 +919,52 @@ always @ (*)begin
 		end
 	endcase
 	
+	//reset_out,working_out,done_out
 	//output state machine
 	case (cs_out)
+	reset_out:begin
+		if (perm_finish)
+			ns_out=working_out;
+		m4rx_d=0;
+		m4ry_d=0;
+
+	end
+	working_out:begin
+		ns_out=working_out;
+
+		//paste output from sm2
+		m4wr=0;
+		//set flag high and give data to new state machine
+		//Increment m3r	//changed ffs x,y
+		if(stopout==0)
+			if (m4rx>=4)begin
+				m4rx_d=0;
+				if (m4ry>=4) begin
+					m4ry_d=0;
+				end
+				else begin
+					m4ry_d=m4ry+1; 
+				end
+			end
+			else begin
+				m4rx_d=m4rx+1;			
+			end
+			
+		dout=m4rd;
+		
+		pushout=1;
+		
+		if(m4rx==0 && m4ry==0)
+			firstout=1;
+		else firstout=0;
+//		$display("dout:%h,m4rx:%h,m4ry:%h",dout,m4rx,m4ry);
+		if(m4rx==4&&m4ry==4 && !stopout)begin		//added !stopout
+			ns_out=done_out;
+		end
+	end
+	done_out:begin
+		ns_out=reset_out;
+	end
 	endcase
 	
 end
@@ -1029,3 +1055,4 @@ function integer modulo;
 endfunction 
 
 endmodule
+
