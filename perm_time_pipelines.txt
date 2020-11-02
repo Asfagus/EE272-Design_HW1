@@ -1,0 +1,21 @@
+Perm time
+171238361000 ps unpipelined
+171238361 ns unpipelined Joy
+17547228.1ns 2 stage
+17443269.1ns 3 stage
+
+171238361000 ps unpipelined
+174402721000ps mine
+17243260		what i set in tbpm
+155688961000	mine after removing 25 clock copym3m1(m2 actually)
+154939211000	mine after removing output 25 clocks m3m4
+154219451000	mine after removing dummy state
+154189461000	mine after removing last state
+136195461000	mine after maybe removing theta 2nd stage
+136195441000	mine worked oh joy with 475 ffs
+117541661000ps  smit perm
+
+45931 mine first time i pushout
+42 lav
+39 smit
+

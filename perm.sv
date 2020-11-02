@@ -1,1058 +1,1079 @@
-module perm_blk(
-	input clk, input rst, 
-	input pushin,
-	output reg stopin, 
-	input firstin, input [63:0] din,		       //firstin:first data 
-	output reg [2:0] m1rx, output reg [2:0] m1ry, input [63:0] m1rd,		       //read mem1
-	output reg [2:0] m1wx, output reg [2:0] m1wy, output reg m1wr, output logic [63:0] m1wd, //write mem1
-	output reg [2:0] m2rx, output reg [2:0] m2ry, input [63:0] m2rd,		       //read mem2
-	output reg [2:0] m2wx, output reg [2:0] m2wy, output reg m2wr, output reg [63:0] m2wd, //write mem2
-	output reg [2:0] m3rx, output reg [2:0] m3ry, input [63:0] m3rd,		       //read mem3
-	output reg [2:0] m3wx, output reg [2:0] m3wy, output reg m3wr, output reg [63:0] m3wd, //write mem3
-	output reg [2:0] m4rx, output reg [2:0] m4ry, input [63:0] m4rd,		       //read mem4
-	output reg [2:0] m4wx, output reg [2:0] m4wy, output reg m4wr, output reg [63:0] m4wd, //write mem4
-	output reg pushout, input stopout, output reg firstout, output reg [63:0] dout 
-);
-const reg [0:23][63:0] cmx={
-    64'h0000000000000001, 64'h0000000000008082,
-    64'h800000000000808a, 64'h8000000080008000,
-    64'h000000000000808b, 64'h0000000080000001,
-    64'h8000000080008081, 64'h8000000000008009,
-    64'h000000000000008a, 64'h0000000000000088,
-    64'h0000000080008009, 64'h000000008000000a,
-    64'h000000008000808b, 64'h800000000000008b,
-    64'h8000000000008089, 64'h8000000000008003,
-    64'h8000000000008002, 64'h8000000000000080,
-    64'h000000000000800a, 64'h800000008000000a,
-    64'h8000000080008081, 64'h8000000000008080,
-    64'h0000000080000001, 64'h8000000080008008    
-};
-    
-//rotation for rho  	//y,x
-const reg [0:4] [0:4] [63:0] rot ={
-	   	64'd0,64'd1,64'd62,64'd28,64'd27,
-	   	64'd36,64'd44,64'd6,64'd55,64'd20,
-	   	64'd3,64'd10,64'd43,64'd25,64'd39,
-	   	64'd41,64'd45,64'd15,64'd21,64'd8,
-	   	64'd18,64'd2,64'd61,64'd56,64'd14
-	};
+// PERM module
+
+module perm_blk (
+	input clk, input rst, input pushin, output reg stopin, input firstin, input [63:0] din,
 	
-//hardcoding d values	
-const reg [0:4][3:0]cxminus1={4'd4,4'd0,4'd1,4'd2,4'd3};
-const reg [0:4][3:0]cxplus1={4'd1,4'd2,4'd3,4'd4,4'd0};
-reg [3:0] i,i_d,j_d,j;//counter for cxminus1 
-
-//round keeps track of 24 rounds
-reg [4:0] round,round_d;
-
-//c_round keeps track of C rounds
-reg [2:0] c_round,c_round_d;
-
-//combinational reg for m1w
-logic [2:0] m1wx_d, m1wy_d;  //write mem1_d
-reg [2:0] m1rx_d, m1ry_d; 
-
-//combinational reg for m2
-logic [2:0] m2wy_d,m2wx_d;
-reg [2:0] m2rx_d, m2ry_d; 
-//reg [2:0] m2wr_d;
-
-//combinational reg for m4
-logic [2:0] m3wy_d,m3wx_d;
-reg [2:0] m3rx_d, m3ry_d; 
-//reg [2:0] m3wr_d;
-
-//combinational reg for m4
-logic [2:0] m4wy_d,m4wx_d;
-reg [2:0] m4rx_d, m4ry_d; 
-
-//reg [1599:0] S;	//modified bit version of input
-reg [63:0] r1,r1_d,r2,r2_d,r3,r3_d;
-
-//To check if m1 is done
-reg m1_done,m1_done_d;
-
-//Stopin ff
-reg stopin_d;
-
-//theta start
-reg theta_start;
-
-//accept next data
-reg next_data,next_data_d;
-
-//chi start
-reg chi_done,chi_done_d;
-reg [1:0] ns_chi,cs_chi;
-reg [2:0] m2rx_temp; 
-integer chi_ctr,chi_ctr_d;
-
-//rho rotation
-reg [127:0] rho_rot;
-
-//Enum for currentstate, nextstate
-enum reg [1:0] {
-	reset_state,
-	load_state,done_state
-} cs,ns;
-
-enum reg [4:0]{
-	reset_perm,copym1m2,findC,dummy,findD,findD1,dotheta,dotheta1,dorho,donothing,copym3tom2,dochi1,dochi2,dochi3,doiota,donothing2,copym3m1,doout,copym3m4,done_perm,doneoutput
-}cs_perm,ns_perm;
-
-enum reg [1:0]{reset_out,working_out,done_out}cs_out,ns_out;
-
-//perm is done
-reg perm_finish;
-reg output_working,output_working_d;//tells if output is complete or going on
-
-//for simulation
-//assign dout=0;
-//assign firstout=0;
-//assign pushout=0;
-
-//Always comb to put input data in mem1
-always @ (*)begin
-	ns=cs;
-	m1wx_d=m1wx;
-	m1wy_d=m1wy;
-	stopin_d=stopin;
-	m1wr=0;
-	m1wd=0;
-	m1_done_d=m1_done;
-	ns_perm=cs_perm;
-	//$display("ns:%d",ns);
-	//perm regs
-	r1_d=r1;
-	m1rx_d=m1rx;
-	m1ry_d=m1ry;
-	c_round_d=c_round;
-	r2_d=r2;
-	m2wr=0;
-	m2wd=0;
-	m2wx_d=m2wx;
-	m2wy_d=m2wy;
-	m3wr=0;
-	m3wd=0;
-	m3wx_d=m3wx;
-	m3wy_d=m3wy;
-	m2rx_d=m2rx;
-	m2ry_d=m2ry;
-	m3rx_d=m3rx;
-	m3ry_d=m3ry;
-	r3_d=r3;
-	theta_start=0;
-	rho_rot=0;
-	chi_done_d=0;
-	ns_chi=cs_chi;
-	m2rx_temp=0;
-	chi_ctr_d<=chi_ctr;
-	round_d=round;
+	output reg [2:0] m1rx, output reg [2:0] m1ry,
+	input [63:0] m1rd,
+	output reg [2:0] m1wx, output reg [2:0] m1wy,output reg m1wr,
+	output reg [63:0] m1wd,
 	
-	m4wd=0;
-	m4wr=0;
-	m4wx_d=m4wx;
-	m4wy_d=m4wy;
-	m4rx_d=m4rx;
-	m4ry_d=m4ry;
-	pushout=0;
-	firstout=0;
-	dout=0;
-	next_data_d=next_data;
-	i_d=i;
-	j_d=j;
-	perm_finish=0;
-	ns_out=cs_out;
+	output reg [2:0] m2rx, output reg [2:0] m2ry,
+	input [63:0] m2rd,
+	output reg [2:0] m2wx, output reg [2:0] m2wy,output reg m2wr,
+	output reg [63:0] m2wd,
+	
+	output reg [2:0] m3rx, output reg [2:0] m3ry,
+	input [63:0] m3rd,
+	output reg [2:0] m3wx, output reg [2:0] m3wy,output reg m3wr,
+	output reg [63:0] m3wd,
+	
+	output reg [2:0] m4rx, output reg [2:0] m4ry,
+	input [63:0] m4rd,
+	output reg [2:0] m4wx, output reg [2:0] m4wy,output reg m4wr,
+	output reg [63:0] m4wd,
+	
+	output reg pushout, input stopout, output reg firstout, output reg [63:0] dout);
+	
+	
+	// ENUM for Input State Machine:
+	typedef enum reg[4:0] { 	R_input,											//	0
+								input_inc_x, 										//	1
+								input_inc_y, 										//	2
+								input_memory_full									//	3
+								} input_sm;
+	
+	// ENUM for Perm State Machine:
+	typedef enum reg[4:0] { 	R_perm,												//	0
+								write_C_inc_y_read_from_mem1,						//	1
+								write_c_inc_x,										//	2
+								write_C_into_mem2,                      			//	3
+								write_rotated_C_into_mem2,							//	4
+								cal_D_read_C_from_bottom_row,						//	5
+								cal_D_read_rotated_C_from_top_row,					//	6
+								Theta_A_run_through_y_index,						//	7
+								inc_D,												//	8
+								Done_with_Theta_A_Onto_rho_pi,						//	9
+								Rho_Pi_inc_x,										//	10
+								Rho_Pi_inc_y,										//	11
+								Done_with_Rho_Pi,									//	12
+								Chi_Iota_inc_x_read_x,								//	13
+								Chi_Iota_inc_x_read_x_plus_1,						//	14
+								Chi_Iota_inc_x_read_x_plus_2,						//	15
+								Chi_Iota_inc_y,										//	16
+								Done_with_Chi_Iota,									//	17
+								After_Iota_write_C_inc_y_read_from_mem3,			//	18
+								After_Iota_write_C_into_mem2,						//	19			
+								After_Iota_write_c_inc_x							//	20
+								} perm_sm;
+	
+	// ENUM for Output State Machine:
+	typedef enum reg[4:0] {		R_output,											//	0
+								Write_output,										//	1
+								output_inc_x,										//	2
+								output_inc_y,										//	3
+								Done_reading										//	4
+								} output_sm;
+	
+	input_sm cs_input, ns_input;
+	perm_sm cs_perm, ns_perm;
+	output_sm cs_output, ns_output;
+	
+	
+	
+	// Const registers:
+	const int x_minus_1 [0:4] = { 4, 0, 1, 2, 3 };
+	const int x_plus_1 [0:4]  = { 1, 2, 3, 4, 0 };
+	const int x_plus_2 [0:4]  = { 2, 3, 4, 0, 1 };
+	
+	const int t_rho [0:4][0:4] =  '{	'{0,  1,  62, 28, 27 },
+										'{36, 44, 6,  55, 20 },
+										'{3,  10, 43, 25, 39 },
+										'{41, 45, 15, 21, 8  },
+										'{18, 2,  61, 56, 14 } };
+	
+	const int t_rho_wrong [4:0][4:0] =  '{	'{25, 39, 3,  10, 43}, 
+										'{55, 20, 36, 44, 6 }, 
+										'{28, 27, 0,  1,  62}, 
+										'{56, 14, 18, 2,  61}, 
+										'{21, 8,  41, 45, 15} };
+										
+		// x in pi step. new index : old index
+	const int x_of_x_plus_3_y [0:4][0:4] = '{	'{0, 3, 1, 4, 2}, 
+												'{1, 4, 2, 0, 3}, 
+												'{2, 0, 3, 1, 4}, 
+												'{3, 1, 4, 2, 0}, 
+												'{4, 2, 0, 3, 1} };
+										
+	
+	// round values for iota_value
+	    const reg [0:23][63:0] cmx={
+        64'h0000000000000001, 64'h0000000000008082,
+        64'h800000000000808a, 64'h8000000080008000,
+        64'h000000000000808b, 64'h0000000080000001,
+        64'h8000000080008081, 64'h8000000000008009,
+        64'h000000000000008a, 64'h0000000000000088,
+        64'h0000000080008009, 64'h000000008000000a,
+        64'h000000008000808b, 64'h800000000000008b,
+        64'h8000000000008089, 64'h8000000000008003,
+        64'h8000000000008002, 64'h8000000000000080,
+        64'h000000000000800a, 64'h800000008000000a,
+        64'h8000000080008081, 64'h8000000000008080,
+        64'h0000000080000001, 64'h8000000080008008    
+    };
+	
+	
+	
+					
+	// Registers for calculation:
+	reg [2:0] input_index_x, input_index_y, input_index_x_d, input_index_y_d;
+	reg [2:0] C_index_x, C_index_y, C_index_x_d, C_index_y_d;
+	reg [2:0] output_index_x, output_index_y, output_index_x_d, output_index_y_d;
+	reg [2:0] rotate_C_inc_x, rotate_C_inc_x_d;
+	reg [2:0] index_1_for_D_calc, index_2_for_D_calc, D_index_x, D_index_x_d;
+	reg [2:0] Theta_index_x, Theta_index_y, Theta_index_x_d, Theta_index_y_d;
+	reg [2:0] Rho_Pi_index_x_d, Rho_Pi_index_y_d, Rho_Pi_index_x, Rho_Pi_index_y, new_index_x_for_pi_stage, new_index_y_for_pi_stage;
+	reg [2:0] index_x_of_theta_stage, index_y_of_theta_stage;
+	reg [2:0] Chi_Iota_index_x_d, Chi_Iota_index_x, Chi_Iota_index_y_d, Chi_Iota_index_y, index_2_for_Chi_Iota, index_3_for_Chi_Iota;
+	
+	reg [63:0] temp_reg_after_C_rotation, C1, C1_d, D_1, D_1_d, D_2, D, D_d, old_A_from_input, new_A_for_Theta, value_from_theta_stage;
+	reg [63:0] temp_variable_for_Chi_Iota, temp_variable_for_Chi_Iota_d, temp_variable_for_Chi_Iota_1, temp_variable_for_Chi_Iota_1_d,
+				temp_variable_for_Chi_Iota_2, temp_variable_for_Chi_Iota_3, iota_value;
+	reg [63:0] temp1, temp1_d, temp, temp_d;
+	reg [127:0] rotation_reg_for_z;
+	reg [5:0] offset_t_value_for_Rho_stage;
+	
+	reg [4:0] round_counter_i, round_counter_i_d;
+	
+	reg start_writing, start_writing_d;
+	
+	reg [63:0] newC, newC_d;
+	
+	reg stopin_d;
+	reg stopin1, stopin1_d;
+	
+	reg enable_input, enable_input_d, enable_output, enable_output_d, enable_perm, enable_perm_d, done_with_prev_perm, done_with_prev_perm_d;
+	
 
-	if (pushin&&!m1_done)begin
-		//To put data in 25 locations mem1 
-		case(cs)
-			reset_state:begin
-				//Start reset wx,wy in mem1
-				//m1wr=1;
-				m1wy_d=0;
-				m1wx_d=0;
-				//m1wd=din;
-				m1rx_d=0;
-				m1ry_d=0;
-				m1wr=1'b1;
-				m1wd=din;
-				m1wx_d=m1wx+1;
-				//ns=load_state;
+	// Combinational Logic
+	always @(*)
+	begin
+		ns_input = cs_input;
+		ns_perm = cs_perm;
+		ns_output = cs_output;
+		
+		enable_input_d = enable_input;
+		enable_perm_d = enable_perm;
+		enable_output_d = enable_output;
+		done_with_prev_perm_d = done_with_prev_perm;
+		
+		input_index_x_d = input_index_x;
+		input_index_y_d = input_index_y;
+		rotate_C_inc_x_d = rotate_C_inc_x;
+	
+		D_index_x_d = D_index_x;
+		Theta_index_x_d = Theta_index_x;
+		Theta_index_y_d = Theta_index_y;
+		Rho_Pi_index_x_d = Rho_Pi_index_x;
+		Rho_Pi_index_y_d = Rho_Pi_index_y;
+		Chi_Iota_index_x_d = Chi_Iota_index_x;
+		Chi_Iota_index_y_d = Chi_Iota_index_y;
+		round_counter_i_d = round_counter_i;
+		output_index_x_d = output_index_x;
+		output_index_y_d = output_index_y;
+		
+		
+		m1wx = input_index_x;
+		m1wy = input_index_y;
+		//m1rx = D_index_x; 
+		//m1ry = Theta_index_y;
+		
+		m1rx = 3'b000; 
+		m1ry = 3'b000;
+		
+		m2wx = 3'b000;
+		m2wy = 3'b000;
+		m3wx = 3'b000;
+		m3wy = 3'b000;		
+		m4wx = 3'b000;
+		m4wy = 3'b000;
+		
+		m2wr = 1'b0;
+		m3wr = 1'b0;
+		m4wr = 1'b0;
+		
+		m2wd = 64'b0;
+		m3wd = 64'b0;
+		m4wd = 64'b0;
+		
+		m4ry = output_index_y;
+		m4rx = output_index_x;
+		m2rx = rotate_C_inc_x;
+		m2ry = 3'b000;
+		m3rx = D_index_x;
+		m3ry = Theta_index_y;
+		
+		pushout = 1'b0;
+		dout = 64'b0;
+		firstout = 1'b0;
+		iota_value = 64'b0;
+		temp_d = temp;
+		temp1_d = temp1;
+
+		C_index_x_d = C_index_x;
+		C_index_y_d = C_index_y;
+		
+		stopin1_d = stopin1;
+		
+		stopin = stopin1;
+		
+		//	REMOVE
+		//stopin = 1'b1;												// LATCH
+		//stopin_d = stopin;
+		
+		
+		m1wr = 0;
+		m1wd = 64'b0;
+		
+		
+		start_writing_d = start_writing;
+		
+		
+		case(cs_input)
+			R_input:
+			begin			
+			
+				input_index_x_d = 0;
+				input_index_y_d = 0;
 				
-				if(firstin) begin
-					ns=load_state;
-					m1rx_d=m1rx+1;
+						//	REMOVE
+				//stopin = 1'b1;
+			//	stopin_d = 1'b1;
+				
+				m1wr = 1'b0;
+				m1wd = 64'b0;
+				start_writing_d = 1'b0;
+				
+				/*
+				if (done_with_prev_perm == 1'b1)
+					enable_perm_d = 1'b1;
+				else
+					enable_perm_d = 1'b0;
+				*/
+				
+				if (enable_input)
+				begin
+					ns_input = input_inc_x;
+					stopin1_d = 0;
 				end
-				else ns=reset_state;
-				
+				else
+					ns_input = R_input;
 			end
-			load_state:begin			
-				//Increment m1wx until 5 steps
-				if (m1wx>=4)begin
-					m1wx_d=0;
-					if (m1wy>=4)
-						m1wy_d=0;
-					else begin
-						m1wy_d=m1wy+1; 
+			
+			
+			input_inc_x:
+			begin
+				stopin1_d = 0;
+				if(pushin)
+				begin
+					if(firstin)
+					begin
+						start_writing_d = 1'b1;
+					end
+					if(start_writing_d == 1'b1)
+					begin
+						m1wr = 1'b1;
+						
+								//	REMOVE
+						//stopin = 1'b0;
+						//stopin_d = 1'b0;
+						
+						m1wd = din;		
+						input_index_x_d = input_index_x + 1;
 					end
 				end
-				else begin
-					m1wx_d=m1wx+1;			
-				end
-				
-				m1wr=1'b1;
-				m1wd=din;
-				//m1wr=0;
-				 
-				if (m1wx==4&&m1wy==4)begin
-					stopin_d=1;
-			//		$display ($time,"Done 25 locations!m1wx:%b,m1wy:%b",m1wx,m1wy);	
-					m1_done_d=1;  //1
-					ns=done_state;							
-				end
-				else begin 
-					//stopin_d=0;//to avoid latch
-					m1_done_d=0;
-					ns=load_state;
-				end
-				
-			end
-			done_state:begin
-				if(next_data) begin
-					stopin_d=0;
-					next_data_d=0;
-					ns=reset_state;
-				end
-				//if (stopin==0)
-				//$display("1:rx:%dry:%drd:%h",m1rx_d,m1ry_d,m1rd);
-			end
 
-			default: begin
-				m1wd=0;
-				m1wy_d=0;
-				m1wx_d=0;	
+				
+				if(input_index_x_d >= 4) 
+				begin
+					//input_index_x_d = 0;
+					ns_input = input_inc_y;							
+				end
+			end
+			
+			
+			input_inc_y:
+			begin
+				stopin1_d = 0;
+				if(pushin)
+				begin
+					if(start_writing_d == 1'b1)
+					begin
+					
+								//	REMOVE
+						//stopin = 1'b0;
+						//stopin_d = 1'b0;
+						
+						m1wr = 1'b1;
+						m1wd = din;	
+						input_index_x_d = 0;
+						input_index_y_d = input_index_y + 1;					
+					end
+				end
+				//if(input_index_x_d == 0)
+					//input_index_y_d = input_index_y + 1;
+				
+				if(pushin)
+				begin
+					if (input_index_y >= 4) 
+					begin
+						
+					//	- - - - - - - - - - - Error - - - - - - - - - -
+					//	  at   9299.0ns
+					//	  dout wrong, got 19c18c4aa008718c
+					//	  expected        e21f3d72a7ac6cd0
+					//					  ^^^^^^^^ ^^^^^^^
+					//	- - - - - - - - - - - Error - - - - - - - - - -
+
+						
+						input_index_y_d = 0;
+						input_index_x_d = 0;
+					
+						stopin1_d = 1;
+						
+						//m1wr = 1'b0;
+//						m1wd = 64'b0;
+						
+						enable_input_d = 1'b0;
+						enable_perm_d = 1'b1;
+						ns_input = R_input;
+						
+						
+						/*
+						
+						input_index_y_d = 0;
+						stopin1_d = 1;
+						ns_input = input_memory_full;
+						
+						*/
+					end
+					else
+						ns_input = input_inc_x;				
+				end
+				else
+				begin
+					ns_input = input_inc_y;
+				end
+				
+				
+				
+			end
+			
+			
+			input_memory_full:
+			begin
+				input_index_y_d = 0;
+				input_index_x_d = 0;
+			
+				stopin1_d = 1;
+				
+						//	REMOVE
+				//	stopin = 1'b1;
+				//stopin_d = 1'b1;
+				
+				
+				m1wr = 1'b0;
+				m1wd = 64'b0;
+				
+				enable_input_d = 1'b0;
+				/*
+				if (done_with_prev_perm == 1'b1)
+					enable_perm_d = 1'b1;
+				else
+					enable_perm_d = 1'b0;
+				*/
+				
+				enable_perm_d = 1'b1;
+				ns_input = R_input;								
 			end
 		endcase
-	end
-	if(next_data) 
-		stopin_d=0;
-	
-	//Do Perm
-	case (cs_perm)
-		reset_perm:begin
-			round_d=0;
-			c_round_d=0;		//Have not reset this at top, might create a latch
-			if(m1_done)
-				ns_perm=copym1m2;
-			m1rx_d=0;
-			m1ry_d=0;
-			m2rx_d=0;
-			m2ry_d=0;
-			m3rx_d=0;
-			m3ry_d=0;
-			m2wx_d=0;
-			m2wy_d=0;	
-			r1_d=0;	
-			r2_d=0;
-			r3_d=0;	
-			m2wr=0;	
-			m3wr=0;
-			rho_rot=0;
-			chi_done=0;
-			chi_ctr_d<=chi_ctr;
-			//next_data_d<=next_data;
-		//	$display("perm reset state");
-		end
-		copym1m2:begin
-		//copy data from m1 to m2
 		
-			//code for copying m3 to m1
-			m1wr=0;
-			m2wr=1;
-			//Increment m3r	//changed ffs x,y
-			if (m1ry>=4)begin
-				m1ry_d=0;
-				if (m1rx>=4)
-					m1rx_d=0;
-				else begin
-					m1rx_d=m1rx+1; 
-				end
-			end
-			else begin
-				m1ry_d=m1ry+1;			
-			end			
-			
-			m2wx_d=m1rx_d;
-			m2wy_d=m1ry_d;
-			
-			m2wd=m1rd;
-			
-			if(m1rx==4&&m1ry==4)begin
-				ns_perm=findC;
-				//make m1 free
-				
-				//stopin_d=0;	//added stopin here
-				next_data_d=1;
-				m1_done_d=0;
-			end
-			else ns_perm=copym1m2;
-		//	$display("copym3m1:m1wd:%h,m3rd:%h m1wx:%h,m1wy:%h",m1wd,m3rd,m1wx,m1wy);
 		
-		end	
-		findC:begin
-			//$display("perm findC state,m1ry:%d,m1rx:%d,c_round_d:%d m1rd:%h m1_done:%b r1=%h",m1ry,m1rx,c_round_d,m1rd,m1_done,r1);
-			//input in r1
-			m2wr=0;		//read
-			//r2=1;
-			if (m2ry==0)begin		
-				r1_d=m2rd;
-				//$display("m1ry==0");
-			end
-			else r1_d=r1_d^m2rd;						
+		
+		case(cs_perm)
+			R_perm:
+			begin
 			
-			if (m2ry>=4)begin
-				//done one x 
-				m3wr=1;
-				//$display($time,"r1:%h m1ry%d,m1rx:%d",r1,m1ry,m1rx); 
-				m2ry_d=0;
-				r2_d=r1_d;
+				rotate_C_inc_x_d = 0;			
+				m2wr = 1'b0;
+				D_index_x_d = 0;
+				Theta_index_x_d = 0;
+				Theta_index_y_d = 0;
+				Rho_Pi_index_x_d = 0;
+				Rho_Pi_index_y_d = 0;
+				Chi_Iota_index_x_d = 0;
+				Chi_Iota_index_y_d = 0;
+				round_counter_i_d = 0;
+				temp_d = 0;
+				temp1_d = 0;
+				C_index_x_d = 0;
+				C_index_y_d = 0;
 				
-				//inputting in m2 & m3
-				m2wy_d=0;			
-				m2wd=r2_d;	//Not passing through flip flop r2_d
-				//m2wr=0;
-				m2wx_d=m2wx+1;
-				
-				//m3
-				m3wr=1;
-				m3wd=r2_d;	//Not passing through flip flop r2_d
-				//m3wr=0;
-				
-				m3wx_d=m3wx+1;
-				
-				
-				if(m2rx>=4)begin
-					m2rx_d=0;
-				end
-				else begin 
-					m2rx_d=m2rx+1;
-				end
-			end
-			else begin
-				//$display($time,"m1ry_d:%d",m1ry_d); 
-				m2ry_d=m2ry+1;	
+			
+				if (enable_perm)
+					ns_perm = write_C_inc_y_read_from_mem1;
+				else
+					ns_perm = R_perm;				
 			end
 			
-			if (m2ry==4 && m2rx==4)begin
-				//$display("doneC");
-				m3wr=1;	//might be for C
-				ns_perm=dummy;
+			write_C_inc_y_read_from_mem1:
+			begin
+				m1rx = C_index_x; m1ry = C_index_y;
 				
-			end
-			else ns_perm=findC;
+				if (C_index_y == 0)
+					temp_d = m1rd;
+				else
+					temp_d = temp ^ m1rd;
+				
+				m3wr = 1'b1;
+				m3wx = C_index_x; m3wy = C_index_y;
+				m3wd = m1rd;
+				
+				C_index_y_d = C_index_y + 1;
+				
+				if(C_index_y >= 4)
+				begin
+				/*
+					m3wr = 1'b0;
+					m2wr = 1'b1;
+					m2wx = C_index_x; m2wy = 3'b000;
+					m2wd = temp_d;
+					ns_perm = write_c_inc_x;
 					
-			c_round_d=c_round+1;			
-		end
-		dummy:begin
-			ns_perm=findD;
-			m3wr=0;
-			//start from these values for D
-			m2ry_d=0;
-			j_d=j+1;
-			m2rx_d=cxminus1[i];	//4
-			m3ry_d=0;
-			m3rx_d=cxplus1[i];   	//1
-			m3wx_d=0;
-			m3wy_d=1;	//Store D in m3 y=1
-			
-		end
-		findD:begin
-			//$display("m2rd:%h, m3rd:%h. m2rx:%d,m3rx:%d,m2ry:%d",m2rd, m3rd, m2rx,m3rx,m2ry);
-			m3wr=0;//reading from m3 future values
-			m2wr=0;//reading from m2 past values
-			r1_d=m2rd;
-			
-			//changed to use constant regs
-			m2rx_d=cxminus1[i];
-			
-			if(i==4)begin
-				r3_d=r1_d^{r2_d[62:0],r2_d[63]};
+					
+					- - - - - - - - - - - Error - - - - - - - - - -
+					  at   9290.0ns
+					  dout wrong, got 4081d3447f9d6c9a
+					  expected        e21f3d72a7ac6cd0
+									  ^^^^^^^^^^^^  ^^
+					- - - - - - - - - - - Error - - - - - - - - - -
+
+					*/
+				
+					ns_perm = write_C_into_mem2;
+				end
 								
-				//r1_d=0;
-			//	r2_d=0;
-				//r3_d=0;
+			end
+			
+			
+			write_c_inc_x:
+			begin
+				C_index_x_d = C_index_x + 1;
+				C_index_y_d = 0;
+				
+				if (C_index_x >= 4)
+				begin
+					C_index_x_d = 0;
+					if (round_counter_i == 0)
+						enable_input_d = 1'b1;					
+//					ns_perm = write_rotated_C_into_mem2;
+					D_index_x_d = 0;
+					ns_perm = cal_D_read_C_from_bottom_row;
+				end
+				else
+				begin
+					ns_perm = write_C_inc_y_read_from_mem1;
+				end			
+			end
+			
+			
+			write_C_into_mem2:
+			begin
+				m3wr = 1'b0;
+				m2wr = 1'b1;
+				m2wx = C_index_x; m2wy = 3'b000;
+				m2wd = temp;
+//				ns_perm = write_c_inc_x;				
+				
+				
+				C_index_x_d = C_index_x + 1;
+				C_index_y_d = 0;
+				
+				if (C_index_x >= 4)
+				begin
+					C_index_x_d = 0;
+					if (round_counter_i == 0)
+						enable_input_d = 1'b1;					
+//					ns_perm = write_rotated_C_into_mem2;
+					D_index_x_d = 0;
+					ns_perm = cal_D_read_C_from_bottom_row;
+				end
+				else
+				begin
+					ns_perm = write_C_inc_y_read_from_mem1;
+				end
+				
+				
+
+
+
+			end
+			
+			
+			write_rotated_C_into_mem2:
+			begin				
+				m2rx = rotate_C_inc_x;	m2ry = 3'b000;
+				C1 = m2rd;
+				
+				rotation_reg_for_z = ({64'b0, C1}) << 1;
+				temp_reg_after_C_rotation = rotation_reg_for_z[127:64] | rotation_reg_for_z[63:0];
+				
+				m2wr = 1'b1;
+				m2wx = rotate_C_inc_x; m2wy = 3'b001;
+				m2wd = temp_reg_after_C_rotation;				
+				
+				rotate_C_inc_x_d = rotate_C_inc_x + 1;
+				
+				if(rotate_C_inc_x >= 4) 
+				begin
+					 D_index_x_d = 0;
+					 ns_perm = cal_D_read_C_from_bottom_row;
+				end
+				
+			end
+			
+			cal_D_read_C_from_bottom_row:
+			begin
+				rotate_C_inc_x_d = 0;
+				m2wr = 1'b0;
+				
+				index_1_for_D_calc = x_minus_1[D_index_x_d];
+				
+				m2rx = index_1_for_D_calc; m2ry = 3'b000;
+				temp1_d = m2rd;				
+				
+				ns_perm = cal_D_read_rotated_C_from_top_row;				
+			end
+			
+			
+			cal_D_read_rotated_C_from_top_row:
+			begin
+				index_2_for_D_calc = x_plus_1[D_index_x_d];
+				/*
+				m2rx = index_2_for_D_calc; m2ry = 3'b001;
+				D_2 = m2rd;
+				temp_d = temp1 ^ D_2;
+			*/
+				m2rx = index_2_for_D_calc; m2ry = 3'b000;
+				D_2 = m2rd;
+				
+				rotation_reg_for_z = ({64'b0, D_2}) << 1;
+				temp_reg_after_C_rotation = rotation_reg_for_z[127:64] | rotation_reg_for_z[63:0];
+				temp_d = temp1 ^ temp_reg_after_C_rotation;
+				
+			
+				
+				
+				
+				Theta_index_y_d = 0;
+				ns_perm = Theta_A_run_through_y_index;			
+			end
+			
+			
+			Theta_A_run_through_y_index:
+			begin
+			/*
+				// read A from m1 or m3:
+				if(round_counter_i == 0)
+				begin
+					m1rx = D_index_x; m1ry = Theta_index_y;
+					old_A_from_input = m1rd;
+				end
+				else
+				begin
+					m3rx = D_index_x; m3ry = Theta_index_y;
+					old_A_from_input = m3rd;
+				end
+				*/
+				
+				// read from m3
+				m3rx = D_index_x; m3ry = Theta_index_y;
+				old_A_from_input = m3rd;
+				
+				
+				new_A_for_Theta = old_A_from_input ^ temp;
+				
+				// write into m3:
+				m3wr = 1'b1;
+				m3wx = D_index_x; m3wy = Theta_index_y;
+				m3wd = new_A_for_Theta;
+				
+				Theta_index_y_d = Theta_index_y + 1;
+				
+				if(Theta_index_y >= 4)
+				begin
+					//ns_perm = inc_D;
+					
+					D_index_x_d = D_index_x + 1;
+					
+					if(D_index_x >= 4)
+					begin					
+						//m3wr = 1'b0;
+						
+						Rho_Pi_index_x_d = 0;
+						Rho_Pi_index_y_d = 0;
+						ns_perm = Rho_Pi_inc_x;
+										
+						//ns_perm = Done_with_Theta_A_Onto_rho_pi;
+					end
+					else
+						ns_perm = cal_D_read_C_from_bottom_row;
+					
+				end
+					
 			end
 			 
-			ns_perm=findD1;
-			m3rx_d=cxminus1[i];	//set for the lower part
-			r2_d=m3rd;
-			//$display("D:%h,m3wy:%h,m3wx:%h",m3wd,m3wy,m3wx);
-		end
-		findD1:begin
-		//D part 2: xor cxplus1 with prev value and store in m3 
-			ns_perm=findD;
-			if (i==4)
-				i_d=0;	
-			else i_d=i+1;
-
-			if (j==4)
-				j_d=0;	
-			else j_d=j+1;
-			m3rx_d=cxplus1[j];	//for the upper part	
-			r1_d=m3rd;
-			r3_d=r1_d^{r2_d[62:0],r2_d[63]};
 			
-			m3wr=1;
-			m3wd=r3_d;	
-			m3wx_d=m3wx+1;
-
-			if (j==0) begin
-				ns_perm=dotheta;
-				j_d=0;
-				i_d=0;
-
-				//resetting ffs for theta take i/p from m1,m3 store in m2
-				m1wr=0;
-				//m3wr=0;
-				m1ry_d=0;
-				m1rx_d=0;
-				m3ry_d=0;
-				m3rx_d=0;
-				m2wr=0;
-				m2wx_d=0;
-				m2wy_d=0;
-
-				//new theta setup copied frojm cpm1m2
-				//new theta setup
-				//resetting ffs for theta take i/p from m1,m3 store in m2
-				m1wr=0;
-				m1ry_d=0;
-				m1rx_d=0;
+			inc_D:
+			begin				
+				D_index_x_d = D_index_x + 1;
 				
-				//converting from m1 to m2
-				m2ry_d=0;
-				m2rx_d=0;
-
-				m3ry_d=1;
-				m3rx_d=0;
-				m2wx_d=0;
-				m2wy_d=0;
-
+				if(D_index_x >= 4)
+				begin					
+					m3wr = 1'b0;
+					
+					Rho_Pi_index_x_d = 0;
+					Rho_Pi_index_y_d = 0;
+					ns_perm = Rho_Pi_inc_x;
+									
+					//ns_perm = Done_with_Theta_A_Onto_rho_pi;
+				end
+				else
+					ns_perm = cal_D_read_C_from_bottom_row;
 			end
-		end
-	
-		dotheta:begin
-			theta_start=1;
-			m1wr=0;
-			m3wr=0;
+			
+			// no need for this anymore
+			Done_with_Theta_A_Onto_rho_pi:
+			begin			
+				// indices of new location.
+				Rho_Pi_index_x_d = 0;
+				Rho_Pi_index_y_d = 0;
+				/*
+				if (round_counter_i == 0)
+					enable_input_d = 1'b1;
+					*/
+				ns_perm = Rho_Pi_inc_x;
+			end
+			
+			
+			Rho_Pi_inc_x:
+			begin
+				
+				// find old location corresponding to the new one:				
+				index_x_of_theta_stage = x_of_x_plus_3_y[Rho_Pi_index_x][Rho_Pi_index_y];
+				index_y_of_theta_stage = Rho_Pi_index_x;
+				
+							
+				// get value of lane from theta stage:
+				m3rx = index_x_of_theta_stage; m3ry = index_y_of_theta_stage;
+				value_from_theta_stage = m3rd;
+				
+				// rho stage - calculate rotated value:				
+				offset_t_value_for_Rho_stage = t_rho[index_y_of_theta_stage][index_x_of_theta_stage];
+				
+				// reuse rotation_reg_for_z:				
+				rotation_reg_for_z = ({64'b0,value_from_theta_stage}) << offset_t_value_for_Rho_stage;
+				temp_reg_after_C_rotation = rotation_reg_for_z[127:64] | rotation_reg_for_z[63:0];				
+				
+				//write into m2:
+				m2wr = 1'b1;
+				m2wy = Rho_Pi_index_y;
+				m2wx = Rho_Pi_index_x;
+				m2wd = temp_reg_after_C_rotation;
+				
+				Rho_Pi_index_x_d = Rho_Pi_index_x + 1;
+					
+				if (Rho_Pi_index_x >= 4)
+					ns_perm = Rho_Pi_inc_y;			
+			end
+			
+			
+			Rho_Pi_inc_y:
+			begin				
+				Rho_Pi_index_y_d = Rho_Pi_index_y + 1;
+				Rho_Pi_index_x_d = 0;
+				
+				if (Rho_Pi_index_y >= 4 ) 
+				begin
+					m2wr = 1'b0;
+					
+					Chi_Iota_index_x_d = 0;
+					Chi_Iota_index_y_d = 0;
+					ns_perm = Chi_Iota_inc_x_read_x;
+					
+//					ns_perm = Done_with_Rho_Pi;
+				end
+				else
+					ns_perm = Rho_Pi_inc_x;
+			end
+			
+			// no need
+			Done_with_Rho_Pi:
+			begin
+				Chi_Iota_index_x_d = 0;
+				Chi_Iota_index_y_d = 0;
+				ns_perm = Chi_Iota_inc_x_read_x;
+			end
+			
+			
+			Chi_Iota_inc_x_read_x:
+			begin
+				m2rx = Chi_Iota_index_x; m2ry = Chi_Iota_index_y;
+				temp_d = m2rd;
+				ns_perm = Chi_Iota_inc_x_read_x_plus_1;
+			end
+			
+			
+			Chi_Iota_inc_x_read_x_plus_1:
+			begin
+				index_2_for_Chi_Iota = x_plus_1[Chi_Iota_index_x];
+				
+				m2rx = index_2_for_Chi_Iota; m2ry = Chi_Iota_index_y;
+				temp1_d = ~ m2rd;								
+				ns_perm = Chi_Iota_inc_x_read_x_plus_2;								
+			end
+			
+			
+			Chi_Iota_inc_x_read_x_plus_2:
+			begin
+				index_3_for_Chi_Iota = x_plus_2[Chi_Iota_index_x];
+				
+				m2rx = index_3_for_Chi_Iota; m2ry = Chi_Iota_index_y;
+				temp_variable_for_Chi_Iota_2 = m2rd;
+				
+				temp_variable_for_Chi_Iota_3 = temp ^ (temp1 & temp_variable_for_Chi_Iota_2);
+				
+				if((Chi_Iota_index_x == 0) && ( Chi_Iota_index_y == 0))
+					iota_value = temp_variable_for_Chi_Iota_3 ^ cmx[round_counter_i];
+				else
+					iota_value = temp_variable_for_Chi_Iota_3;
+				
+				// write into m3:
+				m3wr = 1'b1;
+				m3wx = Chi_Iota_index_x; m3wy = Chi_Iota_index_y;
+				m3wd = iota_value;
+				
+				if(round_counter_i == 23)
+				begin
+					m4wr = 1'b1;
+					m4wx = Chi_Iota_index_x; m4wy = Chi_Iota_index_y;
+					m4wd = iota_value;					
+				end
+				
+				Chi_Iota_index_x_d = Chi_Iota_index_x + 1;
+				
+				if(Chi_Iota_index_x >= 4)
+					ns_perm = Chi_Iota_inc_y;
+				else
+					ns_perm = Chi_Iota_inc_x_read_x;
+			end
+			
+			
+			Chi_Iota_inc_y:
+			begin															
+				Chi_Iota_index_y_d = Chi_Iota_index_y + 1;
+				Chi_Iota_index_x_d = 0;
+				
+				if(Chi_Iota_index_y >= 4)
+				begin
+					m3wr = 1'b0; m2wr = 1'b0; m4wr = 1'b0;
+//					ns_perm = Done_with_Chi_Iota;
+					
+					
+					m2wr = 1'b0;
+					round_counter_i_d = round_counter_i + 1;
+					
+					if(round_counter_i_d > 23)
+					begin
+						done_with_prev_perm_d = 1'b1;
+						enable_output_d = 1'b1;
+						ns_perm = R_perm;
+					end
+					else
+					begin					
+						C_index_x_d = 0;
+						C_index_y_d = 0;
+						done_with_prev_perm_d = 1'b0;
+						ns_perm = After_Iota_write_C_inc_y_read_from_mem3;
+					end
+					
+				end
+				else 
+					ns_perm = Chi_Iota_inc_x_read_x;			
+			end
+			
+			
+			Done_with_Chi_Iota:
+			begin
+				m2wr = 1'b0;
+				round_counter_i_d = round_counter_i + 1;
+				
+				if(round_counter_i_d > 23)
+				begin
+					done_with_prev_perm_d = 1'b1;
+					enable_output_d = 1'b1;
+					ns_perm = R_perm;
+				end
+				else
+				begin					
+					C_index_x_d = 0;
+					C_index_y_d = 0;
+					done_with_prev_perm_d = 1'b0;
+					ns_perm = After_Iota_write_C_inc_y_read_from_mem3;
+				end
+			end
+			
+			
+			
+			After_Iota_write_C_inc_y_read_from_mem3:
+			begin
+				m3rx = C_index_x; m3ry = C_index_y;
+				
+				if (C_index_y == 0)
+					temp_d = m3rd;
+				else
+					temp_d = temp ^ m3rd;
 
-			//added m2
-			m2wr=0;
-			//$display("m1rd:%h,m2rd:%h diff:%d",m1rd,m2rd,m2rd-m1rd);
-			r1_d=m2rd;
-			r2_d=m3rd;
-			r3_d=r1_d^r2_d;
+				C_index_y_d = C_index_y + 1;
+				
+				if(C_index_y >= 4)
+					ns_perm = After_Iota_write_C_into_mem2;			
+			end
+			
+			
+			After_Iota_write_c_inc_x:
+			begin
+				C_index_x_d = C_index_x + 1;
+				C_index_y_d = 0;
+				
+				if (C_index_x >= 4)
+				begin
+					C_index_x_d = 0;
+//					ns_perm = write_rotated_C_into_mem2;
+					D_index_x_d = 0;
+					ns_perm = cal_D_read_C_from_bottom_row;
+				end
+				else
+					ns_perm = After_Iota_write_C_inc_y_read_from_mem3;			
+			end
+			
+			
+			After_Iota_write_C_into_mem2:
+			begin
+				m2wr = 1'b1;
+				m2wx = C_index_x; m2wy = 3'b000;
+				m2wd = temp;
+//				ns_perm = After_Iota_write_c_inc_x;	
+					
+				C_index_x_d = C_index_x + 1;
+				C_index_y_d = 0;
+				
+				if (C_index_x >= 4)
+				begin
+					C_index_x_d = 0;
+//					ns_perm = write_rotated_C_into_mem2;
+					D_index_x_d = 0;
+					ns_perm = cal_D_read_C_from_bottom_row;
+				end
+				else
+					ns_perm = After_Iota_write_C_inc_y_read_from_mem3;
+				
+				
+				
+				
+							
+			end
+			
+			
+		
+		endcase
+		
+		case(cs_output)
+			R_output:
+			begin
+				output_index_x_d = 0;
+				output_index_y_d = 0;
+				pushout = 1'b0;
+				dout = 64'b0;
+				firstout = 1'b0;
+			
+			
+				if (enable_output)
+				begin
+					ns_output = output_inc_x;
+//					ns_output = Write_output;
+				end
+				else
+					ns_output = R_output;				
+			end
+			
+			Write_output:
+			begin
+				output_index_x_d = 0; output_index_y_d = 0; dout = 64'b0;
+				ns_output = output_inc_x;
+			end
+			
+			
+			output_inc_x:
+			begin
+				pushout = 1'b1;
+				
+				if ((output_index_x == 0) && (output_index_y == 0))
+					firstout = 1'b1;
+				else 
+					firstout = 1'b0;
+					
+				if( stopout == 0)
+				begin
+					//pushout = 1'b1;
+					/*
+					if ((output_index_x == 0) && (output_index_y == 0))
+						firstout = 1'b1;
+					else 
+						firstout = 1'b0;
+						*/
 						
-			//Increment m1 //input
-			if (m2rx>=4)begin
-				m2rx_d=0;
-				if (m2ry>=4)
-					m2ry_d=0;
-				else begin
-					m2ry_d=m2ry+1; 
-				end
-			end
-			else begin
-				m2rx_d=m2rx+1;			
-			end
-			
-			//m3
-			//Increment m3 //D
-			m3ry_d=1;
-			if (m3rx>=4)begin
-				m3rx_d=0;
-			end
-			else begin
-				m3rx_d=m3rx+1;			
-			end
-			
-			if(m2rx==4&&m2ry==4)begin
-				theta_start=0;
-				m2wd=r3_d;
-			//	$display("donetheta");
-				//resetting for rhopi
-				//m2wr=0;
-				m2rx_d=0;
-				m2ry_d=0;
-				m3wx_d=0;
-				m3wy_d=0;
-			end
-			 ns_perm=dotheta1;
-			
-			//$display(" Thetam1ry:%h,m1rx:%h,m1rd:%h m3ry:%h,m3rx:%h,m3rd:%h m2wy:%h,m2wx:%h,m2wd:%h",m1ry,m1rx,m1rd,m3ry,m3rx,m3rd,m2wy,m2wx,r3_d);
-			
-		end
-		dotheta1:begin
-			//m2write here
-
-			if (m2wx>=4)begin
-				m2wx_d=0;
-				if (m2wy>=4)begin
-					m2wy_d=0;
-				end
-				else begin
-					m2wy_d=m2wy+1;			
-				end
-			end
-			else begin
-				m2wx_d=m2wx+1; 
-			end
-
-			m2wr=1;
-			m2wd=r3_d;
-
-			ns_perm=dotheta;
-
-			if(m2wx==4&&m2wy==4)begin
-				ns_perm=dorho;
-			end
-		end
-		//step4
-		dorho:begin
-			//read from m2 and store in m3
-			m2wr=0;
-			r1_d=m2rd;//m2rd;
-			r2_d=rot[m2ry][m2rx];	//changed x,y
-			rho_rot={64'h0,r1_d}<<r2_d;
-			r3_d=rho_rot[127:64]|rho_rot[63:0];
-			
-			//new method
-		//	rho_rot=r1_d<<r2_d;
-			//r3_d=rho_rot[127:64]|r2_d;
-			//$display("r2_d:%d",r2_d);
-			//shift by r2_d times
-			//r3_d={r1_d[62:0],r1_d[63]};
-			
-			//Increment m2	//changed ffs x,y
-			if (m2ry>=4)begin
-				m2ry_d=0;
-				if (m2rx>=4)
-					m2rx_d=0;
-				else begin
-					m2rx_d=m2rx+1; 
-				end
-			end
-			else begin
-				m2ry_d=m2ry+1;			
-			end
-			
-			//Increment m3
-			m3wx_d=m2ry_d;	//no flip flop on rhs
-			m3wy_d=modulo(m2rx_d*2+m2ry_d*3,5);
-			
-			m3wr=1;
-			m3wd=r3_d;
-			
-			if(m3wx==4&&m3wy==0)begin
-				ns_perm=donothing;
-				//m3wr=0;
-				/*m3rx_d=0;
-				m3ry_d=0;
-				m2wx_d=0;
-				m2wy_d=0;
-				r1_d=0;
-				r2_d=0;*/
-			end
-			else ns_perm=dorho;
-			//$display("RHOPI:r1_d:%h,r2_d:%d,r3_d:%h,m2rx:%h,m2ry:%h,m3wx:%h,m3wy:%h(x*2+3*y)",r1_d,r2_d,r3_d,m2rx,m2ry,m3wx,m3wy);
-		
-		end
-		//step5
-		donothing:begin
-			m3wr=0;
-			ns_perm=copym3tom2;
-			m3rx_d=0;
-			m3ry_d=0;
-			
-		end
-		copym3tom2:begin
-			m2wr=1;
-			m3wr=0;
-			//Increment m3r	//changed ffs x,y
-			if (m3ry>=4)begin
-				m3ry_d=0;
-				if (m3rx>=4)
-					m3rx_d=0;
-				else begin
-					m3rx_d=m3rx+1; 
-				end
-			end
-			else begin
-				m3ry_d=m3ry+1;			
-			end			
-			
-			m2wx_d=m3rx_d;
-			m2wy_d=m3ry_d;
-			
-			m2wd=m3rd;
-			
-			if(m3rx==4&&m3ry==4)begin
-				ns_perm=dochi1;
-				m2rx_d=modulo(m2rx+1,5);	//modulo x+1
-				m2ry_d=0;
-				m2wx_d=0;
-				m2wy_d=0;
-			end
-			else ns_perm=copym3tom2;
-			
-		//	$display("copy:m2wd:%h,m3rd:%h m2wx:%h,m2wy:%h",m2wd,m3rd,m2wx,m2wy);
-		end
-		//step7
-		dochi1:begin 
-		//read from m2, store +1 in m3
-		//it shoiuld start a cycle ahead than prev stage
-			m2wr=0;
-			m3wr=1;
-			
-			//inc m2 for read
-			if (m2ry>=4)begin
-				m2ry_d=0;
-				m2rx_d=modulo(m2rx+1,5);	//for ~B(x+1)
-			end
-			else begin
-				m2ry_d=m2ry+1;			
-			end	 
-			
-			//Increment m3w	
-			if (m3wy>=4)begin
-				m3wy_d=0;
-				if (m3wx>=4)begin
-					m3wx_d=0;
-				end
-				else begin
-					m3wx_d=m3wx+1;			
-				end
-			end
-			else begin
-				m3wy_d=m3wy+1; 
-			end
-			
-			r1_d=m2rd;
-			r2_d=~r1_d;
-			
-			m3wd=r2_d;
-									
-			if(m3wy==4 &&m3wx==4) begin
-				ns_perm=dochi2;
-				//reset ffs for chi2
-				m2rx_d=modulo(m2rx+2,5);	//modulo x+2
-				m2ry_d=0;
-				m2wx_d=0;
-				m2wy_d=0;
-			end
-			else begin
-				ns_perm=dochi1;
-			end
-		//	$display("dochi1:m2rd(r1_d):%h,m3wd(r2_d):%h m3wx:%h,m3wy:%h,m2rx:%h,m2ry:%h",m2rd,m3wd,m3wx,m3wy,m2rx,m2ry);
-		end
-		//step8
-		dochi2:begin
-			//read from m2, store +2 in m3 after & with it
-			//it shoiuld start 1 cycles ahead than prev stage
-			m2wr=0;
-			m3wr=0;
-			
-			//inc m2 for read
-			if (m2ry>=4)begin
-				m2ry_d=0;
-				if (m2rx>=4)begin
-					m2rx_d=0;
-				end
-				else begin
-					m2rx_d=m2rx+1;			
-				end
+					m4rx = output_index_x; m4ry = output_index_y;
+					dout = m4rd;	
 				
-			end
-			else begin
-				m2ry_d=m2ry+1;			
-			end	 
 			
-			//Increment m3r	
-			if (m3ry>=4)begin
-				m3ry_d=0;
-				if (m3rx>=4)begin
-					m3rx_d=0;
+					output_index_x_d = output_index_x + 1;
+					
+					if(output_index_x_d >= 4)
+						ns_output = output_inc_y;										
 				end
-				else begin
-					m3rx_d=m3rx+1;			
-				end
-			end
-			else begin
-				m3ry_d=m3ry+1; 
+				//else
+					//pushout = 1'b0;
 			end
 			
-			//Increment m3w	
-			if (m3wy>=4)begin
-				m3wy_d=0;
-				if (m3wx>=4)begin
-					m3wx_d=0;
-				end
-				else begin
-					m3wx_d=m3wx+1;			
-				end
-			end
-			else begin
-				m3wy_d=m3wy+1; 
-			end
-			m3wr=0;
-			r1_d=m2rd;	//x+2
-			r2_d=m3rd;	//~(x+1)
-			r3_d=r1_d&r2_d;	//~B(x+1) & B(x+2)
-			m3wr=1;
-			m3wd=r3_d;
-									
-			if(m3wy==4 &&m3wx==4) begin
-				ns_perm=dochi3;
-				//reset ffs for chi3
-				m2rx_d=0;	
-				m2ry_d=0;
-				m2wx_d=0;
-				m2wy_d=0;
-			end
-			else begin
-				ns_perm=dochi2;
-			end
-		//	$display("dochi2:r3_d:%h,m3wx;%h,m3wy;%h,m2rx:%h,m2ry:%h",r3_d,m3wx,m3wy,m2rx,m2ry);
-		end
-		dochi3:begin 
-			//read from m2, store B(x,y) in m3 after ^ with m3
-			//it shoiuld start 1 cycles ahead than prev stage
-			m2wr=0;
-			m3wr=0;
 			
-			//Increment m2r	
-			if (m2ry>=4)begin
-				m2ry_d=0;
-				if (m2rx>=4)begin
-					m2rx_d=0;
+			output_inc_y:
+			begin
+				pushout = 1'b1;
+//				firstout = 1'b0;
+				if(stopout == 0)
+				begin
+					pushout = 1'b1;
+					
+					m4rx = output_index_x; m4ry = output_index_y;
+					dout = m4rd;
+					
+					output_index_y_d = output_index_y + 1;
+					output_index_x_d = 0;
+					
+					if(output_index_y >= 4)
+						ns_output = Done_reading;
+					else 
+						ns_output = output_inc_x;
 				end
-				else begin
-					m2rx_d=m2rx+1;			
-				end
-			end
-			else begin
-				m2ry_d=m2ry+1; 
+				//else
+					//pushout = 1'b0;			
 			end
 			
-			//Increment m3r	
-			if (m3ry>=4)begin
-				m3ry_d=0;
-				if (m3rx>=4)begin
-					m3rx_d=0;
-				end
-				else begin
-					m3rx_d=m3rx+1;			
-				end
-			end
-			else begin
-				m3ry_d=m3ry+1; 
+			
+			Done_reading:
+			begin
+				pushout = 1'b0;
+				firstout = 1'b0;
+				dout = 64'b0;
+				
+				enable_output_d = 1'b0;
+				ns_output = R_output;				
 			end
 			
-			//Increment m3w	
-			if (m3wy>=4)begin
-				m3wy_d=0;
-				if (m3wx>=4)begin
-					m3wx_d=0;
-				end
-				else begin
-					m3wx_d=m3wx+1;			
-				end
-			end
-			else begin
-				m3wy_d=m3wy+1; 
-			end
-			
-			m3wr=0;
-			r1_d=m2rd;	//x
-			r2_d=m3rd;	//~B(x+1) & B(x+2)
-			r3_d=r1_d^r2_d;	//
-			m3wr=1;
-			m3wd=r3_d;
-									
-			if(m3wy==4 &&m3wx==4) begin
-				ns_perm=doiota;
-				//reset ffs 
-				m3wx_d=0;
-				m3wy_d=0;
-				//m3wr=0;		//might break 0,0 or might miss 4,4
-			end
-			else begin
-				ns_perm=dochi3;
-			end
-		//	$display("dochi3:r3_d:%h,m3wx;%h,m3wy;%h",r3_d,m3wx,m3wy);
-			
-		end
-		doiota:begin
-			//  A[0,0] = A[0,0] xor RC
-			//also storing in m2 to save clock cycle
-			m3wr=0;
-			r1_d=m3rd;
-			m3wr=1;
-			
-			r2_d=r1_d^cmx[round];
-			m3wd=r2_d;
-		//	$display("round:%dcmx[round]:%h,r1_d:%h,m3wd:%h,m3wx;%h,m3wy;%h",round,cmx[round],r1_d,m3wd,m3wx,m3wy);			
-			
-			//m3wx_d=m3wx+1;			
-			if(m3wy==0 &&m3wx==0) begin
-				ns_perm=copym3m1;
-				m3wr=0;
-				r1_d=m3rd;
-				m3wr=1;
-				r2_d=r1_d^cmx[round];
-				m3wd=r2_d;
-				//reset ffs
-				//m3wr=0;
-				m3rx_d=0;
-				m3ry_d=0;
-			end
-			else begin
-				ns_perm=doiota;
-			end
-		if (round==24)	
-			round_d=0;
-		else round_d=round+1;	// check latch	
+		endcase
 		
-		end
-		//removed state
-		donothing2:begin
-			m3wr=0;
-			r2_d=0;
-			ns_perm=copym3m1;
-		end
-		copym3m1:begin
-			//its actually copying to m2
-			//code for copying m3 to m2
-			m2wr=1;
-			m3wr=0;
-			//Increment m3r	//changed ffs x,y
-			if (m3ry>=4)begin
-				m3ry_d=0;
-				if (m3rx>=4)
-					m3rx_d=0;
-				else begin
-					m3rx_d=m3rx+1; 
-				end
-			end
-			else begin
-				m3ry_d=m3ry+1;			
-			end			
-			
-			m2wx_d=m3rx_d;
-			m2wy_d=m3ry_d;
-			
-			m2wd=m3rd;
-			
-			if(m3rx==4&&m3ry==4)begin
-				ns_perm=doout;
-				m2wx_d=0;
-				m2wy_d=0;
-			end
-			else ns_perm=copym3m1;
-		//	$display("copym3m1:m1wd:%h,m3rd:%h m1wx:%h,m1wy:%h",m1wd,m3rd,m1wx,m1wy);
-		end
-		//state11
-		doout:begin
-		//check 24 rounds working
-			if (round==24&&cs_out==0) begin	//added line for check output state machine in reset state
-				ns_perm=copym3m4;
-			//	$display("DONE PERM");
-			end
-			else begin 
-				ns_perm=findC;
-			end
-		end
-		copym3m4:begin
-			m4wr=1;
-			m3wr=0;
-			//Increment m3r	//changed ffs x,y
-			if (m3ry>=4)begin
-				m3ry_d=0;
-				if (m3rx>=4)
-					m3rx_d=0;
-				else begin
-					m3rx_d=m3rx+1; 
-				end
-			end
-			else begin
-				m3ry_d=m3ry+1;			
-			end			
-			
-			m4wx_d=m3rx_d;
-			m4wy_d=m3ry_d;
-			
-			m4wd=m3rd;
-			
-			if(m3rx==4&&m3ry==4)begin
-				ns_perm=doneoutput;	//changed to LAST state
-								//setting flag for 3rd sm
-				perm_finish=1;
-			end
-			else ns_perm = copym3m4;
-	//		$display("copym3m4:m4wd:%h,m3rd:%h m4wx:%h,m4wy:%h",m4wd,m3rd,m4wx,m4wy);
-		end
-		done_perm:begin
-			//check if 3rd sm finishes
-			ns_perm=doneoutput;
-			perm_finish=0; //set perm finish to low
-		end
-		doneoutput:begin
-			ns_perm=reset_perm;
-			perm_finish=0; //set perm finish to low
-			//add condition for round 0
-			firstout=0;
-		end
-		default:begin
-			round_d=0;
-			ns_perm=reset_perm;	
-		end
-	endcase
+	end
 	
-	//reset_out,working_out,done_out
-	//output state machine
-	case (cs_out)
-	reset_out:begin
-		if (perm_finish)
-			ns_out=working_out;
-		m4rx_d=0;
-		m4ry_d=0;
-
-	end
-	working_out:begin
-		ns_out=working_out;
-
-		//paste output from sm2
-		m4wr=0;
-		//set flag high and give data to new state machine
-		//Increment m3r	//changed ffs x,y
-		if(stopout==0)
-			if (m4rx>=4)begin
-				m4rx_d=0;
-				if (m4ry>=4) begin
-					m4ry_d=0;
-				end
-				else begin
-					m4ry_d=m4ry+1; 
-				end
-			end
-			else begin
-				m4rx_d=m4rx+1;			
-			end
-			
-		dout=m4rd;
-		
-		pushout=1;
-		
-		if(m4rx==0 && m4ry==0)
-			firstout=1;
-		else firstout=0;
-//		$display("dout:%h,m4rx:%h,m4ry:%h",dout,m4rx,m4ry);
-		if(m4rx==4&&m4ry==4 && !stopout)begin		//added !stopout
-			ns_out=done_out;
-		end
-	end
-	done_out:begin
-		ns_out=reset_out;
-	end
-	endcase
 	
-end
+	
+	
+	
+	// Sequential Logic
+	always @(posedge clk or posedge rst)
+	begin
+		if (rst)
+		begin
+			cs_input <= R_input;
+			cs_perm <= R_perm;
+			cs_output <= R_output;
+			
+			enable_input <= 1'b1;
+			enable_perm <= 0;
+			enable_output <= 0;
+			
+			done_with_prev_perm <= 1'b1;
+			
+			stopin1 <= 0;
+			
+		//	stopin <= 1;
+			
+			input_index_x <= 0;
+			input_index_y <= 0;	
+			rotate_C_inc_x <= 0;
+			D_index_x <= 0;
+			Theta_index_x <= 0;
+			Theta_index_y <= 0;
+			Rho_Pi_index_x <= 0;
+			Rho_Pi_index_y <= 0;
+			Chi_Iota_index_x <= 0;
+			Chi_Iota_index_y <= 0;
+			round_counter_i <= 0;
+			output_index_x <= 0;
+			output_index_y <= 0;
+			temp <= 0;
+			temp1 <= 0;
+			C_index_x <= 0;
+			C_index_y <= 0;
+			start_writing <= 0;
+			
+		end
+		else 
+		begin
+			cs_input <= #1 ns_input;
+			cs_perm <= #1 ns_perm;
+			cs_output <= #1 ns_output;
+			
+			enable_input <= #1 enable_input_d;
+			enable_perm <= #1 enable_perm_d;
+			enable_output <= #1 enable_output_d;
+			
+			done_with_prev_perm <= #1 done_with_prev_perm_d;
+			
+			stopin1 <= #1 stopin1_d;
+			
+			//stopin <= #1 stopin_d;
+			
+			input_index_x <= #1 input_index_x_d;
+			input_index_y <= #1 input_index_y_d;
+			rotate_C_inc_x <= #1 rotate_C_inc_x_d;
+			D_index_x <= #1 D_index_x_d;
+			Theta_index_x <= #1 Theta_index_x_d;
+			Theta_index_y <= #1 Theta_index_y_d;
+			Rho_Pi_index_x <= #1 Rho_Pi_index_x_d;
+			Rho_Pi_index_y <= #1 Rho_Pi_index_y_d;
+			Chi_Iota_index_x <= #1 Chi_Iota_index_x_d;
+			Chi_Iota_index_y <= #1 Chi_Iota_index_y_d;
+			round_counter_i <= #1 round_counter_i_d;
+			output_index_x <= #1 output_index_x_d;
+			output_index_y <= #1 output_index_y_d;
+			temp <= #1 temp_d;
+			temp1 <= #1 temp1_d;
+			C_index_x <= #1 C_index_x_d;
+			C_index_y <= #1 C_index_y_d;
+			start_writing <= #1 start_writing_d;
+			
 
-//Always seq to put input data in mem1
-always @(posedge(clk) or posedge(rst)) begin
-	if(rst) begin
-		cs<=reset_state;
-		m1wx<=0;
-		m1wy<=0;
-		cs_perm<=reset_perm;
-		c_round<=0;
-		round<=0;
-		m1rx<=0;
-		m1ry<=0;
-		m1_done<=0;
-		r1<=0;
-		r2<=0;	
-		stopin<=0;
-		//m2wr<=0;
-		m2wx<=0;
-		m2wy<=0;
-		m3wx<=0;
-		m3wy<=0;
-		m2rx<=0;
-		m2ry<=0;
-		m3rx<=0;
-		m3ry<=0;
-		r3<=0;
-		cs_chi<=0;
-		chi_done<=0;
-		chi_ctr<=0;
-		m4wx<=0;
-		m4wy<=0;
-		m4rx<=0;
-		m4ry<=0;
-		next_data<=0;
-		i<=0;
-		j<=0;
-		cs_out<= reset_out;
-	end else begin
-		cs<= #1 ns;
-		m1wx<= #1 m1wx_d;
-		m1wy<= #1 m1wy_d;
-		cs_perm<= #1 ns_perm;
-		c_round<= #1 c_round_d;
-		m1rx<= #1 m1rx_d;
-		m1ry<= #1 m1ry_d;
-		m1_done<= #1 m1_done_d;
-		r1<= #1 r1_d;
-		r2<= #1 r2_d;
-		stopin<=stopin_d;
-		//m2wr<= #1 m2wr_d;
-		m2wx<= #1 m2wx_d;
-		m2wy<= #1 m2wy_d;
-		m3wx<= #1 m3wx_d;
-		m3wy<= #1 m3wy_d;
-		m2rx<= #1 m2rx_d;
-		m2ry<= #1 m2ry_d;
-		m3rx<= #1 m3rx_d;
-		m3ry<= #1 m3ry_d;
-		//m2wd_d<= #1 m2wd_d;
-		r3<= #1 r3_d;
-		cs_chi<= #1 ns_chi;
-		chi_done<= #1 chi_done_d;
-		chi_ctr<= #1 chi_ctr_d;
-		round<= #1 round_d;
-		m4wy<= #1 m4wy_d;
-		m4wx<= #1 m4wx_d;
-		m4rx<= #1 m4rx_d;
-		m4ry<= #1 m4ry_d;
-		next_data<= #1 next_data_d;
-		i<=#1 i_d;
-		j<=#1 j_d;
-		cs_out<=#1 ns_out;
-	end
-end
+		end
+	
+	end 
 
-function integer modulo; 
-	input int a,b; 
-	//output int z; 
-	int i; 
-	 
-	if (a%b>=0) 
-		modulo = a%b; 
-	else modulo = a%b+b; 
-	//$display ("%0dmod%0d=%0d",a,b,modulo); 
-endfunction 
+endmodule : perm_blk
 
-endmodule
+
+
+
+
+
+
 
