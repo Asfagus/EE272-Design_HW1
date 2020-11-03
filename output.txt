@@ -1,3 +1,4 @@
+/apps/synopsys/SYNTH/bin/dc_shell
                                         
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -1256,3 +1257,7 @@ Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
 quit
 
 Thank you...
+Namespace(debug=False, gates=False, nogates=True, resultsFileName='results.txt', synthesis=True)
+options syn True gates False
+--->> Partial run, do not submit for credit <<--
+

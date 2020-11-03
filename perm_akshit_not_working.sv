@@ -244,7 +244,7 @@ always @ (*)begin
 		reset_perm:begin
 			round_d=0;
 			c_round_d=0;		//Have not reset this at top, might create a latch
-			if(m1_done)begin
+			if(m1_done)
 				ns_perm=copym1m2;
 			m1rx_d=0;
 			m1ry_d=0;
@@ -263,7 +263,6 @@ always @ (*)begin
 			chi_done=0;
 			chi_ctr_d<=chi_ctr;
 			//next_data_d<=next_data;
-			end
 		//	$display("perm reset state");
 		end
 		copym1m2:begin
@@ -351,24 +350,11 @@ always @ (*)begin
 				m3wr=1;	//might be for C
 				ns_perm=dummy;
 				
-				// copied dummy state here
-				ns_perm=findD;
-				//m3wr=0;
-				//start from these values for D
-				m2ry_d=0;
-				j_d=j+1;
-				m2rx_d=cxminus1[i];	//4
-				m3ry_d=0;
-				m3rx_d=cxplus1[i];   	//1
-				m3wx_d=0;
-				m3wy_d=1;	//Store D in m3 y=1
-				
 			end
 			else ns_perm=findC;
 					
 			c_round_d=c_round+1;			
 		end
-		//removed
 		dummy:begin
 			ns_perm=findD;
 			m3wr=0;
@@ -506,30 +492,8 @@ always @ (*)begin
 			 ns_perm=dotheta1;
 			
 			//$display(" Thetam1ry:%h,m1rx:%h,m1rd:%h m3ry:%h,m3rx:%h,m3rd:%h m2wy:%h,m2wx:%h,m2wd:%h",m1ry,m1rx,m1rd,m3ry,m3rx,m3rd,m2wy,m2wx,r3_d);
-			//copied from theta1
-			if (m2wx>=4)begin
-				m2wx_d=0;
-				if (m2wy>=4)begin
-					m2wy_d=0;
-				end
-				else begin
-					m2wy_d=m2wy+1;			
-				end
-			end
-			else begin
-				m2wx_d=m2wx+1; 
-			end
-
-			m2wr=1;
-			m2wd=r3_d;
-
-			ns_perm=dotheta;
-
-			if(m2wx==4&&m2wy==4)begin
-				ns_perm=dorho;
-			end
+			
 		end
-		//removed state
 		dotheta1:begin
 			//m2write here
 
@@ -600,19 +564,10 @@ always @ (*)begin
 				m2wy_d=0;
 				r1_d=0;
 				r2_d=0;*/
-				
-				//copied from donothing
-				//m3wr=0;
-				m2wr=0;
-				ns_perm=copym3tom2;
-				m3rx_d=0;
-				m3ry_d=0;
 			end
 			else ns_perm=dorho;
 			//$display("RHOPI:r1_d:%h,r2_d:%d,r3_d:%h,m2rx:%h,m2ry:%h,m3wx:%h,m3wy:%h(x*2+3*y)",r1_d,r2_d,r3_d,m2rx,m2ry,m3wx,m3wy);
-			
 		end
-		//removed state
 		//step5
 		donothing:begin
 			m3wr=0;
@@ -825,22 +780,9 @@ always @ (*)begin
 			r3_d=r1_d^r2_d;	//
 			m3wr=1;
 			m3wd=r3_d;
-			
-			
-			//iota
-			if(m3wy==0 &&m3wx==0) begin
-				
-				m3wr=0;
-				r1_d=m2rd;	//x
-				r2_d=m3rd;	//~B(x+1) & B(x+2)
-				r3_d=r1_d^r2_d^cmx[round];	//
-				m3wr=1;
-				m3wd=r3_d;
-				
-			end
 									
 			if(m3wy==4 &&m3wx==4) begin
-				ns_perm=doout;
+				ns_perm=doiota;
 				//reset ffs 
 				m3wx_d=0;
 				m3wy_d=0;
@@ -850,11 +792,6 @@ always @ (*)begin
 				m2wx_d=0;
 				m2wy_d=0;
 
-
-				//iota
-				if (round==24)	
-					round_d=0;
-				else round_d=round+1;
 			end
 			else begin
 				ns_perm=dochi3;
@@ -870,7 +807,6 @@ always @ (*)begin
 			m2wy_d=m3wy_d;
 
 		end
-		//removed state
 		doiota:begin
 			//  A[0,0] = A[0,0] xor RC
 			//also storing in m2 to save clock cycle
@@ -968,15 +904,11 @@ always @ (*)begin
 				//copy perm state high might fail if sending out takes too long
 				perm_copy=1;	
 			//	$display("DONE PERM");
-				//adding below states to reduce cycles
-				ns_perm=reset_perm;
-				firstout=0;
 			end
 			else begin 
 				ns_perm=findC;
 			end
 		end
-		//removed state
 		copym3m4:begin
 			m4wr=1;
 			m3wr=0;
@@ -1001,26 +933,19 @@ always @ (*)begin
 			if(m3rx==4&&m3ry==4)begin
 				ns_perm=doneoutput;	//changed to LAST state
 								//setting flag for 3rd sm
-				//perm_finish=1;
-				//added from last states
-				ns_perm=reset_perm;
-				//perm_finish=0; //set perm finish to low
-				//add condition for round 0
-				firstout=0;
+				perm_finish=1;
 			end
 			else ns_perm = copym3m4;
 	//		$display("copym3m4:m4wd:%h,m3rd:%h m4wx:%h,m4wy:%h",m4wd,m3rd,m4wx,m4wy);
 		end
-		//removed state
 		done_perm:begin
 			//check if 3rd sm finishes
 			ns_perm=doneoutput;
-			//perm_finish=0; //set perm finish to low
+			perm_finish=0; //set perm finish to low
 		end
-		//removed state
 		doneoutput:begin
 			ns_perm=reset_perm;
-			//perm_finish=0; //set perm finish to low
+			perm_finish=0; //set perm finish to low
 			//add condition for round 0
 			firstout=0;
 		end
@@ -1064,9 +989,9 @@ always @ (*)begin
 		m4wd=m3rd;
 		
 		if(m3rx==4&&m3ry==4)begin
-			ns_out=working_out;	//changed to LAST state
+			ns_out=reset_out;	//changed to LAST state
 							//setting flag for 3rd sm
-			//perm_finish=1;
+			perm_finish=1;
 			perm_copy=0;
 		end
 	//		$display("copym3m4:m4wd:%h,m3rd:%h m4wx:%h,m4wy:%h",m4wd,m3rd,m4wx,m4wy);

@@ -1,4 +1,4 @@
-runsha3 script run started on Wed Oct 28 10:41:00 2020
+runsha3 script run started on Mon Nov  2 17:49:37 2020
 run on machine coe-ee-cad4.sjsuad.sjsu.edu
 
 Run with a clock period of 4.65

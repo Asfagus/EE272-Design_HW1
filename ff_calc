@@ -1,0 +1,13 @@
+#!/usr/bin/python3
+
+#This is a script to calc number of ffs
+
+f3=open("output.txt","r")
+count=0
+for ln in f3.readlines():
+	if "Flip-flop" in ln:
+			#print (ln)
+			s=(ln.split("|"))
+			count=count +int(s[3])
+print ("number of ffs=",count)
+f3.close()

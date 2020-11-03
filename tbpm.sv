@@ -116,13 +116,14 @@ m55 m3(clk,reset,m3ax,m3ay,m3rd,m3wx,m3wy,m3wr,m3wd);
 m55 m4(clk,reset,m4ax,m4ay,m4rd,m4wx,m4wy,m4wr,m4wd);
 
 initial begin
-//    repeat(10_000_000) @(posedge(clk));
+    //   17_443_269
+   // repeat(13_243_260) @(posedge(clk));
     $dumpfile("perm.vcd");
     $dumpvars(9,p);
-    repeat(100000) @(posedge(clk));
+    repeat(1000000) @(posedge(clk));
     #5;
     $dumpoff;
-
+	//$finish;
 end
 
 endmodule : top

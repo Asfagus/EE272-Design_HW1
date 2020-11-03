@@ -13,8 +13,10 @@ Perm time
 154189461000	mine after removing last state
 136195461000	mine after maybe removing theta 2nd stage
 136195441000	mine worked oh joy with 475 ffs
+134755941000	mine after iota
 117541661000ps  smit perm
 
+pushout goes high
 45931 mine first time i pushout
 42 lav
 39 smit
