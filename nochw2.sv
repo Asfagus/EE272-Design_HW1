@@ -410,8 +410,9 @@ always @ (*)begin
 				else begin
 					//when stopin is high give an error response 
 					$display("tried to write while stopin high");
-					pushin=0;
-					firstin=0;
+					//commented the foll lines as it interrupts
+					//pushin=0;
+					//firstin=0;
 				end
 			end
 			else pushin=0;

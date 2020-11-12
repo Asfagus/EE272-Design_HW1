@@ -604,9 +604,15 @@ always @ (*)begin
 				//copied from donothing
 				//m3wr=0;
 				m2wr=0;
-				ns_perm=copym3tom2;
+				ns_perm=dochi1;
+
 				m3rx_d=0;
 				m3ry_d=0;
+
+				//prep for dochi1
+				m3rx_d=modulo(m3rx+1,5);	//modulo x+1
+				m3ry_d=0;
+
 			end
 			else ns_perm=dorho;
 			//$display("RHOPI:r1_d:%h,r2_d:%d,r3_d:%h,m2rx:%h,m2ry:%h,m3wx:%h,m3wy:%h(x*2+3*y)",r1_d,r2_d,r3_d,m2rx,m2ry,m3wx,m3wy);
@@ -622,7 +628,10 @@ always @ (*)begin
 			m3ry_d=0;
 			
 		end
+		//removed state
+		//to remove this state, change chi1, ch2, chi3 to use m3 instead of m2
 		copym3tom2:begin
+			//state 10
 			m2wr=1;
 			m3wr=0;
 			//Increment m3r	//changed ffs x,y
@@ -645,18 +654,75 @@ always @ (*)begin
 			
 			if(m3rx==4&&m3ry==4)begin
 				ns_perm=dochi1;
+			
+				/*			
+				m2rx_d=modulo(m2rx+1,5);	//modulo x+1
+				m2ry_d=0;
+				m2wx_d=0;
+				m2wy_d=0;
+				*/
+				//changing to m3
 				m2rx_d=modulo(m2rx+1,5);	//modulo x+1
 				m2ry_d=0;
 				m2wx_d=0;
 				m2wy_d=0;
 			end
 			else ns_perm=copym3tom2;
-			
 		//	$display("copy:m2wd:%h,m3rd:%h m2wx:%h,m2wy:%h",m2wd,m3rd,m2wx,m2wy);
 		end
 		//step7
-		dochi1:begin 
+		dochi1:begin
+		//changing m2 with m3 
+
 		//read from m2, store +1 in m3
+		//it shoiuld start a cycle ahead than prev stage
+			m3wr=0;
+			m2wr=1;
+			
+			//inc m2 for read
+			if (m3ry>=4)begin
+				m3ry_d=0;
+				m3rx_d=modulo(m3rx+1,5);	//for ~B(x+1)
+			end
+			else begin
+				m3ry_d=m3ry+1;			
+			end	 
+			
+			//Increment m3w	
+			if (m2wy>=4)begin
+				m2wy_d=0;
+				if (m2wx>=4)begin
+					m2wx_d=0;
+				end
+				else begin
+					m2wx_d=m2wx+1;			
+				end
+			end
+			else begin
+				m2wy_d=m2wy+1; 
+			end
+			
+			r1_d=m3rd;
+			r2_d=~r1_d;
+			
+			m2wd=r2_d;
+									
+			if(m2wy==4 &&m2wx==4) begin
+				ns_perm=dochi2;
+				//reset ffs for chi2
+				m3rx_d=modulo(m3rx+2,5);	//modulo x+2
+				m3ry_d=0;
+				m3wx_d=0;
+				m3wy_d=0;
+			end
+			else begin
+				ns_perm=dochi1;
+			end
+		//	$display("dochi1:m2rd(r1_d):%h,m3wd(r2_d):%h m3wx:%h,m3wy:%h,m2rx:%h,m2ry:%h",m2rd,m3wd,m3wx,m3wy,m2rx,m2ry);
+		
+		//old logic with extra copym3m2 stage
+/*
+	//read from m2, store +1 in m3
 		//it shoiuld start a cycle ahead than prev stage
 			m2wr=0;
 			m3wr=1;
@@ -701,9 +767,84 @@ always @ (*)begin
 				ns_perm=dochi1;
 			end
 		//	$display("dochi1:m2rd(r1_d):%h,m3wd(r2_d):%h m3wx:%h,m3wy:%h,m2rx:%h,m2ry:%h",m2rd,m3wd,m3wx,m3wy,m2rx,m2ry);
+		
+*/
 		end
-		//step8
+		//state11
 		dochi2:begin
+			//read from m2, store +2 in m3 after & with it
+			//it shoiuld start 1 cycles ahead than prev stage
+			m3wr=0;
+			m2wr=0;
+			
+			//inc m2 for read
+			if (m3ry>=4)begin
+				m3ry_d=0;
+				if (m3rx>=4)begin
+					m3rx_d=0;
+				end
+				else begin
+					m3rx_d=m3rx+1;			
+				end
+				
+			end
+			else begin
+				m3ry_d=m3ry+1;			
+			end	 
+			
+			//Increment m3r	
+			if (m2ry>=4)begin
+				m2ry_d=0;
+				if (m2rx>=4)begin
+					m2rx_d=0;
+				end
+				else begin
+					m2rx_d=m2rx+1;			
+				end
+			end
+			else begin
+				m2ry_d=m2ry+1; 
+			end
+			
+			//Increment m3w	
+			if (m2wy>=4)begin
+				m2wy_d=0;
+				if (m2wx>=4)begin
+					m2wx_d=0;
+				end
+				else begin
+					m2wx_d=m2wx+1;			
+				end
+			end
+			else begin
+				m2wy_d=m2wy+1; 
+			end
+			m2wr=0;
+			r1_d=m3rd;	//x+2
+			r2_d=m2rd;	//~(x+1)
+			r3_d=r1_d&r2_d;	//~B(x+1) & B(x+2)
+			m2wr=1;
+			m2wd=r3_d;
+									
+			if(m2wy==4 &&m2wx==4) begin
+				ns_perm=dochi3;
+				//reset ffs for chi3
+				m3rx_d=0;	
+				m3ry_d=0;
+				m3wx_d=0;
+				m3wy_d=0;
+			end
+			else begin
+				ns_perm=dochi2;
+			end
+		//	$display("dochi2:r3_d:%h,m3wx;%h,m3wy;%h,m2rx:%h,m2ry:%h",r3_d,m3wx,m3wy,m2rx,m2ry);
+		
+	
+	
+	
+/*
+			//old 
+			
 			//read from m2, store +2 in m3 after & with it
 			//it shoiuld start 1 cycles ahead than prev stage
 			m2wr=0;
@@ -770,9 +911,113 @@ always @ (*)begin
 				ns_perm=dochi2;
 			end
 		//	$display("dochi2:r3_d:%h,m3wx;%h,m3wy;%h,m2rx:%h,m2ry:%h",r3_d,m3wx,m3wy,m2rx,m2ry);
+		*/
 		end
 		dochi3:begin 
+			//read from m2 and store in m2, m3
 			//read from m2, store B(x,y) in m3 after ^ with m3
+			//also storing in m2 to save clock cycle
+			//it shoiuld start 1 cycles ahead than prev stage
+			m3wr=0;
+			m2wr=0;
+			
+			//Increment m2r	
+			if (m3ry>=4)begin
+				m3ry_d=0;
+				if (m3rx>=4)begin
+					m3rx_d=0;
+				end
+				else begin
+					m3rx_d=m3rx+1;			
+				end
+			end
+			else begin
+				m3ry_d=m3ry+1; 
+			end
+			
+			//Increment m3r	
+			if (m2ry>=4)begin
+				m2ry_d=0;
+				if (m2rx>=4)begin
+					m2rx_d=0;
+				end
+				else begin
+					m2rx_d=m2rx+1;			
+				end
+			end
+			else begin
+				m2ry_d=m2ry+1; 
+			end
+			
+			//Increment m3w	
+			if (m2wy>=4)begin
+				m2wy_d=0;
+				if (m2wx>=4)begin
+					m2wx_d=0;
+				end
+				else begin
+					m2wx_d=m2wx+1;			
+				end
+			end
+			else begin
+				m2wy_d=m2wy+1; 
+			end
+			
+			m2wr=0;
+			r1_d=m3rd;	//x
+			r2_d=m2rd;	//~B(x+1) & B(x+2)
+			r3_d=r1_d^r2_d;	//
+			m2wr=1;
+			m2wd=r3_d;
+			
+			
+			//iota
+			if(m2wy==0 &&m2wx==0) begin
+				
+				m2wr=0;
+				r1_d=m3rd;	//x
+				r2_d=m2rd;	//~B(x+1) & B(x+2)
+				r3_d=r1_d^r2_d^cmx[round];	//
+				m2wr=1;
+				m2wd=r3_d;
+				
+			end
+									
+			if(m2wy==4 &&m2wx==4) begin
+				ns_perm=doout;
+				//reset ffs 
+				m2wx_d=0;
+				m2wy_d=0;
+				//m3wr=0;		//might break 0,0 or might miss 4,4
+
+				//m2 write stuff
+				m3wx_d=0;
+				m3wy_d=0;
+
+
+				//iota
+				if (round==24)	
+					round_d=0;
+				else round_d=round+1;
+			end
+			else begin
+				ns_perm=dochi3;
+			end
+		//	$display("dochi3:r3_d:%h,m3wx;%h,m3wy;%h",r3_d,m3wx,m3wy);
+
+			//try to store in m2
+			
+			m3wr=1;
+			//m2 stuff
+			m3wd=m2wd;
+			m3wx_d=m2wx_d;
+			m3wy_d=m2wy_d;
+
+/*
+			//old
+			//read from m2 and store in m2, m3
+			//read from m2, store B(x,y) in m3 after ^ with m3
+			//also storing in m2 to save clock cycle
 			//it shoiuld start 1 cycles ahead than prev stage
 			m2wr=0;
 			m3wr=0;
@@ -868,6 +1113,10 @@ always @ (*)begin
 			m2wd=m3wd;
 			m2wx_d=m3wx_d;
 			m2wy_d=m3wy_d;
+
+
+
+*/
 
 		end
 		//removed state
