@@ -165,8 +165,7 @@ always @ (*)begin
 	perm_finish=0;
 	ns_out=cs_out;
 	perm_copy=0;
-	if (pushin&&!m1_done)begin
-		//To put data in 25 locations mem1 
+			//To put data in 25 locations mem1 
 		case(cs)
 			reset_state:begin
 				//Start reset wx,wy in mem1
@@ -176,19 +175,22 @@ always @ (*)begin
 				//m1wd=din;
 				m1rx_d=0;
 				m1ry_d=0;
-				m1wr=1'b1;
-				m1wd=din;
-				m1wx_d=m1wx+1;
+				
+				
 				//ns=load_state;
 				
-				if(firstin) begin
+				if(firstin && pushin && !m1_done) begin
 					ns=load_state;
 					m1rx_d=m1rx+1;
+					m1wx_d=m1wx+1;
+					m1wr=1'b1;
+					m1wd=din;
 				end
 				else ns=reset_state;
 				
 			end
-			load_state:begin			
+			load_state:begin	
+			if (pushin)begin		
 				//Increment m1wx until 5 steps
 				if (m1wx>=4)begin
 					m1wx_d=0;
@@ -217,7 +219,7 @@ always @ (*)begin
 					m1_done_d=0;
 					ns=load_state;
 				end
-				
+			end
 			end
 			done_state:begin
 				if(next_data) begin
@@ -235,7 +237,7 @@ always @ (*)begin
 				m1wx_d=0;	
 			end
 		endcase
-	end
+	
 	if(next_data) 
 		stopin_d=0;
 	
@@ -244,7 +246,7 @@ always @ (*)begin
 		reset_perm:begin
 			round_d=0;
 			c_round_d=0;		//Have not reset this at top, might create a latch
-			if(m1_done)begin
+			if(m1_done&&cs==2)begin
 				ns_perm=copym1m2;
 			m1rx_d=0;
 			m1ry_d=0;
@@ -268,7 +270,7 @@ always @ (*)begin
 		end
 		copym1m2:begin
 		//copy data from m1 to m2
-		
+		if (cs==2)begin
 			//code for copying m3 to m1
 			m1wr=0;
 			m2wr=1;
@@ -300,7 +302,7 @@ always @ (*)begin
 			end
 			else ns_perm=copym1m2;
 		//	$display("copym3m1:m1wd:%h,m3rd:%h m1wx:%h,m1wy:%h",m1wd,m3rd,m1wx,m1wy);
-		
+		end
 		end	
 		findC:begin
 			//$display("perm findC state,m1ry:%d,m1rx:%d,c_round_d:%d m1rd:%h m1_done:%b r1=%h",m1ry,m1rx,c_round_d,m1rd,m1_done,r1);
@@ -428,7 +430,7 @@ always @ (*)begin
 				i_d=0;
 
 				//resetting ffs for theta take i/p from m1,m3 store in m2
-				m1wr=0;
+				//m1wr=0;
 				//m3wr=0;
 				m1ry_d=0;
 				m1rx_d=0;
@@ -441,7 +443,7 @@ always @ (*)begin
 				//new theta setup copied frojm cpm1m2
 				//new theta setup
 				//resetting ffs for theta take i/p from m1,m3 store in m2
-				m1wr=0;
+				//m1wr=0;
 				m1ry_d=0;
 				m1rx_d=0;
 				
@@ -459,7 +461,7 @@ always @ (*)begin
 	
 		dotheta:begin
 			theta_start=1;
-			m1wr=0;
+			//m1wr=0;
 			m3wr=0;
 
 			//added m2
@@ -1447,4 +1449,5 @@ function integer modulo;
 endfunction 
 
 endmodule
+
 

@@ -4,9 +4,9 @@ module noc_intf (
     input [7:0] tod_data,		//to device	from tb
     output frm_ctl,				//from device to tb//reg
     output [7:0] frm_data,  	//from device to tb	//reg
-    output reg pushin,firstin,  //to device	
+    output reg pushin_q,firstin_q,  //to device	
     input stopin,				//from device	
-    output reg [63:0]din,		//to device
+    output reg [63:0]din_q,		//to device
     input pushout,firstout,		//from device
     output  stopout,			//to device until NOC_intf read
     input [63:0] dout);			//from device to NOC
@@ -109,6 +109,10 @@ reg [7:0] werr_adl;//actual data length written
 //stopin resp
 reg wstopin;
 
+//pushin became ff also firstin
+reg pushin,firstin;
+reg [63:0] din;
+
 //pushout resp
 reg wpushout,wpushout_d;
 
@@ -196,12 +200,12 @@ always @ (*)begin
 	addr_ctr_d=addr_ctr;
 	datar_ctr_d=datar_ctr;
 	first_ctr_d=first_ctr;
-	firstin=0;
+	firstin=firstin_q;
 	datar_d=datar;
 	//pushin_d=pushin;
 	data_size_ctr_d=data_size_ctr;
+	pushin=pushin_q;
 	pushin=0;
-	
 	frm_ctl_d=1;
 	frm_data_d=0;
 	//write_resp=0;
@@ -254,7 +258,7 @@ always @ (*)begin
 	dataout_d1=dataout_d;
 	dest_id_r=0;
 	src_id_r=0;
-	din=0;
+	din=din_q;
 	werr_adl=0;
 	swr_src=0;
 	swr_dest=0;
@@ -409,7 +413,7 @@ always @ (*)begin
 				end
 				else begin
 					//when stopin is high give an error response 
-					$display("tried to write while stopin high");
+					//$display("tried to write while stopin high %t",$time);
 					//commented the foll lines as it interrupts
 					//pushin=0;
 					//firstin=0;
@@ -723,6 +727,9 @@ always @ (posedge clk or posedge reset)begin
 		dataout_d<=0;
 		datain<=0;
 		wpushout<=0;
+		pushin_q<=0;
+		firstin_q<=0;
+		din_q<=0;
 	end
 	else begin
 		packet_size<= #1 packet_size_d;
@@ -761,6 +768,9 @@ always @ (posedge clk or posedge reset)begin
 		dataout_d<= #1 dataout_d1;
 		datain<= #1 datain_d;
 		wpushout<= #1 wpushout_d;
+		pushin_q<= #1 pushin;
+		firstin_q<= #1 firstin;
+		din_q<= #1 din;
 	end
 	
 	
